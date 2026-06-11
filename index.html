@@ -1,620 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Bangladesh Budget Dashboard 2026-2027</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Bangladesh Budget Dashboard 2026-27</title>
 <style>
-  :root {
-    --green-dark: #005B41;
-    --green-mid:  #007A55;
-    --green-light:#009966;
-    --green-pale: #E6F4EF;
-    --red-accent: #C0392B;
-    --gold:       #D4A017;
-    --gold-pale:  #FDF6E3;
-    --blue-mid:   #1A6FA8;
-    --blue-pale:  #EAF3FB;
-    --bg:         #F4F6F8;
-    --surface:    #FFFFFF;
-    --border:     #DDE1E7;
-    --text-primary:   #1A1D23;
-    --text-secondary: #5A6070;
-    --text-muted:     #8A93A8;
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
-    --shadow-md: 0 4px 12px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.06);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,.12);
-    --radius:    10px;
-    --radius-lg: 16px;
-    --font: 'Segoe UI', 'Noto Sans Bengali', Arial, sans-serif;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text-primary);
-    min-height: 100vh;
-    font-size: 14px;
-    line-height: 1.55;
-  }
+/* ── RESET ─────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
 
-  /* ─── HEADER ─────────────────────────────────── */
-  .site-header {
-    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 200;
-    box-shadow: 0 2px 8px rgba(0,0,0,.25);
-  }
-  .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    height: 64px;
-  }
-  .header-brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    flex-shrink: 0;
-  }
-  .brand-flag {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid rgba(255,255,255,.4);
-    flex-shrink: 0;
-  }
-  .brand-text h1 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-  }
-  .brand-text p {
-    font-size: 11px;
-    color: rgba(255,255,255,.75);
-    font-weight: 400;
-  }
-  .header-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .btn-control {
-    background: rgba(255,255,255,.15);
-    border: 1px solid rgba(255,255,255,.3);
-    color: #fff;
-    padding: 7px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 600;
-    transition: background .2s, border-color .2s;
-    white-space: nowrap;
-    font-family: var(--font);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .btn-control:hover { background: rgba(255,255,255,.25); border-color: rgba(255,255,255,.55); }
-  .btn-control.active { background: rgba(255,255,255,.9); color: var(--green-dark); border-color: transparent; }
+/* ── TOKENS ────────────────────────────────────────── */
+:root{
+  --bg:          #07091A;
+  --bg2:         #0C0F22;
+  --surface:     rgba(255,255,255,0.04);
+  --surface-hov: rgba(255,255,255,0.07);
+  --border:      rgba(255,255,255,0.08);
+  --border-hov:  rgba(255,255,255,0.16);
+  --text:        #F0F2FF;
+  --text-2:      #9098B8;
+  --text-3:      #545B7A;
+  --prism-a:     #00E5C8;
+  --prism-b:     #7C6EFA;
+  --prism-c:     #F72585;
+  --prism-d:     #FFB703;
+  --prism-e:     #06D6A0;
+  --green:       #00C896;
+  --blue:        #4EA8DE;
+  --red:         #FF4D6D;
+  --gold:        #FFB703;
+  --violet:      #9D4EDD;
+  --r8:  8px;
+  --r12: 12px;
+  --r16: 16px;
+  --r24: 24px;
+  --font:'Inter','Segoe UI','Noto Sans Bengali',system-ui,sans-serif;
+}
 
-  /* ─── TABS BAR ───────────────────────────────── */
-  .tabs-bar {
-    background: var(--surface);
-    border-bottom: 2px solid var(--border);
-    position: sticky;
-    top: 64px;
-    z-index: 100;
-  }
-  .tabs-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    gap: 0;
-  }
-  .tab-btn {
-    padding: 14px 22px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    border: none;
-    background: none;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    margin-bottom: -2px;
-    transition: color .2s, border-color .2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font);
-  }
-  .tab-btn:hover { color: var(--green-mid); }
-  .tab-btn.active { color: var(--green-dark); border-bottom-color: var(--green-mid); }
+/* ── BODY / BACKGROUND ─────────────────────────────── */
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  position:relative;
+}
 
-  /* ─── MAIN CONTENT ───────────────────────────── */
-  .main-wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 24px 24px 48px;
-  }
-  .tab-panel { display: none; }
-  .tab-panel.active { display: block; }
+/* Ambient orbs */
+body::before,body::after{
+  content:'';
+  position:fixed;
+  border-radius:50%;
+  filter:blur(120px);
+  pointer-events:none;
+  z-index:0;
+}
+body::before{
+  width:700px;height:700px;
+  top:-200px;left:-200px;
+  background:radial-gradient(circle,rgba(0,229,200,.13) 0%,transparent 70%);
+  animation:orb-drift 18s ease-in-out infinite alternate;
+}
+body::after{
+  width:600px;height:600px;
+  bottom:-150px;right:-150px;
+  background:radial-gradient(circle,rgba(124,110,250,.14) 0%,transparent 70%);
+  animation:orb-drift 22s ease-in-out infinite alternate-reverse;
+}
+@keyframes orb-drift{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(60px,40px) scale(1.15)}
+}
 
-  /* ─── SECTION TITLE ──────────────────────────── */
-  .section-heading {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-  }
-  .section-sub {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-  }
+/* ── NOISE TEXTURE OVERLAY ─────────────────────────── */
+.noise{
+  position:fixed;inset:0;z-index:1;
+  pointer-events:none;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
 
-  /* ─── SUMMARY CARDS ──────────────────────────── */
-  .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 28px;
-  }
-  .summary-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow-sm);
-    position: relative;
-    overflow: hidden;
-  }
-  .summary-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-  }
-  .summary-card.outlay::before  { background: var(--green-mid); }
-  .summary-card.revenue::before { background: var(--blue-mid); }
-  .summary-card.deficit::before { background: var(--red-accent); }
-  .summary-card.gdp::before     { background: var(--gold); }
-  .card-icon {
-    width: 36px; height: 36px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 12px;
-  }
-  .card-icon.green { background: var(--green-pale); }
-  .card-icon.blue  { background: var(--blue-pale); }
-  .card-icon.red   { background: #FDECEA; }
-  .card-icon.gold  { background: var(--gold-pale); }
-  .card-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .6px;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-  }
-  .card-value {
-    font-size: 26px;
-    font-weight: 800;
-    color: var(--text-primary);
-    line-height: 1.1;
-    margin-bottom: 4px;
-  }
-  .card-unit { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
-  .card-note {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 6px;
-  }
+/* ── HEADER ────────────────────────────────────────── */
+.header{
+  position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  background:rgba(7,9,26,.75);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  max-width:1320px;margin:0 auto;
+  padding:0 28px;
+  height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.brand-flag{
+  width:34px;height:34px;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 1.5px rgba(255,255,255,.12),0 0 18px rgba(0,229,200,.3);
+}
+.brand-title{font-size:14px;font-weight:700;letter-spacing:-.2px;color:var(--text);line-height:1.2}
+.brand-sub{font-size:11px;color:var(--text-3);font-weight:400;margin-top:1px}
 
-  /* ─── CHART GRID ──────────────────────────────── */
-  .chart-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 20px;
-    margin-bottom: 28px;
-  }
-  @media (max-width: 860px) { .chart-grid { grid-template-columns: 1fr; } }
-  .chart-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px;
-    box-shadow: var(--shadow-sm);
-  }
-  .chart-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  svg.chart { display: block; width: 100%; }
+/* Prism line under header brand */
+.brand::after{display:none}
 
-  /* Legend */
-  .legend { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
-  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.header-right{display:flex;align-items:center;gap:8px}
 
-  /* ─── TOOLBAR (Search + Filter) ──────────────── */
-  .toolbar {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-bottom: 18px;
-  }
-  .search-wrap {
-    flex: 1;
-    min-width: 220px;
-    position: relative;
-  }
-  .search-wrap svg {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-  .search-input {
-    width: 100%;
-    padding: 9px 12px 9px 38px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    font-size: 13px;
-    font-family: var(--font);
-    color: var(--text-primary);
-    background: var(--surface);
-    outline: none;
-    transition: border-color .2s, box-shadow .2s;
-  }
-  .search-input:focus { border-color: var(--green-mid); box-shadow: 0 0 0 3px rgba(0,122,85,.12); }
-  .filter-chips {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .chip {
-    padding: 7px 14px;
-    border: 1.5px solid var(--border);
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    cursor: pointer;
-    background: var(--surface);
-    transition: all .2s;
-    font-family: var(--font);
-    white-space: nowrap;
-  }
-  .chip:hover { border-color: var(--green-mid); color: var(--green-mid); }
-  .chip.active { background: var(--green-dark); border-color: var(--green-dark); color: #fff; }
+/* Prismatic pill button */
+.ctrl-btn{
+  position:relative;
+  padding:7px 16px;
+  border-radius:20px;
+  border:none;
+  font-size:12px;font-weight:600;
+  cursor:pointer;
+  font-family:var(--font);
+  color:var(--text-2);
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  transition:all .22s ease;
+  display:flex;align-items:center;gap:6px;
+  white-space:nowrap;
+}
+.ctrl-btn:hover{
+  background:rgba(255,255,255,.09);
+  border-color:var(--border-hov);
+  color:var(--text);
+  transform:translateY(-1px);
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+.ctrl-btn.on{
+  background:linear-gradient(135deg,rgba(0,229,200,.15),rgba(124,110,250,.15));
+  border-color:rgba(0,229,200,.35);
+  color:var(--prism-a);
+  box-shadow:0 0 20px rgba(0,229,200,.12);
+}
 
-  /* ─── DATA TABLE ─────────────────────────────── */
-  .table-wrap {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
-    overflow: hidden;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  thead tr { background: #F7F9FB; }
-  th {
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    color: var(--text-muted);
-    border-bottom: 1.5px solid var(--border);
-    white-space: nowrap;
-  }
-  th.num { text-align: right; }
-  td {
-    padding: 13px 16px;
-    font-size: 13px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
-  td.num { text-align: right; font-weight: 700; color: var(--green-dark); white-space: nowrap; }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: var(--green-pale); }
-  .ministry-name { font-weight: 600; color: var(--text-primary); }
-  .ministry-name .sub { font-size: 11px; font-weight: 400; color: var(--text-muted); margin-top: 2px; }
-  .sector-badge {
-    display: inline-block;
-    padding: 3px 9px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: 600;
-    white-space: nowrap;
-  }
-  .share-bar-wrap { display: flex; align-items: center; gap: 8px; min-width: 100px; }
-  .share-bar-bg { flex: 1; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
-  .share-bar-fill { height: 100%; background: var(--green-mid); border-radius: 3px; }
-  .share-pct { font-size: 11px; color: var(--text-muted); white-space: nowrap; width: 38px; text-align: right; }
-  .btn-details {
-    padding: 5px 12px;
-    border: 1.5px solid var(--green-mid);
-    border-radius: 6px;
-    color: var(--green-dark);
-    background: none;
-    font-size: 11px;
-    font-weight: 700;
-    cursor: pointer;
-    font-family: var(--font);
-    transition: background .18s, color .18s;
-  }
-  .btn-details:hover { background: var(--green-dark); color: #fff; border-color: var(--green-dark); }
-  .no-results {
-    text-align: center;
-    padding: 40px 16px;
-    color: var(--text-muted);
-    font-size: 14px;
-  }
-  .no-results svg { display: block; margin: 0 auto 12px; }
-  .table-footer {
-    padding: 10px 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-    background: #F7F9FB;
-    border-top: 1.5px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+/* ── TABS ──────────────────────────────────────────── */
+.tabs-bar{
+  position:sticky;top:62px;z-index:190;
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  background:rgba(7,9,26,.7);
+  border-bottom:1px solid var(--border);
+}
+.tabs-inner{
+  max-width:1320px;margin:0 auto;
+  padding:0 28px;
+  display:flex;gap:2px;
+}
+.tab-btn{
+  position:relative;
+  padding:14px 20px;
+  font-size:13px;font-weight:600;
+  color:var(--text-3);
+  border:none;background:none;cursor:pointer;
+  font-family:var(--font);
+  display:flex;align-items:center;gap:8px;
+  transition:color .2s;
+  white-space:nowrap;
+}
+.tab-btn:hover{color:var(--text-2)}
+.tab-btn.active{color:var(--text)}
+.tab-btn::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;
+  height:2px;border-radius:2px 2px 0 0;
+  background:linear-gradient(90deg,var(--prism-a),var(--prism-b));
+  transform:scaleX(0);
+  transition:transform .25s cubic-bezier(.4,0,.2,1);
+}
+.tab-btn.active::after{transform:scaleX(1)}
+.tab-icon{opacity:.6;transition:opacity .2s}
+.tab-btn.active .tab-icon,.tab-btn:hover .tab-icon{opacity:1}
 
-  /* ─── REVENUE PANEL ──────────────────────────── */
-  .rev-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 20px;
-  }
-  @media (max-width: 840px) { .rev-grid { grid-template-columns: 1fr; } }
-  .rev-list { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
-  .rev-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 16px;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .rev-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .rev-cat { font-size: 13px; font-weight: 700; color: var(--text-primary); }
-  .rev-val { font-size: 15px; font-weight: 800; color: var(--green-dark); white-space: nowrap; }
-  .rev-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
-  .rev-bar-bg { width: 100%; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
-  .rev-bar-fill { height: 100%; border-radius: 4px; background: var(--green-mid); }
+/* ── LAYOUT ────────────────────────────────────────── */
+.wrap{
+  position:relative;z-index:10;
+  max-width:1320px;margin:0 auto;
+  padding:28px 28px 60px;
+}
+.panel{display:none}
+.panel.active{display:block}
 
-  /* ─── POLICY PANEL ───────────────────────────── */
-  .policy-section { margin-bottom: 32px; }
-  .policy-section-header {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius) var(--radius) 0 0;
-    padding: 16px 20px;
-    border-bottom: 2px solid var(--green-mid);
-  }
-  .policy-section-title { font-size: 15px; font-weight: 700; color: var(--text-primary); }
-  .policy-section-overview { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
-  .policy-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 0;
-    border: 1px solid var(--border);
-    border-top: none;
-    border-radius: 0 0 var(--radius) var(--radius);
-    overflow: hidden;
-  }
-  .policy-card {
-    background: var(--surface);
-    padding: 18px 20px;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .policy-card:nth-child(2n) { border-right: none; }
-  .policy-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-  .policy-target { font-size: 13px; font-weight: 700; color: var(--text-primary); flex: 1; }
-  .tin-badge {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .tin-badge.required { background: #FDECEA; color: var(--red-accent); }
-  .tin-badge.exempt   { background: var(--green-pale); color: var(--green-dark); }
-  .policy-guideline { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+/* ── GLASS CARD ────────────────────────────────────── */
+.glass{
+  position:relative;
+  background:var(--surface);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border-radius:var(--r16);
+  border:1px solid var(--border);
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  overflow:hidden;
+}
+.glass::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:inherit;
+  background:linear-gradient(135deg,rgba(255,255,255,.035) 0%,transparent 60%);
+  pointer-events:none;
+}
+.glass:hover{
+  border-color:var(--border-hov);
+  transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(0,0,0,.4);
+}
 
-  /* ─── MODAL ──────────────────────────────────── */
-  .modal-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.45);
-    z-index: 500;
-    backdrop-filter: blur(3px);
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-  .modal-backdrop.open { display: flex; }
-  .modal {
-    background: var(--surface);
-    border-radius: var(--radius-lg);
-    max-width: 560px;
-    width: 100%;
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-    animation: modal-in .22s ease;
-  }
-  @keyframes modal-in {
-    from { opacity: 0; transform: scale(.96) translateY(8px); }
-    to   { opacity: 1; transform: scale(1)  translateY(0); }
-  }
-  .modal-header {
-    background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
-    padding: 18px 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .modal-title { font-size: 15px; font-weight: 700; color: #fff; }
-  .modal-sector { font-size: 11px; color: rgba(255,255,255,.75); margin-top: 3px; }
-  .modal-close {
-    background: rgba(255,255,255,.2);
-    border: none;
-    border-radius: 6px;
-    width: 30px; height: 30px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    flex-shrink: 0;
-    transition: background .18s;
-  }
-  .modal-close:hover { background: rgba(255,255,255,.35); }
-  .modal-body { padding: 22px; }
-  .modal-stat {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 14px;
-    background: var(--green-pale);
-    border-radius: 8px;
-    margin-bottom: 16px;
-  }
-  .modal-stat-label { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
-  .modal-stat-value { font-size: 22px; font-weight: 800; color: var(--green-dark); }
-  .modal-stat-unit  { font-size: 12px; color: var(--text-secondary); }
-  .modal-desc-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--text-muted); margin-bottom: 6px; }
-  .modal-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+/* Prismatic top border glow on hover */
+.glass-glow{
+  position:relative;
+}
+.glass-glow::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--prism-a),var(--prism-b),transparent);
+  opacity:0;
+  transition:opacity .3s;
+  pointer-events:none;
+}
+.glass-glow:hover::after{opacity:1}
 
-  /* ─── SOURCE BAR ──────────────────────────────── */
-  .source-bar {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 14px 24px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-  .source-bar a { color: var(--green-mid); text-decoration: none; }
-  .source-bar a:hover { text-decoration: underline; }
+/* ── SUMMARY CARDS ─────────────────────────────────── */
+.summary-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:24px;
+}
+@media(max-width:1000px){.summary-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.summary-grid{grid-template-columns:1fr}}
 
-  /* ─── SECTOR COLOURS ─────────────────────────── */
-  .sector--education      { background:#EEF4FF; color:#1A6FA8; }
-  .sector--health         { background:#FFF0F3; color:#C0392B; }
-  .sector--defence        { background:#F0F4F0; color:#2D5A2E; }
-  .sector--transport      { background:#FFF8E1; color:#B8860B; }
-  .sector--agriculture    { background:#F0FAF0; color:#1A7A1A; }
-  .sector--energy         { background:#FFF3CD; color:#856404; }
-  .sector--social         { background:#F3E8FF; color:#7B2D8B; }
-  .sector--administration { background:#EFF6FF; color:#1E40AF; }
-  .sector--ict            { background:#E0F2F1; color:#00695C; }
-  .sector--local          { background:#FDE8D8; color:#B84A00; }
-  .sector--industry       { background:#F5F0FF; color:#5B21B6; }
-  .sector--debt           { background:#FEF2F2; color:#991B1B; }
-  .sector--environment    { background:#ECFDF5; color:#065F46; }
+.s-card{
+  padding:22px 22px 20px;
+  animation:card-in .5s cubic-bezier(.4,0,.2,1) both;
+}
+.s-card:nth-child(1){animation-delay:.05s}
+.s-card:nth-child(2){animation-delay:.1s}
+.s-card:nth-child(3){animation-delay:.15s}
+.s-card:nth-child(4){animation-delay:.2s}
+@keyframes card-in{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
-  /* ─── UTILS ──────────────────────────────────── */
-  .mt16 { margin-top: 16px; }
-  .mt24 { margin-top: 24px; }
-  .flex-between { display: flex; justify-content: space-between; align-items: center; }
+.s-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
+.s-card-icon{
+  width:38px;height:38px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.s-card-badge{
+  font-size:10px;font-weight:700;
+  padding:3px 8px;border-radius:20px;
+  letter-spacing:.3px;text-transform:uppercase;
+}
+.badge-green{background:rgba(0,200,150,.12);color:var(--green)}
+.badge-blue {background:rgba(78,168,222,.12);color:var(--blue)}
+.badge-red  {background:rgba(255,77,109,.12);color:var(--red)}
+.badge-gold {background:rgba(255,183,3,.12);color:var(--gold)}
 
-  /* ─── LOADING OVERLAY ─────────────────────────── */
-  #loading {
-    position: fixed; inset: 0; background: var(--green-dark);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 9999; color: #fff; gap: 16px;
-  }
-  #loading svg { animation: spin 1.4s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  #loading p { font-size: 14px; opacity: .8; }
+.s-card-label{
+  font-size:11px;font-weight:600;
+  letter-spacing:.6px;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:8px;
+}
+.s-card-value{
+  font-size:30px;font-weight:800;
+  letter-spacing:-1px;line-height:1;
+  margin-bottom:5px;
+}
+.val-green{background:linear-gradient(135deg,#00E5C8,#06D6A0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.val-blue {background:linear-gradient(135deg,#4EA8DE,#7C6EFA);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.val-red  {background:linear-gradient(135deg,#FF4D6D,#F72585);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.val-gold {background:linear-gradient(135deg,#FFB703,#FB8500);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
-  @media (max-width: 600px) {
-    .header-inner { height: auto; padding: 12px 0; flex-wrap: wrap; }
-    .main-wrap { padding: 16px 14px 40px; }
-    .tab-btn { padding: 12px 14px; font-size: 12px; gap: 5px; }
-    .card-value { font-size: 20px; }
-    th, td { padding: 10px 12px; }
-  }
+.s-card-unit{font-size:12px;color:var(--text-3);font-weight:500;margin-bottom:12px}
+.s-card-note{
+  font-size:11px;color:var(--text-3);
+  padding-top:12px;
+  border-top:1px solid var(--border);
+}
+
+/* ── OVERVIEW CHART ROW ─────────────────────────────── */
+.chart-row{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:16px;
+  margin-bottom:24px;
+}
+@media(max-width:900px){.chart-row{grid-template-columns:1fr}}
+
+.chart-card{padding:22px}
+.chart-head{
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:20px;
+}
+.chart-head-title{
+  font-size:13px;font-weight:700;color:var(--text);
+}
+.chart-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:linear-gradient(135deg,var(--prism-a),var(--prism-b));
+  box-shadow:0 0 8px rgba(0,229,200,.5);
+}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.legend-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--text-2)}
+.legend-swatch{width:12px;height:4px;border-radius:2px;flex-shrink:0}
+
+/* ── DONUT ──────────────────────────────────────────── */
+#donut-wrap{position:relative;width:200px;height:200px;margin:0 auto}
+#donut-wrap svg{display:block}
+.donut-center{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+.donut-pct{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
+.donut-lbl{font-size:10px;color:var(--text-3);margin-top:3px;font-weight:500}
+
+/* ── BAR CHART SVG ──────────────────────────────────── */
+#top-bar-chart{width:100%;display:block}
+
+/* ── TOOLBAR ────────────────────────────────────────── */
+.toolbar{
+  display:flex;gap:12px;flex-wrap:wrap;
+  align-items:center;margin-bottom:18px;
+}
+.search-wrap{flex:1;min-width:220px;position:relative}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.4}
+.search-input{
+  width:100%;
+  padding:10px 14px 10px 40px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  font-size:13px;
+  font-family:var(--font);
+  outline:none;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+.search-input::placeholder{color:var(--text-3)}
+.search-input:focus{
+  border-color:rgba(0,229,200,.4);
+  background:rgba(0,229,200,.04);
+  box-shadow:0 0 0 3px rgba(0,229,200,.08);
+}
+
+/* Chips */
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:11.5px;font-weight:600;
+  color:var(--text-3);
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  cursor:pointer;
+  font-family:var(--font);
+  white-space:nowrap;
+  transition:all .2s;
+}
+.chip:hover{border-color:var(--border-hov);color:var(--text-2)}
+.chip.on{
+  background:linear-gradient(135deg,rgba(0,229,200,.12),rgba(124,110,250,.12));
+  border-color:rgba(0,229,200,.35);
+  color:var(--prism-a);
+  box-shadow:0 0 14px rgba(0,229,200,.08);
+}
+
+/* ── TABLE ──────────────────────────────────────────── */
+.tbl-wrap{
+  background:rgba(255,255,255,.025);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--border);
+  border-radius:var(--r16);
+  overflow:hidden;
+}
+table{width:100%;border-collapse:collapse}
+thead tr{background:rgba(255,255,255,.025)}
+th{
+  padding:11px 16px;
+  font-size:10.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.7px;
+  color:var(--text-3);
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+  text-align:left;
+}
+th.r{text-align:right}
+td{
+  padding:13px 16px;
+  font-size:13px;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  vertical-align:middle;
+  transition:background .15s;
+}
+td.r{text-align:right}
+tbody tr:last-child td{border-bottom:none}
+tbody tr{transition:background .15s}
+tbody tr:hover td{background:rgba(255,255,255,.03)}
+
+.min-name{font-weight:600;color:var(--text);font-size:13px}
+.min-sub{font-size:11px;color:var(--text-3);margin-top:2px}
+
+/* Sector badge */
+.sbadge{
+  display:inline-block;
+  padding:3px 10px;
+  border-radius:20px;
+  font-size:10.5px;font-weight:700;
+  white-space:nowrap;
+  border:1px solid transparent;
+}
+
+/* Share bar */
+.share-wrap{display:flex;align-items:center;gap:8px;min-width:110px}
+.share-track{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.07)}
+.share-fill{height:4px;border-radius:2px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.share-pct{font-size:11px;color:var(--text-3);width:38px;text-align:right;flex-shrink:0}
+
+.alloc-val{
+  font-size:13px;font-weight:700;
+  color:var(--prism-a);white-space:nowrap;
+}
+.alloc-unit{font-size:10px;font-weight:400;color:var(--text-3);margin-left:2px}
+
+/* Details button */
+.btn-detail{
+  padding:5px 12px;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:6px;
+  background:transparent;
+  color:var(--text-2);
+  font-size:11px;font-weight:600;
+  cursor:pointer;
+  font-family:var(--font);
+  transition:all .18s;
+  white-space:nowrap;
+}
+.btn-detail:hover{
+  border-color:rgba(0,229,200,.4);
+  color:var(--prism-a);
+  background:rgba(0,229,200,.06);
+}
+
+/* Footer row */
+.tbl-foot{
+  padding:10px 16px;
+  font-size:11.5px;color:var(--text-3);
+  background:rgba(255,255,255,.02);
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+}
+
+/* No results */
+.no-res{
+  text-align:center;padding:48px 16px;
+  color:var(--text-3);font-size:13px;
+}
+.no-res svg{display:block;margin:0 auto 12px;opacity:.3}
+
+/* ── REVENUE ─────────────────────────────────────────── */
+.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:840px){.rev-grid{grid-template-columns:1fr}}
+
+.rev-item{
+  padding:18px 20px;
+  border-radius:var(--r12);
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  transition:border-color .2s,background .2s;
+  animation:card-in .4s ease both;
+}
+.rev-item:hover{background:rgba(255,255,255,.05);border-color:var(--border-hov)}
+
+.rev-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.rev-cat{font-size:13px;font-weight:700;color:var(--text)}
+.rev-val-wrap{text-align:right;flex-shrink:0}
+.rev-val{font-size:16px;font-weight:800;white-space:nowrap}
+.rev-sub{font-size:10px;color:var(--text-3)}
+.rev-bar-track{width:100%;height:6px;border-radius:3px;background:rgba(255,255,255,.06);margin-bottom:8px;overflow:hidden}
+.rev-bar-fill{height:6px;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.rev-desc{font-size:11.5px;color:var(--text-3);line-height:1.55}
+
+/* ── POLICY ──────────────────────────────────────────── */
+.pol-section{margin-bottom:28px;animation:card-in .4s ease both}
+.pol-header{
+  padding:18px 22px;
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--border);
+  border-bottom:none;
+  border-radius:var(--r16) var(--r16) 0 0;
+  position:relative;overflow:hidden;
+}
+.pol-header::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--prism-a),var(--prism-b),var(--prism-c),transparent);
+}
+.pol-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.pol-overview{font-size:12px;color:var(--text-3);line-height:1.5}
+
+.pol-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  border:1px solid var(--border);
+  border-top:none;
+  border-radius:0 0 var(--r16) var(--r16);
+  overflow:hidden;
+}
+.pol-card{
+  padding:18px 20px;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,.02);
+  display:flex;flex-direction:column;gap:10px;
+  transition:background .18s;
+}
+.pol-card:hover{background:rgba(255,255,255,.04)}
+.pol-card:last-child{border-right:none}
+
+.pol-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.pol-target{font-size:13px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
+
+.tin-pill{
+  display:flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:20px;
+  font-size:10.5px;font-weight:700;
+  flex-shrink:0;white-space:nowrap;
+}
+.tin-req{background:rgba(255,77,109,.12);color:var(--red);border:1px solid rgba(255,77,109,.2)}
+.tin-exe{background:rgba(0,200,150,.12);color:var(--green);border:1px solid rgba(0,200,150,.2)}
+.pol-guide{font-size:12px;color:var(--text-3);line-height:1.55}
+
+/* ── MODAL ───────────────────────────────────────────── */
+.modal-bg{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  z-index:900;
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal-bg.open{display:flex}
+.modal{
+  background:rgba(14,17,36,.92);
+  backdrop-filter:blur(30px);
+  -webkit-backdrop-filter:blur(30px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:var(--r24);
+  max-width:520px;width:100%;
+  overflow:hidden;
+  box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);
+  animation:modal-in .22s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes modal-in{
+  from{opacity:0;transform:scale(.94) translateY(12px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+.modal-top{
+  padding:22px 22px 18px;
+  position:relative;
+  border-bottom:1px solid var(--border);
+}
+/* Prismatic top glow on modal */
+.modal-top::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--prism-a),var(--prism-b),var(--prism-c),var(--prism-d));
+}
+.modal-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:4px;padding-right:32px}
+.modal-sec{font-size:12px;color:var(--text-3)}
+.modal-x{
+  position:absolute;top:16px;right:16px;
+  width:28px;height:28px;border-radius:8px;
+  background:rgba(255,255,255,.06);border:1px solid var(--border);
+  color:var(--text-2);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s,color .18s;
+}
+.modal-x:hover{background:rgba(255,77,109,.15);color:var(--red);border-color:rgba(255,77,109,.3)}
+
+.modal-body{padding:22px}
+.modal-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+  margin-bottom:18px;
+}
+.modal-stat{
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:var(--r12);
+  padding:14px 16px;
+}
+.mstat-lbl{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);margin-bottom:6px}
+.mstat-val{font-size:22px;font-weight:800;letter-spacing:-.5px}
+.mstat-unit{font-size:11px;color:var(--text-3);margin-top:2px}
+.modal-desc-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3);margin-bottom:8px}
+.modal-desc{font-size:13px;color:var(--text-2);line-height:1.65}
+
+/* ── FOOT ─────────────────────────────────────────── */
+.site-foot{
+  position:relative;z-index:10;
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:14px 24px;
+  font-size:11.5px;color:var(--text-3);
+}
+.site-foot a{color:var(--prism-a);text-decoration:none}
+.site-foot a:hover{text-decoration:underline}
+
+/* ── LOADING ─────────────────────────────────────────── */
+#loading{
+  position:fixed;inset:0;
+  background:var(--bg);
+  z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
+}
+.spin-ring{
+  width:48px;height:48px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.07);
+  border-top-color:var(--prism-a);
+  animation:spin .9s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-text{font-size:13px;color:var(--text-3);letter-spacing:.3px}
+
+/* ── SECTION DIVIDER ─────────────────────────────────── */
+.section-title{
+  font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.8px;
+  color:var(--text-3);
+  margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* ── SECTOR BADGE COLOURS ──────────────────────────── */
+.s-edu{background:rgba(78,168,222,.1);color:#4EA8DE;border-color:rgba(78,168,222,.2)}
+.s-health{background:rgba(255,77,109,.1);color:#FF4D6D;border-color:rgba(255,77,109,.2)}
+.s-def{background:rgba(6,214,160,.1);color:#06D6A0;border-color:rgba(6,214,160,.2)}
+.s-trans{background:rgba(255,183,3,.1);color:#FFB703;border-color:rgba(255,183,3,.2)}
+.s-agri{background:rgba(0,200,150,.1);color:#00C896;border-color:rgba(0,200,150,.2)}
+.s-energy{background:rgba(251,133,0,.1);color:#FB8500;border-color:rgba(251,133,0,.2)}
+.s-social{background:rgba(157,78,221,.1);color:#9D4EDD;border-color:rgba(157,78,221,.2)}
+.s-admin{background:rgba(124,110,250,.1);color:#7C6EFA;border-color:rgba(124,110,250,.2)}
+.s-ict{background:rgba(0,229,200,.1);color:#00E5C8;border-color:rgba(0,229,200,.2)}
+.s-local{background:rgba(247,37,133,.1);color:#F72585;border-color:rgba(247,37,133,.2)}
+.s-ind{background:rgba(157,78,221,.1);color:#9D4EDD;border-color:rgba(157,78,221,.15)}
+.s-debt{background:rgba(255,77,109,.08);color:#FF6B6B;border-color:rgba(255,77,109,.15)}
+.s-env{background:rgba(6,214,160,.08);color:#06D6A0;border-color:rgba(6,214,160,.15)}
+
+/* ── UTIL ──────────────────────────────────────────── */
+@media(max-width:640px){
+  .header-inner{height:auto;padding:12px 16px;flex-wrap:wrap}
+  .wrap{padding:16px 14px 40px}
+  .tab-btn{padding:12px 14px;font-size:12px}
+  .s-card-value{font-size:24px}
+  .modal-stats{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<div class="noise"></div>
 
-<!-- LOADING OVERLAY -->
+<!-- LOADING -->
 <div id="loading">
-  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-    <circle cx="20" cy="20" r="16" stroke="rgba(255,255,255,.25)" stroke-width="4"/>
-    <path d="M36 20a16 16 0 0 0-16-16" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-  </svg>
-  <p id="loading-label">Loading dashboard data...</p>
+  <div style="position:relative;width:80px;height:80px">
+    <!-- Outer prism ring -->
+    <svg width="80" height="80" viewBox="0 0 80 80" style="position:absolute;inset:0;animation:spin 2s linear infinite">
+      <defs>
+        <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#00E5C8"/>
+          <stop offset="50%" stop-color="#7C6EFA"/>
+          <stop offset="100%" stop-color="#F72585"/>
+        </linearGradient>
+      </defs>
+      <circle cx="40" cy="40" r="34" fill="none" stroke="url(#ring-grad)" stroke-width="3"
+        stroke-dasharray="120 94" stroke-linecap="round"/>
+    </svg>
+    <!-- Bangladesh flag centered -->
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+      <svg width="32" height="32" viewBox="0 0 32 32">
+        <rect width="32" height="32" rx="16" fill="#006A4E"/>
+        <circle cx="14" cy="16" r="8" fill="#F42A41"/>
+      </svg>
+    </div>
+  </div>
+  <p class="load-text" id="load-lbl">Loading dashboard…</p>
 </div>
 
-<!-- SITE HEADER -->
-<header class="site-header">
+<!-- HEADER -->
+<header class="header">
   <div class="header-inner">
-    <div class="header-brand">
-      <!-- Bangladesh Flag SVG -->
+    <div class="brand">
       <div class="brand-flag">
-        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-          <rect width="36" height="36" fill="#006A4E"/>
-          <circle cx="16" cy="18" r="9" fill="#F42A41"/>
+        <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+          <rect width="34" height="34" fill="#006A4E"/>
+          <circle cx="15" cy="17" r="9" fill="#F42A41"/>
         </svg>
       </div>
-      <div class="brand-text">
-        <h1 id="header-title">Interactive Bangladesh Budget Dashboard</h1>
-        <p id="header-subtitle">National Budget 2026-2027 — Ministry of Finance</p>
+      <div>
+        <div class="brand-title" id="h-title">Interactive Bangladesh Budget Dashboard</div>
+        <div class="brand-sub" id="h-sub">National Budget 2026-2027 — Ministry of Finance</div>
       </div>
     </div>
-    <div class="header-controls">
-      <button class="btn-control" id="btn-currency" onclick="toggleCurrency()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/><path d="M12 6v12M9 9h4.5a1.5 1.5 0 010 3H10a1.5 1.5 0 000 3H15"/>
-        </svg>
-        <span id="currency-label">Show in USD</span>
+    <div class="header-right">
+      <button class="ctrl-btn" id="btn-usd" onclick="toggleCurrency()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M9 9h4.5a1.5 1.5 0 010 3H10a1.5 1.5 0 000 3H15"/></svg>
+        <span id="lbl-usd">Show in USD</span>
       </button>
-      <button class="btn-control" id="btn-lang" onclick="toggleLang()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M2 5h7M9 5h4M5 5v2M12 5c-1 3-3 6-6 8M6 13s1 1 3 2M16 5l-4 14M14 10h7"/>
-        </svg>
-        <span id="lang-label">বাংলা</span>
+      <button class="ctrl-btn" id="btn-lang" onclick="toggleLang()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 5h7M5 2v3M9 5c-1 3-3 6-6 8M6 13s1 1 3 2M16 5l-4 14M14 10h7"/></svg>
+        <span id="lbl-lang">বাংলা</span>
       </button>
     </div>
   </div>
@@ -623,622 +730,557 @@
 <!-- TABS -->
 <nav class="tabs-bar">
   <div class="tabs-inner">
-    <button class="tab-btn active" id="tab-btn-overview" onclick="switchTab('overview')">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-        <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-      </svg>
-      <span id="tab-label-overview">Overview</span>
+    <button class="tab-btn active" id="tbtn-overview" onclick="setTab('overview')">
+      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span id="tl-overview">Overview</span>
     </button>
-    <button class="tab-btn" id="tab-btn-allocations" onclick="switchTab('allocations')">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/>
-        <line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/>
-        <line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>
-      </svg>
-      <span id="tab-label-allocations">Allocations</span>
+    <button class="tab-btn" id="tbtn-allocations" onclick="setTab('allocations')">
+      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r=".5" fill="currentColor"/><circle cx="3.5" cy="12" r=".5" fill="currentColor"/><circle cx="3.5" cy="18" r=".5" fill="currentColor"/></svg>
+      <span id="tl-alloc">Allocations</span>
     </button>
-    <button class="tab-btn" id="tab-btn-revenue" onclick="switchTab('revenue')">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/>
-        <line x1="6"  y1="20" x2="6"  y2="16"/>
-      </svg>
-      <span id="tab-label-revenue">Revenue</span>
+    <button class="tab-btn" id="tbtn-revenue" onclick="setTab('revenue')">
+      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+      <span id="tl-rev">Revenue</span>
     </button>
-    <button class="tab-btn" id="tab-btn-policy" onclick="switchTab('policy')">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-        <polyline points="10 9 9 9 8 9"/>
-      </svg>
-      <span id="tab-label-policy">Policy Rules</span>
+    <button class="tab-btn" id="tbtn-policy" onclick="setTab('policy')">
+      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span id="tl-pol">Policy Rules</span>
     </button>
   </div>
 </nav>
 
 <!-- MAIN -->
-<main class="main-wrap">
+<main class="wrap">
 
-  <!-- ── OVERVIEW TAB ── -->
-  <section class="tab-panel active" id="panel-overview">
-    <div id="overview-cards" class="summary-grid"></div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div class="chart-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-mid)" stroke-width="2" stroke-linecap="round">
-            <circle cx="12" cy="12" r="10"/>
-          </svg>
-          <span id="overview-donut-title">Budget Breakdown</span>
+  <!-- OVERVIEW -->
+  <section class="panel active" id="panel-overview">
+    <div class="summary-grid" id="summary-grid"></div>
+    <div class="chart-row">
+      <!-- Donut -->
+      <div class="glass glass-glow chart-card">
+        <div class="chart-head">
+          <div class="chart-dot"></div>
+          <div class="chart-head-title" id="ch-donut-title">Budget Breakdown</div>
         </div>
-        <svg id="donut-chart" class="chart" viewBox="0 0 200 200"></svg>
+        <div id="donut-wrap">
+          <svg id="donut-svg" viewBox="0 0 200 200" width="200" height="200"></svg>
+          <div class="donut-center">
+            <div class="donut-pct val-green" id="donut-pct">—</div>
+            <div class="donut-lbl" id="donut-lbl">Revenue</div>
+          </div>
+        </div>
         <div class="legend" id="donut-legend"></div>
       </div>
-      <div class="chart-card">
-        <div class="chart-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-mid)" stroke-width="2" stroke-linecap="round">
-            <line x1="18" y1="20" x2="18" y2="4"/><line x1="12" y1="20" x2="12" y2="10"/><line x1="6" y1="20" x2="6" y2="14"/>
-          </svg>
-          <span id="overview-bar-title">Top 10 Ministry Allocations</span>
+      <!-- Top bar chart -->
+      <div class="glass glass-glow chart-card">
+        <div class="chart-head">
+          <div class="chart-dot" style="background:linear-gradient(135deg,var(--prism-d),var(--prism-c))"></div>
+          <div class="chart-head-title" id="ch-bar-title">Top 10 Ministry Allocations</div>
         </div>
-        <svg id="top-bar-chart" class="chart" viewBox="0 0 460 300"></svg>
+        <svg id="top-bar" viewBox="0 0 500 320" style="width:100%;display:block"></svg>
       </div>
     </div>
   </section>
 
-  <!-- ── ALLOCATIONS TAB ── -->
-  <section class="tab-panel" id="panel-allocations">
+  <!-- ALLOCATIONS -->
+  <section class="panel" id="panel-allocations">
     <div class="toolbar">
       <div class="search-wrap">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-        </svg>
-        <input class="search-input" type="text" id="alloc-search"
-          placeholder="Search ministries or sectors..."
-          oninput="filterAllocations()" />
+        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="search-input" id="asearch" type="text" placeholder="Search ministries or sectors…" oninput="filterAlloc()"/>
       </div>
-      <div class="filter-chips" id="sector-chips"></div>
+      <div class="chips" id="sector-chips"></div>
     </div>
-    <div class="table-wrap">
+    <div class="tbl-wrap">
       <table>
         <thead>
           <tr>
-            <th id="th-ministry">Ministry / Division</th>
-            <th id="th-sector">Sector</th>
-            <th class="num" id="th-allocation">Allocation</th>
+            <th id="th-min">Ministry / Division</th>
+            <th id="th-sec">Sector</th>
+            <th class="r" id="th-amt">Allocation</th>
             <th id="th-share">Share %</th>
             <th></th>
           </tr>
         </thead>
-        <tbody id="alloc-tbody"></tbody>
+        <tbody id="alloc-body"></tbody>
       </table>
-      <div id="alloc-no-results" class="no-results" style="display:none;">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          <line x1="8" y1="11" x2="14" y2="11"/>
-        </svg>
-        <span id="no-results-text">No results found.</span>
+      <div id="no-results" class="no-res" style="display:none">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        <span id="no-res-lbl">No results found.</span>
       </div>
-      <div class="table-footer">
-        <span id="alloc-count-text">Showing 0 of 0 entries</span>
-        <span id="alloc-total-text"></span>
+      <div class="tbl-foot">
+        <span id="alloc-info">—</span>
+        <span id="alloc-total">—</span>
       </div>
     </div>
   </section>
 
-  <!-- ── REVENUE TAB ── -->
-  <section class="tab-panel" id="panel-revenue">
-    <div class="rev-grid">
-      <div>
-        <div class="chart-card" style="margin-bottom:0">
-          <div class="chart-title">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green-mid)" stroke-width="2" stroke-linecap="round">
-              <line x1="12" y1="20" x2="12" y2="4"/><polyline points="6 9 12 3 18 9"/>
-            </svg>
-            <span id="rev-chart-title">Revenue Source Distribution</span>
-          </div>
-          <svg id="rev-bar-chart" class="chart" viewBox="0 0 400 280"></svg>
-          <div class="legend" id="rev-legend"></div>
+  <!-- REVENUE -->
+  <section class="panel" id="panel-revenue">
+    <div class="chart-row" style="margin-bottom:20px">
+      <div class="glass glass-glow chart-card">
+        <div class="chart-head">
+          <div class="chart-dot" style="background:linear-gradient(135deg,var(--prism-b),var(--prism-c))"></div>
+          <div class="chart-head-title" id="ch-rev-title">Revenue Sources</div>
         </div>
+        <svg id="rev-chart" viewBox="0 0 340 260" style="width:100%;display:block"></svg>
+        <div class="legend" id="rev-legend"></div>
       </div>
-      <div>
-        <div class="rev-list" id="rev-list"></div>
-      </div>
+      <div style="display:flex;flex-direction:column;gap:12px" id="rev-list"></div>
     </div>
   </section>
 
-  <!-- ── POLICY TAB ── -->
-  <section class="tab-panel" id="panel-policy">
-    <div id="policy-container"></div>
+  <!-- POLICY -->
+  <section class="panel" id="panel-policy">
+    <div id="policy-out"></div>
   </section>
 
 </main>
 
-<!-- SOURCE BAR -->
-<footer class="source-bar">
-  <span id="footer-source">Source: Ministry of Finance, Bangladesh</span>
-  &nbsp;|&nbsp;
-  <span id="footer-note">All figures in Crore BDT unless stated otherwise.</span>
-  &nbsp;|&nbsp;
+<!-- FOOTER -->
+<footer class="site-foot">
+  <span id="ft-src">Source: Ministry of Finance, Bangladesh</span>
+  &ensp;·&ensp;
+  <span id="ft-note">All figures in Crore BDT unless stated</span>
+  &ensp;·&ensp;
   <a href="https://mof.gov.bd" target="_blank" rel="noopener">mof.gov.bd</a>
 </footer>
 
-<!-- DETAIL MODAL -->
-<div class="modal-backdrop" id="modal" onclick="handleBackdropClick(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title" id="modal-title"></div>
-        <div class="modal-sector" id="modal-sector"></div>
-      </div>
-      <button class="modal-close" onclick="closeModal()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
+<!-- MODAL -->
+<div class="modal-bg" id="modal" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-top">
+      <div class="modal-title" id="m-title"></div>
+      <div class="modal-sec"  id="m-sec"></div>
+      <button class="modal-x" onclick="closeModal()">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <div class="modal-body">
-      <div class="modal-stat">
-        <div>
-          <div class="modal-stat-label" id="modal-alloc-label">Allocation</div>
-          <div class="modal-stat-value" id="modal-value"></div>
-          <div class="modal-stat-unit" id="modal-unit">Crore BDT</div>
+      <div class="modal-stats">
+        <div class="modal-stat">
+          <div class="mstat-lbl" id="m-lbl-amt">Allocation</div>
+          <div class="mstat-val val-green" id="m-amt"></div>
+          <div class="mstat-unit" id="m-unit">Crore BDT</div>
         </div>
-        <div style="text-align:right">
-          <div class="modal-stat-label" id="modal-share-label">Budget Share</div>
-          <div class="modal-stat-value" id="modal-share" style="color:var(--blue-mid)"></div>
+        <div class="modal-stat">
+          <div class="mstat-lbl" id="m-lbl-share">Budget Share</div>
+          <div class="mstat-val" style="background:linear-gradient(135deg,var(--prism-b),var(--prism-c));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="m-share"></div>
+          <div class="mstat-unit">of total outlay</div>
         </div>
       </div>
-      <div class="modal-desc-label" id="modal-scope-label">Scope & Mandate</div>
-      <div class="modal-desc" id="modal-desc"></div>
+      <div class="modal-desc-lbl" id="m-scope-lbl">Scope & Mandate</div>
+      <div class="modal-desc" id="m-desc"></div>
     </div>
   </div>
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    STATE
-═══════════════════════════════════════════════════════ */
-let DATA        = null;
-let lang        = 'en';
-let inUSD       = false;
-let activeTab   = 'overview';
-let activeSector= 'all';
-let searchQuery = '';
+═══════════════════════════════════════ */
+let D=null, lang='en', usd=false, curTab='overview', curSec='all', q='';
 
-/* ═══════════════════════════════════════════════════════
-   SECTOR META  (colour class + EN/BN mapping)
-═══════════════════════════════════════════════════════ */
-const SECTOR_META = {
-  "Education":                        { cls: 'sector--education',      en: "Education",                    bn: "শিক্ষা" },
-  "Health":                           { cls: 'sector--health',         en: "Health",                       bn: "স্বাস্থ্য" },
-  "Defense and Security":             { cls: 'sector--defence',        en: "Defense & Security",           bn: "প্রতিরক্ষা ও নিরাপত্তা" },
-  "Transport & Infrastructure":       { cls: 'sector--transport',      en: "Transport & Infrastructure",   bn: "পরিবহন ও অবকাঠামো" },
-  "Agriculture & Food":               { cls: 'sector--agriculture',    en: "Agriculture & Food",           bn: "কৃষি ও খাদ্য" },
-  "Energy & Power":                   { cls: 'sector--energy',         en: "Energy & Power",               bn: "জ্বালানি ও বিদ্যুৎ" },
-  "Social Protection":                { cls: 'sector--social',         en: "Social Protection",            bn: "সামাজিক সুরক্ষা" },
-  "Public Administration":            { cls: 'sector--administration', en: "Public Administration",        bn: "সরকারি প্রশাসন" },
-  "ICT & Digital":                    { cls: 'sector--ict',            en: "ICT & Digital",                bn: "আইসিটি ও ডিজিটাল" },
-  "Local Government & Rural Dev.":    { cls: 'sector--local',          en: "Local Gov. & Rural Dev.",      bn: "স্থানীয় সরকার ও পল্লী উন্নয়ন" },
-  "Industry & Commerce":              { cls: 'sector--industry',       en: "Industry & Commerce",          bn: "শিল্প ও বাণিজ্য" },
-  "Public Debt Service":              { cls: 'sector--debt',           en: "Public Debt Service",          bn: "সরকারি ঋণ সেবা" },
-  "Environment & Climate":            { cls: 'sector--environment',    en: "Environment & Climate",        bn: "পরিবেশ ও জলবায়ু" }
+/* ═══════════════════════════════════════
+   SECTOR REGISTRY
+═══════════════════════════════════════ */
+const SEC={
+  "Education":                       {cls:'s-edu', en:"Education",              bn:"শিক্ষা",             col:"#4EA8DE"},
+  "Health":                          {cls:'s-health',en:"Health",               bn:"স্বাস্থ্য",          col:"#FF4D6D"},
+  "Defense and Security":            {cls:'s-def',  en:"Defense & Security",    bn:"প্রতিরক্ষা",         col:"#06D6A0"},
+  "Transport & Infrastructure":      {cls:'s-trans',en:"Transport",             bn:"পরিবহন",             col:"#FFB703"},
+  "Agriculture & Food":              {cls:'s-agri', en:"Agriculture & Food",    bn:"কৃষি ও খাদ্য",       col:"#00C896"},
+  "Energy & Power":                  {cls:'s-energy',en:"Energy & Power",       bn:"জ্বালানি",           col:"#FB8500"},
+  "Social Protection":               {cls:'s-social',en:"Social Protection",    bn:"সামাজিক সুরক্ষা",   col:"#9D4EDD"},
+  "Public Administration":           {cls:'s-admin', en:"Public Admin.",        bn:"সরকারি প্রশাসন",     col:"#7C6EFA"},
+  "ICT & Digital":                   {cls:'s-ict',   en:"ICT & Digital",        bn:"আইসিটি",             col:"#00E5C8"},
+  "Local Government & Rural Dev.":   {cls:'s-local', en:"Local Gov. & Rural",   bn:"স্থানীয় সরকার",     col:"#F72585"},
+  "Industry & Commerce":             {cls:'s-ind',   en:"Industry & Commerce",  bn:"শিল্প ও বাণিজ্য",   col:"#9D4EDD"},
+  "Public Debt Service":             {cls:'s-debt',  en:"Public Debt",          bn:"ঋণ সেবা",            col:"#FF6B6B"},
+  "Environment & Climate":           {cls:'s-env',   en:"Environment",          bn:"পরিবেশ",             col:"#06D6A0"},
 };
 
-const SECTOR_COLORS = {
-  "Education":                     "#1A6FA8",
-  "Health":                        "#C0392B",
-  "Defense and Security":          "#2D5A2E",
-  "Transport & Infrastructure":    "#B8860B",
-  "Agriculture & Food":            "#1A7A1A",
-  "Energy & Power":                "#856404",
-  "Social Protection":             "#7B2D8B",
-  "Public Administration":         "#1E40AF",
-  "ICT & Digital":                 "#00695C",
-  "Local Government & Rural Dev.": "#B84A00",
-  "Industry & Commerce":           "#5B21B6",
-  "Public Debt Service":           "#991B1B",
-  "Environment & Climate":         "#065F46"
-};
+const REV_PALETTE=['#00E5C8','#7C6EFA','#F72585','#FFB703','#06D6A0','#FB8500'];
 
-/* ═══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    BOOT
-═══════════════════════════════════════════════════════ */
+═══════════════════════════════════════ */
 fetch('budget_data.json')
-  .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.json(); })
-  .then(d => {
-    DATA = d;
-    document.getElementById('loading').style.display = 'none';
-    initDashboard();
-  })
-  .catch(err => {
-    document.getElementById('loading-label').textContent = 'Error loading data. Please refresh.';
-    console.error(err);
-  });
+  .then(r=>{if(!r.ok)throw 0;return r.json()})
+  .then(d=>{D=d;document.getElementById('loading').style.opacity='0';
+    setTimeout(()=>document.getElementById('loading').style.display='none',400);
+    init();})
+  .catch(()=>document.getElementById('load-lbl').textContent='Failed to load data. Please refresh.');
 
-function initDashboard() {
-  applyLabels();
-  renderOverview();
-  renderAllocations();
-  renderRevenue();
-  renderPolicy();
-}
+function init(){applyLabels();renderOverview();renderAlloc();renderRevenue();renderPolicy()}
 
-/* ═══════════════════════════════════════════════════════
-   LABEL APPLICATION
-═══════════════════════════════════════════════════════ */
-function t(obj) { return obj[lang] || obj['en']; }
+/* ═══════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════ */
+const t=o=>o[lang]||o.en;
 
-function applyLabels() {
-  const L = DATA.global_labels;
-  document.getElementById('header-title').textContent    = t(L.title);
-  document.getElementById('header-subtitle').textContent = t(L.subtitle);
-  document.getElementById('lang-label').textContent      = t(L.toggle_lang);
-  document.getElementById('currency-label').textContent  = inUSD ? t(L.currency_toggle_back) : t(L.currency_toggle);
-  document.getElementById('tab-label-overview').textContent    = t(L.tab_overview);
-  document.getElementById('tab-label-allocations').textContent = t(L.tab_allocations);
-  document.getElementById('tab-label-revenue').textContent     = t(L.tab_revenue);
-  document.getElementById('tab-label-policy').textContent      = t(L.tab_policy);
-  document.getElementById('alloc-search').placeholder    = t(L.search_placeholder);
-  document.getElementById('th-ministry').textContent     = t(L.col_ministry);
-  document.getElementById('th-sector').textContent       = t(L.col_sector);
-  document.getElementById('th-allocation').textContent   = t(L.col_allocation);
-  document.getElementById('th-share').textContent        = t(L.col_share);
-  document.getElementById('footer-source').textContent   = t(L.footer_source);
-  document.getElementById('footer-note').textContent     = t(L.footer_note);
-  document.getElementById('no-results-text').textContent = t(L.no_results);
-}
-
-/* ═══════════════════════════════════════════════════════
-   CURRENCY HELPER
-═══════════════════════════════════════════════════════ */
-function fmtVal(crore) {
-  if (inUSD) {
-    const usd = (crore * 1e7) / DATA.meta.exchange_rate_usd;
-    if (usd >= 1e9) return (usd/1e9).toFixed(2) + ' B';
-    if (usd >= 1e6) return (usd/1e6).toFixed(1) + ' M';
-    return usd.toFixed(0);
+function fmt(v){
+  if(usd){
+    const u=(v*1e7)/D.meta.exchange_rate_usd;
+    if(u>=1e9)return(u/1e9).toFixed(2)+' B';
+    if(u>=1e6)return(u/1e6).toFixed(1)+' M';
+    return Math.round(u).toLocaleString();
   }
-  return Number(crore).toLocaleString('en-IN');
+  return Number(v).toLocaleString('en-IN');
 }
-function currUnit() {
-  return inUSD ? 'USD' : 'Crore BDT';
+function curr(){return usd?'USD':'Crore BDT'}
+
+/* Animated counter */
+function animCount(el,target,suffix){
+  const str=fmt(target);
+  let start=null,dur=900;
+  const isFloat=typeof target==='number'&&!Number.isInteger(target);
+  function step(ts){
+    if(!start)start=ts;
+    const p=Math.min((ts-start)/dur,1);
+    const ease=1-Math.pow(1-p,3);
+    const cur=target*ease;
+    el.textContent=isFloat?cur.toFixed(1)+(suffix||''):fmt(Math.round(cur))+(suffix||'');
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=str+(suffix||'');
+  }
+  requestAnimationFrame(step);
 }
 
-/* ═══════════════════════════════════════════════════════
-   OVERVIEW TAB
-═══════════════════════════════════════════════════════ */
-function renderOverview() {
-  const S = DATA.summary;
-  const cards = [
-    { key:'outlay',  cls:'outlay',  icon:'green', color:'var(--green-mid)', svgPath:'M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm1 15h-2v-4H9l3-7 3 7h-2v4z', val: S.total_outlay.value_bdt_crore,  label: S.total_outlay.label,  note: S.total_outlay.note  },
-    { key:'revenue', cls:'revenue', icon:'blue',  color:'var(--blue-mid)', svgPath:'M12 22V12M12 12L7 17M12 12l5 5M3 7l9-5 9 5',                                                 val: S.total_revenue.value_bdt_crore, label: S.total_revenue.label, note: S.total_revenue.note },
-    { key:'deficit', cls:'deficit', icon:'red',   color:'var(--red-accent)', svgPath:'M12 22V12M12 12L7 7M12 12l5-5M3 17l9 5 9-5',                                              val: S.deficit.value_bdt_crore,        label: S.deficit.label,        note: S.deficit.note        },
-    { key:'gdp',     cls:'gdp',     icon:'gold',  color:'var(--gold)', svgPath:'M16 8v8M12 11v5M8 14v2M4 4l16 16',                                                              val: null,                             label: S.gdp_ratio.label,      note: S.gdp_ratio.note, pct: S.gdp_ratio.value_percent }
+/* ═══════════════════════════════════════
+   LABELS
+═══════════════════════════════════════ */
+function applyLabels(){
+  const L=D.global_labels;
+  document.getElementById('h-title').textContent=t(L.title);
+  document.getElementById('h-sub').textContent=t(L.subtitle);
+  document.getElementById('lbl-lang').textContent=t(L.toggle_lang);
+  document.getElementById('lbl-usd').textContent=usd?t(L.currency_toggle_back):t(L.currency_toggle);
+  document.getElementById('tl-overview').textContent=t(L.tab_overview);
+  document.getElementById('tl-alloc').textContent=t(L.tab_allocations);
+  document.getElementById('tl-rev').textContent=t(L.tab_revenue);
+  document.getElementById('tl-pol').textContent=t(L.tab_policy);
+  document.getElementById('asearch').placeholder=t(L.search_placeholder);
+  document.getElementById('th-min').textContent=t(L.col_ministry);
+  document.getElementById('th-sec').textContent=t(L.col_sector);
+  document.getElementById('th-amt').textContent=t(L.col_allocation);
+  document.getElementById('th-share').textContent=t(L.col_share);
+  document.getElementById('no-res-lbl').textContent=t(L.no_results);
+  document.getElementById('ft-src').textContent=t(L.footer_source);
+  document.getElementById('ft-note').textContent=t(L.footer_note);
+}
+
+/* ═══════════════════════════════════════
+   OVERVIEW
+═══════════════════════════════════════ */
+function renderOverview(){
+  const S=D.summary;
+  const cards=[
+    {key:'outlay', cls:'val-green',icoCls:'', ico:'#00E5C8', badge:'badge-green',
+     label:S.total_outlay.label, val:S.total_outlay.value_bdt_crore, note:S.total_outlay.note,
+     iconPath:'M12 2a10 10 0 110 20A10 10 0 0112 2zm1 5h-2v6H8l4 4 4-4h-3V7z'},
+    {key:'revenue',cls:'val-blue', ico:'#4EA8DE', badge:'badge-blue',
+     label:S.total_revenue.label, val:S.total_revenue.value_bdt_crore, note:S.total_revenue.note,
+     iconPath:'M12 22V12M12 12L7 17M12 12l5 5M3 7l9-5 9 5'},
+    {key:'deficit',cls:'val-red',  ico:'#FF4D6D', badge:'badge-red',
+     label:S.deficit.label, val:S.deficit.value_bdt_crore, note:S.deficit.note,
+     iconPath:'M12 22V12M12 12L7 7M12 12l5-5M3 17l9 5 9-5'},
+    {key:'gdp',    cls:'val-gold', ico:'#FFB703', badge:'badge-gold',
+     label:S.gdp_ratio.label, val:null, pct:S.gdp_ratio.value_percent, note:S.gdp_ratio.note,
+     iconPath:'M21 21H3M21 3L12 12M3 3l9 9M12 3v9M3 12h9'}
   ];
-  const grid = document.getElementById('overview-cards');
-  grid.innerHTML = cards.map(c => {
-    const display = c.pct != null
-      ? `<div class="card-value">${c.pct}<span class="card-unit">%</span></div>`
-      : `<div class="card-value">${fmtVal(c.val)}</div><div class="card-unit">${currUnit()}</div>`;
-    return `<div class="summary-card ${c.cls}">
-      <div class="card-icon ${c.icon}">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="${c.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="${c.svgPath}"/>
-        </svg>
+  document.getElementById('summary-grid').innerHTML=cards.map(c=>`
+    <div class="glass glass-glow s-card">
+      <div class="s-card-top">
+        <div class="s-card-icon" style="background:${c.ico}18">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="${c.ico}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${c.iconPath}"/></svg>
+        </div>
+        <div class="s-card-badge ${c.badge}" id="badge-${c.key}">FY 2026-27</div>
       </div>
-      <div class="card-label">${t(c.label)}</div>
-      ${display}
-      <div class="card-note">${t(c.note)}</div>
-    </div>`;
-  }).join('');
-
-  renderDonutChart();
-  renderTopBarChart();
+      <div class="s-card-label">${t(c.label)}</div>
+      <div class="s-card-value ${c.cls}" id="sval-${c.key}">${c.pct!=null?c.pct+'%':fmt(c.val)}</div>
+      <div class="s-card-unit">${c.pct!=null?'% of GDP':curr()}</div>
+      <div class="s-card-note">${t(c.note)}</div>
+    </div>`).join('');
+  // Animate counters
+  cards.forEach(c=>{
+    const el=document.getElementById('sval-'+c.key);
+    if(c.pct!=null) animCount(el,c.pct,'%');
+    else animCount(el,c.val);
+  });
+  drawDonut();
+  drawTopBar();
 }
 
-/* ── DONUT CHART ── */
-function renderDonutChart() {
-  const S   = DATA.summary;
-  const rev = S.total_revenue.value_bdt_crore;
-  const def = S.deficit.value_bdt_crore;
-  const tot = S.total_outlay.value_bdt_crore;
-  const slices = [
-    { val: rev, color: '#1A6FA8', label: { en: 'Revenue', bn: 'রাজস্ব' } },
-    { val: def, color: '#C0392B', label: { en: 'Deficit', bn: 'ঘাটতি' } }
+/* ── DONUT ── */
+function drawDonut(){
+  const S=D.summary;
+  const rev=S.total_revenue.value_bdt_crore;
+  const def=S.deficit.value_bdt_crore;
+  const tot=S.total_outlay.value_bdt_crore;
+  const slices=[
+    {v:rev,c1:'#00E5C8',c2:'#06D6A0',id:'dg-rev',lbl:{en:'Revenue',bn:'রাজস্ব'}},
+    {v:def,c1:'#F72585',c2:'#7C6EFA',id:'dg-def',lbl:{en:'Deficit',bn:'ঘাটতি'}}
   ];
-  const cx=100, cy=100, r=72, thick=28;
-  let svg = ``;
-  let startAngle = -Math.PI/2;
-  slices.forEach(s => {
-    const angle = (s.val / tot) * 2 * Math.PI;
-    const x1=cx+r*Math.cos(startAngle), y1=cy+r*Math.sin(startAngle);
-    const x2=cx+r*Math.cos(startAngle+angle), y2=cy+r*Math.sin(startAngle+angle);
-    const largeArc = angle > Math.PI ? 1 : 0;
-    const ir  = r-thick;
-    const ix1 = cx+ir*Math.cos(startAngle+angle), iy1=cy+ir*Math.sin(startAngle+angle);
-    const ix2 = cx+ir*Math.cos(startAngle),       iy2=cy+ir*Math.sin(startAngle);
-    svg += `<path d="M${x1},${y1} A${r},${r} 0 ${largeArc},1 ${x2},${y2} L${ix1},${iy1} A${ir},${ir} 0 ${largeArc},0 ${ix2},${iy2} Z" fill="${s.color}" opacity=".9"/>`;
-    startAngle += angle;
+  const cx=100,cy=100,r=80,t2=24,gap=0.025;
+  let svg=`<defs>`;
+  slices.forEach(s=>{ svg+=`<linearGradient id="${s.id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${s.c1}"/><stop offset="100%" stop-color="${s.c2}"/></linearGradient>`; });
+  svg+=`</defs>`;
+  let ang=-Math.PI/2;
+  slices.forEach(s=>{
+    const a=(s.v/tot)*2*Math.PI-gap;
+    const x1=cx+r*Math.cos(ang+gap/2),y1=cy+r*Math.sin(ang+gap/2);
+    const x2=cx+r*Math.cos(ang+a),y2=cy+r*Math.sin(ang+a);
+    const ir=r-t2;
+    const ix1=cx+ir*Math.cos(ang+a),iy1=cy+ir*Math.sin(ang+a);
+    const ix2=cx+ir*Math.cos(ang+gap/2),iy2=cy+ir*Math.sin(ang+gap/2);
+    const big=a>Math.PI?1:0;
+    svg+=`<path d="M${x1},${y1} A${r},${r} 0 ${big},1 ${x2},${y2} L${ix1},${iy1} A${ir},${ir} 0 ${big},0 ${ix2},${iy2} Z" fill="url(#${s.id})" opacity=".92"/>`;
+    ang+=a+gap;
   });
-  const pct = Math.round(rev/tot*100);
-  svg += `<text x="${cx}" y="${cy-8}" text-anchor="middle" font-size="22" font-weight="800" fill="var(--text-primary)">${pct}%</text>`;
-  svg += `<text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="10" fill="var(--text-secondary)">${lang==='bn'?'রাজস্ব':'Revenue'}</text>`;
-  document.getElementById('donut-chart').innerHTML = svg;
-
-  const legend = document.getElementById('donut-legend');
-  legend.innerHTML = slices.map(s =>
-    `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div>${t(s.label)}: <strong>${fmtVal(s.val)}</strong></div>`
-  ).join('') + `<div class="legend-item"><div class="legend-dot" style="background:var(--border)"></div>${lang==='bn'?'মোট':'Total'}: <strong>${fmtVal(tot)}</strong></div>`;
-}
-
-/* ── TOP MINISTRIES BAR CHART ── */
-function renderTopBarChart() {
-  const allocs = [...DATA.allocations].sort((a,b) => b.value_bdt_crore - a.value_bdt_crore).slice(0,10);
-  const max = allocs[0].value_bdt_crore;
-  const W=460, H=300, LEFT=178, RIGHT=16, TOP=12, BOTTOM=30, BAR_H=20, GAP=8;
-  const chartW = W - LEFT - RIGHT;
-  let svg = '';
-  // Grid lines
-  for(let i=0;i<=4;i++){
-    const x = LEFT + (chartW/4)*i;
-    svg += `<line x1="${x}" y1="${TOP}" x2="${x}" y2="${H-BOTTOM}" stroke="var(--border)" stroke-dasharray="3,3"/>`;
-  }
-  allocs.forEach((a,i) => {
-    const y = TOP + i*(BAR_H+GAP);
-    const barW = (a.value_bdt_crore/max)*chartW;
-    const color = SECTOR_COLORS[a.sector.en] || '#007A55';
-    const name = t(a.ministry);
-    const shortName = name.replace('Ministry of ','Min. of ').replace('Division','Div.').replace('Bangladesh ','BD ');
-    const val = fmtVal(a.value_bdt_crore);
-    svg += `<rect x="${LEFT}" y="${y}" width="${barW}" height="${BAR_H}" rx="3" fill="${color}" opacity=".82"/>`;
-    svg += `<text x="${LEFT-8}" y="${y+BAR_H/2+4}" text-anchor="end" font-size="9.5" fill="var(--text-secondary)" font-family="var(--font)">${shortName.length>22?shortName.slice(0,22)+'…':shortName}</text>`;
-    svg += `<text x="${LEFT+barW+5}" y="${y+BAR_H/2+4}" font-size="9" fill="${color}" font-weight="700" font-family="var(--font)">${val}</text>`;
-  });
-  // X axis
-  for(let i=0;i<=4;i++){
-    const x = LEFT + (chartW/4)*i;
-    const v = fmtVal((max/4)*i);
-    svg += `<text x="${x}" y="${H-BOTTOM+14}" text-anchor="middle" font-size="8" fill="var(--text-muted)">${v}</text>`;
-  }
-  document.getElementById('top-bar-chart').innerHTML = svg;
-}
-
-/* ═══════════════════════════════════════════════════════
-   ALLOCATIONS TAB
-═══════════════════════════════════════════════════════ */
-function renderAllocations() {
-  renderSectorChips();
-  filterAllocations();
-}
-
-function renderSectorChips() {
-  const sectors = ['all', ...Object.keys(SECTOR_META)];
-  const L = DATA.global_labels;
-  const cont = document.getElementById('sector-chips');
-  cont.innerHTML = sectors.map(s => {
-    const label = s === 'all' ? t(L.filter_all)
-      : (SECTOR_META[s] ? t(SECTOR_META[s]) : s);
-    return `<button class="chip ${activeSector===s?'active':''}" onclick="setSector('${s}')">${label}</button>`;
-  }).join('');
-}
-
-function setSector(s) {
-  activeSector = s;
-  renderSectorChips();
-  filterAllocations();
-}
-
-function filterAllocations() {
-  searchQuery = document.getElementById('alloc-search').value.trim().toLowerCase();
-  const allocs = DATA.allocations;
-  const total = allocs.reduce((s,a) => s + a.value_bdt_crore, 0);
-  const filtered = allocs.filter(a => {
-    const sectorMatch = activeSector === 'all' || a.sector.en === activeSector;
-    const q = searchQuery;
-    const searchMatch = !q ||
-      a.ministry.en.toLowerCase().includes(q) ||
-      a.ministry.bn.includes(q) ||
-      a.sector.en.toLowerCase().includes(q) ||
-      a.sector.bn.includes(q);
-    return sectorMatch && searchMatch;
-  }).sort((a,b) => b.value_bdt_crore - a.value_bdt_crore);
-
-  const tbody = document.getElementById('alloc-tbody');
-  const noRes = document.getElementById('alloc-no-results');
-  const L = DATA.global_labels;
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = '';
-    noRes.style.display = '';
-  } else {
-    noRes.style.display = 'none';
-    tbody.innerHTML = filtered.map(a => {
-      const meta = Object.values(SECTOR_META).find(m => m.en === a.sector.en || a.sector.en.includes(m.en.split(' ')[0]));
-      const sectorKey = a.sector.en;
-      const secMeta = SECTOR_META[sectorKey] || { cls: 'sector--administration', en: a.sector.en, bn: a.sector.bn };
-      const share = (a.value_bdt_crore / total * 100).toFixed(2);
-      const barW   = Math.min(100, (a.value_bdt_crore / total * 100) * 8).toFixed(1);
-      return `<tr>
-        <td>
-          <div class="ministry-name">${t(a.ministry)}</div>
-          <div class="ministry-name sub">${lang==='en'?a.ministry.bn:a.ministry.en}</div>
-        </td>
-        <td><span class="sector-badge ${secMeta.cls}">${t(secMeta)}</span></td>
-        <td class="num">${fmtVal(a.value_bdt_crore)} <span style="font-size:10px;font-weight:400;color:var(--text-muted)">${currUnit()}</span></td>
-        <td>
-          <div class="share-bar-wrap">
-            <div class="share-bar-bg"><div class="share-bar-fill" style="width:${barW}%"></div></div>
-            <span class="share-pct">${share}%</span>
-          </div>
-        </td>
-        <td><button class="btn-details" onclick="openModal('${a.id}')">${t(L.details_btn)}</button></td>
-      </tr>`;
-    }).join('');
-  }
-
-  const filteredTotal = filtered.reduce((s,a)=>s+a.value_bdt_crore,0);
-  document.getElementById('alloc-count-text').textContent =
-    `${lang==='bn'?'দেখাচ্ছে':'Showing'} ${filtered.length} ${lang==='bn'?'এর':'of'} ${allocs.length}`;
-  document.getElementById('alloc-total-text').textContent =
-    `${lang==='bn'?'মোট':'Total'}: ${fmtVal(filteredTotal)} ${currUnit()}`;
-}
-
-/* ═══════════════════════════════════════════════════════
-   REVENUE TAB
-═══════════════════════════════════════════════════════ */
-const REV_COLORS = ['#007A55','#1A6FA8','#C0392B','#B8860B','#7B2D8B','#B84A00'];
-
-function renderRevenue() {
-  renderRevBarChart();
-  renderRevList();
-}
-
-function renderRevBarChart() {
-  const sources = DATA.revenue_sources;
-  const max = Math.max(...sources.map(s=>s.value_bdt_crore));
-  const W=400, H=280, LEFT=130, TOP=16, BOTTOM=36, RIGHT=50;
-  const chartH = H - TOP - BOTTOM;
-  const BAR_W = Math.min(34, (W-LEFT-RIGHT) / sources.length - 10);
-  const GAP   = (W-LEFT-RIGHT - BAR_W*sources.length)/(sources.length-1);
-  let svg = '';
-  // H grid lines
-  for(let i=0;i<=4;i++){
-    const y = TOP + chartH - (chartH/4)*i;
-    svg += `<line x1="${LEFT}" y1="${y}" x2="${W-RIGHT}" y2="${y}" stroke="var(--border)" stroke-dasharray="3,3"/>`;
-    svg += `<text x="${LEFT-6}" y="${y+4}" text-anchor="end" font-size="8" fill="var(--text-muted)">${fmtVal((max/4)*i)}</text>`;
-  }
-  sources.forEach((s,i) => {
-    const x = LEFT + i*(BAR_W+GAP);
-    const barH = (s.value_bdt_crore/max)*chartH;
-    const y  = TOP + chartH - barH;
-    const col = REV_COLORS[i % REV_COLORS.length];
-    svg += `<rect x="${x}" y="${y}" width="${BAR_W}" height="${barH}" rx="4" fill="${col}" opacity=".85"/>`;
-    svg += `<text x="${x+BAR_W/2}" y="${y-4}" text-anchor="middle" font-size="8" fill="${col}" font-weight="700">${fmtVal(s.value_bdt_crore)}</text>`;
-    // X label
-    const short = t(s.category).replace('Revenue','Rev.').replace('Borrowing','Borrow.');
-    svg += `<text x="${x+BAR_W/2}" y="${H-BOTTOM+14}" text-anchor="middle" font-size="8" fill="var(--text-secondary)" font-family="var(--font)">${short.length>12?short.slice(0,12)+'…':short}</text>`;
-  });
-  document.getElementById('rev-bar-chart').innerHTML = svg;
-  document.getElementById('rev-legend').innerHTML = sources.map((s,i) =>
-    `<div class="legend-item"><div class="legend-dot" style="background:${REV_COLORS[i%REV_COLORS.length]}"></div>${t(s.category)}</div>`
+  document.getElementById('donut-svg').innerHTML=svg;
+  const pct=Math.round(rev/tot*100);
+  const pctEl=document.getElementById('donut-pct');
+  animCount(pctEl,pct,'%');
+  document.getElementById('donut-lbl').textContent=lang==='bn'?'রাজস্ব':'Revenue';
+  document.getElementById('donut-legend').innerHTML=slices.map(s=>
+    `<div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(90deg,${s.c1},${s.c2})"></div>${t(s.lbl)}: <strong style="color:var(--text);margin-left:3px">${fmt(s.v)}</strong></div>`
   ).join('');
 }
 
-function renderRevList() {
-  const sources = DATA.revenue_sources;
-  const total   = sources.reduce((s,a)=>s+a.value_bdt_crore,0);
-  const list    = document.getElementById('rev-list');
-  list.innerHTML = sources.map((s,i) => {
-    const pct = (s.value_bdt_crore/total*100).toFixed(1);
-    const col = REV_COLORS[i % REV_COLORS.length];
-    return `<div class="rev-item">
-      <div class="rev-item-header">
-        <div class="rev-cat">${t(s.category)}</div>
-        <div class="rev-val" style="color:${col}">${fmtVal(s.value_bdt_crore)} <span style="font-size:11px;font-weight:400;color:var(--text-muted)">${currUnit()}</span></div>
-      </div>
-      <div class="rev-bar-bg"><div class="rev-bar-fill" style="width:${pct}%;background:${col}"></div></div>
-      <div class="rev-desc">${pct}% ${lang==='bn'?'মোট রাজস্বের':'of total revenue'} — ${t(s.description)}</div>
-    </div>`;
+/* ── TOP BAR ── */
+function drawTopBar(){
+  const allocs=[...D.allocations].sort((a,b)=>b.value_bdt_crore-a.value_bdt_crore).slice(0,10);
+  const max=allocs[0].value_bdt_crore;
+  const W=500,H=320,L=190,R=70,TOP=10,BOT=20,BH=20,G=11;
+  const cW=W-L-R,cH=H-TOP-BOT;
+  let svg=`<defs>`;
+  allocs.forEach((a,i)=>{
+    const m=SEC[a.sector.en]||{col:'#00E5C8'};
+    const c2=`${m.col}55`;
+    svg+=`<linearGradient id="bg${i}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${m.col}"/><stop offset="100%" stop-color="${c2}"/></linearGradient>`;
+  });
+  svg+=`</defs>`;
+  // Grid lines
+  for(let g=0;g<=4;g++){
+    const x=L+(cW/4)*g;
+    svg+=`<line x1="${x}" y1="${TOP}" x2="${x}" y2="${H-BOT}" stroke="rgba(255,255,255,.05)" stroke-dasharray="4,4"/>`;
+    svg+=`<text x="${x}" y="${H-BOT+13}" text-anchor="middle" font-size="8.5" fill="rgba(148,160,190,.6)" font-family="var(--font)">${fmt((max/4)*g)}</text>`;
+  }
+  allocs.forEach((a,i)=>{
+    const y=TOP+i*(BH+G);
+    const bw=(a.value_bdt_crore/max)*cW;
+    const sec=SEC[a.sector.en]||{col:'#00E5C8'};
+    const name=t(a.ministry).replace('Ministry of ','').replace('Division','Div.').replace(' & ',' & ');
+    const short=name.length>24?name.slice(0,24)+'…':name;
+    svg+=`<rect x="${L}" y="${y}" width="${bw}" height="${BH}" rx="4" fill="url(#bg${i})"/>`;
+    svg+=`<rect x="${L}" y="${y}" width="3" height="${BH}" rx="2" fill="${sec.col}"/>`;
+    svg+=`<text x="${L-8}" y="${y+BH/2+4}" text-anchor="end" font-size="10" fill="rgba(200,210,240,.8)" font-family="var(--font)">${short}</text>`;
+    svg+=`<text x="${L+bw+7}" y="${y+BH/2+4}" font-size="9.5" fill="${sec.col}" font-weight="700" font-family="var(--font)">${fmt(a.value_bdt_crore)}</text>`;
+  });
+  document.getElementById('top-bar').innerHTML=svg;
+}
+
+/* ═══════════════════════════════════════
+   ALLOCATIONS
+═══════════════════════════════════════ */
+function renderAlloc(){buildChips();filterAlloc()}
+
+function buildChips(){
+  const L=D.global_labels;
+  const keys=['all',...Object.keys(SEC)];
+  document.getElementById('sector-chips').innerHTML=keys.map(k=>{
+    const lbl=k==='all'?t(L.filter_all):(SEC[k]?t(SEC[k]):k);
+    return `<button class="chip${curSec===k?' on':''}" onclick="setSec('${k}')">${lbl}</button>`;
   }).join('');
 }
 
-/* ═══════════════════════════════════════════════════════
-   POLICY TAB
-═══════════════════════════════════════════════════════ */
-function renderPolicy() {
-  const container = document.getElementById('policy-container');
-  const L = DATA.global_labels;
-  const sections = DATA.policy_rules;
-  container.innerHTML = Object.values(sections).map(sec => {
-    const rules = sec.rules_list.map(r => {
-      const badgeCls  = r.is_tin_mandatory ? 'required' : 'exempt';
-      const badgeLbl  = r.is_tin_mandatory ? t(L.tin_yes) : t(L.tin_no);
-      const badgeIcon = r.is_tin_mandatory
-        ? `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 9v4M12 17h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/></svg>`
-        : `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-      return `<div class="policy-card">
-        <div class="policy-card-top">
-          <div class="policy-target">${t(r.applicable_target)}</div>
-          <div class="tin-badge ${badgeCls}">${badgeIcon}${badgeLbl}</div>
+function setSec(s){curSec=s;buildChips();filterAlloc()}
+
+function filterAlloc(){
+  q=document.getElementById('asearch').value.trim().toLowerCase();
+  const all=D.allocations;
+  const tot=all.reduce((s,a)=>s+a.value_bdt_crore,0);
+  const filtered=all.filter(a=>{
+    const sm=curSec==='all'||a.sector.en===curSec;
+    const qm=!q||t(a.ministry).toLowerCase().includes(q)||a.ministry.en.toLowerCase().includes(q)||a.ministry.bn.includes(q)||a.sector.en.toLowerCase().includes(q)||a.sector.bn.includes(q);
+    return sm&&qm;
+  }).sort((a,b)=>b.value_bdt_crore-a.value_bdt_crore);
+  const tbody=document.getElementById('alloc-body');
+  const noRes=document.getElementById('no-results');
+  const L=D.global_labels;
+  if(!filtered.length){tbody.innerHTML='';noRes.style.display='';return}
+  noRes.style.display='none';
+  tbody.innerHTML=filtered.map(a=>{
+    const sec=SEC[a.sector.en]||{cls:'s-admin',en:a.sector.en,bn:a.sector.bn};
+    const share=(a.value_bdt_crore/tot*100).toFixed(2);
+    const barW=Math.min(100,(a.value_bdt_crore/tot*100)*7).toFixed(1);
+    return `<tr>
+      <td>
+        <div class="min-name">${t(a.ministry)}</div>
+        <div class="min-sub">${lang==='en'?a.ministry.bn:a.ministry.en}</div>
+      </td>
+      <td><span class="sbadge ${sec.cls}">${t(sec)}</span></td>
+      <td class="r"><span class="alloc-val">${fmt(a.value_bdt_crore)}</span><span class="alloc-unit">${curr()}</span></td>
+      <td>
+        <div class="share-wrap">
+          <div class="share-track"><div class="share-fill" style="width:${barW}%;background:${(SEC[a.sector.en]||{col:'#00E5C8'}).col}"></div></div>
+          <span class="share-pct">${share}%</span>
         </div>
-        <div class="policy-guideline">${t(r.guideline)}</div>
-      </div>`;
-    }).join('');
-    return `<div class="policy-section">
-      <div class="policy-section-header">
-        <div class="policy-section-title">${t(sec.title)}</div>
-        <div class="policy-section-overview">${t(sec.overview)}</div>
+      </td>
+      <td><button class="btn-detail" onclick="openModal('${a.id}')">${t(L.details_btn)}</button></td>
+    </tr>`;
+  }).join('');
+  const ftot=filtered.reduce((s,a)=>s+a.value_bdt_crore,0);
+  document.getElementById('alloc-info').textContent=`${lang==='bn'?'দেখাচ্ছে':'Showing'} ${filtered.length} ${lang==='bn'?'এর':'of'} ${all.length}`;
+  document.getElementById('alloc-total').textContent=`Total: ${fmt(ftot)} ${curr()}`;
+}
+
+/* ═══════════════════════════════════════
+   REVENUE
+═══════════════════════════════════════ */
+function renderRevenue(){drawRevChart();buildRevList()}
+
+function drawRevChart(){
+  const srcs=D.revenue_sources;
+  const max=Math.max(...srcs.map(s=>s.value_bdt_crore));
+  const W=340,H=260,PL=10,PR=10,TOP=20,BOT=40;
+  const cW=W-PL-PR,cH=H-TOP-BOT;
+  const bw=Math.min(32,(cW/srcs.length)-12);
+  const gap=(cW-bw*srcs.length)/(srcs.length-1);
+  let svg=`<defs>`;
+  srcs.forEach((s,i)=>{
+    const c=REV_PALETTE[i%REV_PALETTE.length];
+    svg+=`<linearGradient id="rg${i}" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="${c}"/><stop offset="100%" stop-color="${c}44"/></linearGradient>`;
+  });
+  svg+=`</defs>`;
+  // Horizontal guides
+  for(let g=1;g<=4;g++){
+    const y=TOP+cH-(cH/4)*g;
+    svg+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="rgba(255,255,255,.05)" stroke-dasharray="4,3"/>`;
+  }
+  srcs.forEach((s,i)=>{
+    const x=PL+i*(bw+gap);
+    const bh=(s.value_bdt_crore/max)*cH;
+    const y=TOP+cH-bh;
+    const c=REV_PALETTE[i%REV_PALETTE.length];
+    svg+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="5" fill="url(#rg${i})"/>`;
+    svg+=`<rect x="${x+bw/2-0.5}" y="${y-4}" width="1" height="4" fill="${c}" opacity=".5"/>`;
+    svg+=`<text x="${x+bw/2}" y="${y-8}" text-anchor="middle" font-size="8.5" fill="${c}" font-weight="700" font-family="var(--font)">${fmt(s.value_bdt_crore)}</text>`;
+    const lab=t(s.category).replace(' Revenue','').replace(' (Net)','');
+    const short=lab.length>11?lab.slice(0,11)+'…':lab;
+    svg+=`<text x="${x+bw/2}" y="${H-BOT+16}" text-anchor="middle" font-size="8" fill="rgba(148,160,190,.7)" font-family="var(--font)">${short}</text>`;
+  });
+  svg+=`<line x1="${PL}" y1="${TOP+cH}" x2="${W-PR}" y2="${TOP+cH}" stroke="rgba(255,255,255,.08)"/>`;
+  document.getElementById('rev-chart').innerHTML=svg;
+  document.getElementById('rev-legend').innerHTML=srcs.map((s,i)=>{
+    const c=REV_PALETTE[i%REV_PALETTE.length];
+    return `<div class="legend-item"><div class="legend-swatch" style="background:${c}"></div>${t(s.category)}</div>`;
+  }).join('');
+}
+
+function buildRevList(){
+  const srcs=D.revenue_sources;
+  const tot=srcs.reduce((s,a)=>s+a.value_bdt_crore,0);
+  document.getElementById('rev-list').innerHTML=srcs.map((s,i)=>{
+    const c=REV_PALETTE[i%REV_PALETTE.length];
+    const pct=(s.value_bdt_crore/tot*100).toFixed(1);
+    return `<div class="rev-item glass-glow glass" style="animation-delay:${i*.07}s">
+      <div class="rev-head">
+        <div class="rev-cat">${t(s.category)}</div>
+        <div class="rev-val-wrap">
+          <div class="rev-val" style="color:${c}">${fmt(s.value_bdt_crore)}</div>
+          <div class="rev-sub">${curr()}</div>
+        </div>
       </div>
-      <div class="policy-grid">${rules}</div>
+      <div class="rev-bar-track"><div class="rev-bar-fill" style="width:${pct}%;background:${c}"></div></div>
+      <div class="rev-desc">${pct}% ${lang==='bn'?'মোট রাজস্বের':'of total'} — ${t(s.description)}</div>
     </div>`;
   }).join('');
 }
 
-/* ═══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════
+   POLICY
+═══════════════════════════════════════ */
+function renderPolicy(){
+  const L=D.global_labels;
+  const out=document.getElementById('policy-out');
+  out.innerHTML=Object.values(D.policy_rules).map((sec,si)=>`
+    <div class="pol-section" style="animation-delay:${si*.08}s">
+      <div class="pol-header">
+        <div class="pol-title">${t(sec.title)}</div>
+        <div class="pol-overview">${t(sec.overview)}</div>
+      </div>
+      <div class="pol-grid">
+        ${sec.rules_list.map(r=>{
+          const req=r.is_tin_mandatory;
+          const badgeLbl=req?t(L.tin_yes):t(L.tin_no);
+          const badgeIco=req
+            ?`<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`
+            :`<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+          return `<div class="pol-card">
+            <div class="pol-top">
+              <div class="pol-target">${t(r.applicable_target)}</div>
+              <div class="tin-pill ${req?'tin-req':'tin-exe'}">${badgeIco}${badgeLbl}</div>
+            </div>
+            <div class="pol-guide">${t(r.guideline)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`).join('');
+}
+
+/* ═══════════════════════════════════════
    MODAL
-═══════════════════════════════════════════════════════ */
-function openModal(id) {
-  const a = DATA.allocations.find(x=>x.id===id);
-  if (!a) return;
-  const total = DATA.allocations.reduce((s,x)=>s+x.value_bdt_crore,0);
-  const share = (a.value_bdt_crore/total*100).toFixed(2)+'%';
-  const L = DATA.global_labels;
-  const secMeta = SECTOR_META[a.sector.en] || { en: a.sector.en, bn: a.sector.bn };
-  document.getElementById('modal-title').textContent   = t(a.ministry);
-  document.getElementById('modal-sector').textContent  = t(secMeta);
-  document.getElementById('modal-value').textContent   = fmtVal(a.value_bdt_crore);
-  document.getElementById('modal-unit').textContent    = currUnit();
-  document.getElementById('modal-share').textContent   = share;
-  document.getElementById('modal-desc').textContent    = t(a.description);
-  document.getElementById('modal-alloc-label').textContent = t(L.col_allocation);
-  document.getElementById('modal-share-label').textContent = t(L.col_share);
-  document.getElementById('modal-scope-label').textContent = t(L.col_description);
+═══════════════════════════════════════ */
+function openModal(id){
+  const a=D.allocations.find(x=>x.id===id);
+  if(!a)return;
+  const tot=D.allocations.reduce((s,x)=>s+x.value_bdt_crore,0);
+  const share=(a.value_bdt_crore/tot*100).toFixed(2)+'%';
+  const sec=SEC[a.sector.en]||{en:a.sector.en,bn:a.sector.bn};
+  const L=D.global_labels;
+  document.getElementById('m-title').textContent=t(a.ministry);
+  document.getElementById('m-sec').textContent=t(sec);
+  document.getElementById('m-amt').textContent=fmt(a.value_bdt_crore);
+  document.getElementById('m-unit').textContent=curr();
+  document.getElementById('m-share').textContent=share;
+  document.getElementById('m-desc').textContent=t(a.description);
+  document.getElementById('m-lbl-amt').textContent=t(L.col_allocation);
+  document.getElementById('m-scope-lbl').textContent=t(L.col_description);
   document.getElementById('modal').classList.add('open');
 }
-function closeModal() { document.getElementById('modal').classList.remove('open'); }
-function handleBackdropClick(e) { if (e.target.id==='modal') closeModal(); }
-document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+function closeModal(e){if(!e||e.target.id==='modal')document.getElementById('modal').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-/* ═══════════════════════════════════════════════════════
+/* ═══════════════════════════════════════
    TABS
-═══════════════════════════════════════════════════════ */
-function switchTab(name) {
-  ['overview','allocations','revenue','policy'].forEach(t => {
-    document.getElementById('panel-'+t).classList.toggle('active', t===name);
-    document.getElementById('tab-btn-'+t).classList.toggle('active', t===name);
+═══════════════════════════════════════ */
+function setTab(name){
+  ['overview','allocations','revenue','policy'].forEach(n=>{
+    document.getElementById('panel-'+n).classList.toggle('active',n===name);
+    document.getElementById('tbtn-'+n).classList.toggle('active',n===name);
   });
-  activeTab = name;
+  curTab=name;
 }
 
-/* ═══════════════════════════════════════════════════════
-   LANG TOGGLE
-═══════════════════════════════════════════════════════ */
-function toggleLang() {
-  lang = lang === 'en' ? 'bn' : 'en';
-  document.documentElement.lang = lang;
-  applyLabels();
-  renderOverview();
-  renderAllocations();
-  renderRevenue();
-  renderPolicy();
+/* ═══════════════════════════════════════
+   TOGGLES
+═══════════════════════════════════════ */
+function toggleLang(){
+  lang=lang==='en'?'bn':'en';
+  document.documentElement.lang=lang;
+  applyLabels();renderOverview();renderAlloc();renderRevenue();renderPolicy();
 }
-
-/* ═══════════════════════════════════════════════════════
-   CURRENCY TOGGLE
-═══════════════════════════════════════════════════════ */
-function toggleCurrency() {
-  inUSD = !inUSD;
-  document.getElementById('btn-currency').classList.toggle('active', inUSD);
-  applyLabels();
-  renderOverview();
-  filterAllocations();
-  renderRevenue();
-  // Refresh open modal if any
-  if (document.getElementById('modal').classList.contains('open')) {
-    const title = document.getElementById('modal-title').textContent;
-    const found = DATA.allocations.find(a => t(a.ministry) === title);
-    if (found) openModal(found.id);
+function toggleCurrency(){
+  usd=!usd;
+  document.getElementById('btn-usd').classList.toggle('on',usd);
+  applyLabels();renderOverview();filterAlloc();renderRevenue();
+  const modal=document.getElementById('modal');
+  if(modal.classList.contains('open')){
+    const title=document.getElementById('m-title').textContent;
+    const found=D.allocations.find(a=>t(a.ministry)===title);
+    if(found)openModal(found.id);
   }
 }
 </script>
