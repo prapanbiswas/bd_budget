@@ -3,724 +3,357 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Bangladesh Budget Dashboard 2026-27</title>
+<title>Bangladesh Budget 2026-27 — Interactive Analytics Dashboard | BD Budget Tracker</title>
+<meta name="description" content="Interactive Bangladesh National Budget 2026-2027 analytics platform. Explore ministry-wise allocations, TIN certificate rules, revenue breakdown, and budget deficit figures. Dual English-Bengali interface with live BDT to USD converter."/>
+<meta name="keywords" content="Bangladesh budget 2026-27 interactive dashboard, BD national budget tracker 2026, Bangladesh budget allocation checker, live Bangladesh budget data visualization, interactive citizen budget Bangladesh, BD budget breakdown chart online, Bangladesh ministry wise budget allocation 2026, download Bangladesh budget data JSON, mandatory TIN bank account Bangladesh 2026, student bank account TIN exemption BD, do students need TIN for bank account Bangladesh, Bangladesh bank account TIN rule updates 2026, TIN certificate exemption criteria BD budget, new income tax rules Bangladesh 2026, how to check if TIN is mandatory for bank account BD, student account tax rules Bangladesh, Bangladesh defense budget 2026 in crore, military spending Bangladesh 2026 USD, Ministry of Defence allocation Bangladesh 2026, Ministry of Home Affairs budget allocation BD, Bangladesh budget deficit figures 2026, total outlay Bangladesh national budget, convert Bangladesh budget crore to USD, BDT to USD live budget converter online, Bangladesh financial budget calculations USD billion, database free Bangladesh budget analyzer, বাংলাদেশ বাজেট ২০২৬-২৭ ইন্টারেক্টিভ ড্যাশবোর্ড, স্টুডেন্ট অ্যাকাউন্ট টিন সার্টিফিকেট নিয়ম ২০২৬, প্রতিরক্ষা মন্ত্রণালয় বাজেট বরাদ্দ ২০২৬, নাগরিক বাজেট ২০২৬-২৭ পিডিএফ ডাউনলোড"/>
+<meta name="author" content="Open-source passion project — Bangladesh Budget Transparency Initiative"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://mof.gov.bd/pages/budget-mofs"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Bangladesh Budget 2026-27 — Interactive Analytics Dashboard"/>
+<meta property="og:description" content="Explore Bangladesh National Budget 2026-2027: ministry allocations, TIN rules, revenue breakdown, and BDT-USD converter. English and Bengali."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:locale:alternate" content="bn_BD"/>
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Dataset",
+  "name":"Bangladesh National Budget 2026-2027",
+  "description":"Interactive analytics platform for the Bangladesh National Budget FY 2026-27. Contains ministry-wise allocations, revenue sources, deficit financing, and TIN policy rules.",
+  "keywords":["Bangladesh budget","budget allocation","TIN exemption","ministry spending","fiscal deficit"],
+  "url":"https://mof.gov.bd/pages/budget-mofs",
+  "creator":{"@type":"Organization","name":"Ministry of Finance, Government of Bangladesh","url":"https://mof.gov.bd"},
+  "temporalCoverage":"2026/2027",
+  "spatialCoverage":"Bangladesh",
+  "license":"https://creativecommons.org/licenses/by/4.0/",
+  "inLanguage":["en","bn"]
+}
+</script>
 <style>
-/* ── RESET ─────────────────────────────────────────── */
+/* ── RESET & BASE ─────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-
-/* ── TOKENS ────────────────────────────────────────── */
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;text-size-adjust:100%}
 :root{
-  --bg:          #07091A;
-  --bg2:         #0C0F22;
-  --surface:     rgba(255,255,255,0.04);
-  --surface-hov: rgba(255,255,255,0.07);
-  --border:      rgba(255,255,255,0.08);
-  --border-hov:  rgba(255,255,255,0.16);
-  --text:        #F0F2FF;
-  --text-2:      #9098B8;
-  --text-3:      #545B7A;
-  --prism-a:     #00E5C8;
-  --prism-b:     #7C6EFA;
-  --prism-c:     #F72585;
-  --prism-d:     #FFB703;
-  --prism-e:     #06D6A0;
-  --green:       #00C896;
-  --blue:        #4EA8DE;
-  --red:         #FF4D6D;
-  --gold:        #FFB703;
-  --violet:      #9D4EDD;
-  --r8:  8px;
-  --r12: 12px;
-  --r16: 16px;
-  --r24: 24px;
+  --bg:#07091A;--bg2:#0C0F22;
+  --surface:rgba(255,255,255,.04);--surface-hov:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.08);--border-hov:rgba(255,255,255,.16);
+  --text:#F0F2FF;--text-2:#9098B8;--text-3:#545B7A;
+  --ca:#00E5C8;--cb:#7C6EFA;--cc:#F72585;--cd:#FFB703;--ce:#06D6A0;
+  --green:#00C896;--blue:#4EA8DE;--red:#FF4D6D;--gold:#FFB703;--violet:#9D4EDD;
+  --r8:8px;--r12:12px;--r16:16px;--r24:24px;
   --font:'Inter','Segoe UI','Noto Sans Bengali',system-ui,sans-serif;
 }
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;position:relative;line-height:1.5}
+/* ambient orbs */
+body::before,body::after{content:'';position:fixed;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0}
+body::before{width:700px;height:700px;top:-200px;left:-200px;background:radial-gradient(circle,rgba(0,229,200,.12) 0%,transparent 70%);animation:orb 18s ease-in-out infinite alternate}
+body::after{width:600px;height:600px;bottom:-150px;right:-150px;background:radial-gradient(circle,rgba(124,110,250,.13) 0%,transparent 70%);animation:orb 22s ease-in-out infinite alternate-reverse}
+@keyframes orb{to{transform:translate(55px,35px) scale(1.12)}}
+.noise{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ── BODY / BACKGROUND ─────────────────────────────── */
-body{
-  font-family:var(--font);
-  background:var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-  position:relative;
-}
+/* ── HEADER ───────────────────────────────── */
+.hdr{position:sticky;top:0;z-index:200;backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%);background:rgba(7,9,26,.8);border-bottom:1px solid var(--border)}
+.hdr-inner{max-width:1340px;margin:0 auto;padding:0 28px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:14px;flex-shrink:0;text-decoration:none}
+.flag{width:34px;height:34px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1.5px rgba(255,255,255,.12),0 0 16px rgba(0,229,200,.28)}
+.brand-title{font-size:14px;font-weight:700;color:var(--text);line-height:1.2;letter-spacing:-.1px}
+.brand-sub{font-size:11px;color:var(--text-3);margin-top:1px}
+.hdr-right{display:flex;align-items:center;gap:8px}
+.cbtn{position:relative;padding:7px 15px;border-radius:20px;border:1px solid var(--border);font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font);color:var(--text-2);background:rgba(255,255,255,.04);transition:all .2s;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.cbtn:hover{background:rgba(255,255,255,.08);border-color:var(--border-hov);color:var(--text);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.cbtn.on{background:linear-gradient(135deg,rgba(0,229,200,.14),rgba(124,110,250,.14));border-color:rgba(0,229,200,.32);color:var(--ca);box-shadow:0 0 18px rgba(0,229,200,.1)}
 
-/* Ambient orbs */
-body::before,body::after{
-  content:'';
-  position:fixed;
-  border-radius:50%;
-  filter:blur(120px);
-  pointer-events:none;
-  z-index:0;
-}
-body::before{
-  width:700px;height:700px;
-  top:-200px;left:-200px;
-  background:radial-gradient(circle,rgba(0,229,200,.13) 0%,transparent 70%);
-  animation:orb-drift 18s ease-in-out infinite alternate;
-}
-body::after{
-  width:600px;height:600px;
-  bottom:-150px;right:-150px;
-  background:radial-gradient(circle,rgba(124,110,250,.14) 0%,transparent 70%);
-  animation:orb-drift 22s ease-in-out infinite alternate-reverse;
-}
-@keyframes orb-drift{
-  0%{transform:translate(0,0) scale(1)}
-  100%{transform:translate(60px,40px) scale(1.15)}
-}
+/* ── TABS ─────────────────────────────────── */
+.tabs{position:sticky;top:62px;z-index:190;backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);background:rgba(7,9,26,.72);border-bottom:1px solid var(--border)}
+.tabs-in{max-width:1340px;margin:0 auto;padding:0 28px;display:flex;gap:2px}
+.tbtn{position:relative;padding:14px 20px;font-size:13px;font-weight:600;color:var(--text-3);border:none;background:none;cursor:pointer;font-family:var(--font);display:flex;align-items:center;gap:8px;transition:color .2s;white-space:nowrap}
+.tbtn:hover{color:var(--text-2)}
+.tbtn.on{color:var(--text)}
+.tbtn::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;border-radius:2px 2px 0 0;background:linear-gradient(90deg,var(--ca),var(--cb));transform:scaleX(0);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+.tbtn.on::after{transform:scaleX(1)}
+.ti{opacity:.55;transition:opacity .2s}
+.tbtn.on .ti,.tbtn:hover .ti{opacity:1}
 
-/* ── NOISE TEXTURE OVERLAY ─────────────────────────── */
-.noise{
-  position:fixed;inset:0;z-index:1;
-  pointer-events:none;
-  opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-}
+/* ── MAIN ─────────────────────────────────── */
+.wrap{position:relative;z-index:10;max-width:1340px;margin:0 auto;padding:28px 28px 0}
+.panel{display:none}.panel.on{display:block}
 
-/* ── HEADER ────────────────────────────────────────── */
-.header{
-  position:sticky;top:0;z-index:200;
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
-  background:rgba(7,9,26,.75);
-  border-bottom:1px solid var(--border);
-}
-.header-inner{
-  max-width:1320px;margin:0 auto;
-  padding:0 28px;
-  height:62px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
-}
-.brand{display:flex;align-items:center;gap:14px;flex-shrink:0}
-.brand-flag{
-  width:34px;height:34px;border-radius:50%;overflow:hidden;
-  box-shadow:0 0 0 1.5px rgba(255,255,255,.12),0 0 18px rgba(0,229,200,.3);
-}
-.brand-title{font-size:14px;font-weight:700;letter-spacing:-.2px;color:var(--text);line-height:1.2}
-.brand-sub{font-size:11px;color:var(--text-3);font-weight:400;margin-top:1px}
-
-/* Prism line under header brand */
-.brand::after{display:none}
-
-.header-right{display:flex;align-items:center;gap:8px}
-
-/* Prismatic pill button */
-.ctrl-btn{
-  position:relative;
-  padding:7px 16px;
-  border-radius:20px;
-  border:none;
-  font-size:12px;font-weight:600;
-  cursor:pointer;
-  font-family:var(--font);
-  color:var(--text-2);
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--border);
-  transition:all .22s ease;
-  display:flex;align-items:center;gap:6px;
-  white-space:nowrap;
-}
-.ctrl-btn:hover{
-  background:rgba(255,255,255,.09);
-  border-color:var(--border-hov);
-  color:var(--text);
-  transform:translateY(-1px);
-  box-shadow:0 4px 16px rgba(0,0,0,.3);
-}
-.ctrl-btn.on{
-  background:linear-gradient(135deg,rgba(0,229,200,.15),rgba(124,110,250,.15));
-  border-color:rgba(0,229,200,.35);
-  color:var(--prism-a);
-  box-shadow:0 0 20px rgba(0,229,200,.12);
-}
-
-/* ── TABS ──────────────────────────────────────────── */
-.tabs-bar{
-  position:sticky;top:62px;z-index:190;
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  background:rgba(7,9,26,.7);
-  border-bottom:1px solid var(--border);
-}
-.tabs-inner{
-  max-width:1320px;margin:0 auto;
-  padding:0 28px;
-  display:flex;gap:2px;
-}
-.tab-btn{
-  position:relative;
-  padding:14px 20px;
-  font-size:13px;font-weight:600;
-  color:var(--text-3);
-  border:none;background:none;cursor:pointer;
-  font-family:var(--font);
-  display:flex;align-items:center;gap:8px;
-  transition:color .2s;
-  white-space:nowrap;
-}
-.tab-btn:hover{color:var(--text-2)}
-.tab-btn.active{color:var(--text)}
-.tab-btn::after{
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;
-  height:2px;border-radius:2px 2px 0 0;
-  background:linear-gradient(90deg,var(--prism-a),var(--prism-b));
-  transform:scaleX(0);
-  transition:transform .25s cubic-bezier(.4,0,.2,1);
-}
-.tab-btn.active::after{transform:scaleX(1)}
-.tab-icon{opacity:.6;transition:opacity .2s}
-.tab-btn.active .tab-icon,.tab-btn:hover .tab-icon{opacity:1}
-
-/* ── LAYOUT ────────────────────────────────────────── */
-.wrap{
-  position:relative;z-index:10;
-  max-width:1320px;margin:0 auto;
-  padding:28px 28px 60px;
-}
-.panel{display:none}
-.panel.active{display:block}
-
-/* ── GLASS CARD ────────────────────────────────────── */
-.glass{
-  position:relative;
-  background:var(--surface);
-  backdrop-filter:blur(20px) saturate(160%);
-  -webkit-backdrop-filter:blur(20px) saturate(160%);
-  border-radius:var(--r16);
-  border:1px solid var(--border);
-  transition:border-color .25s,transform .25s,box-shadow .25s;
-  overflow:hidden;
-}
-.glass::before{
-  content:'';
-  position:absolute;inset:0;
-  border-radius:inherit;
-  background:linear-gradient(135deg,rgba(255,255,255,.035) 0%,transparent 60%);
-  pointer-events:none;
-}
-.glass:hover{
-  border-color:var(--border-hov);
-  transform:translateY(-2px);
-  box-shadow:0 12px 40px rgba(0,0,0,.4);
-}
-
-/* Prismatic top border glow on hover */
-.glass-glow{
-  position:relative;
-}
-.glass-glow::after{
-  content:'';
-  position:absolute;top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--prism-a),var(--prism-b),transparent);
-  opacity:0;
-  transition:opacity .3s;
-  pointer-events:none;
-}
+/* ── GLASS CARD ───────────────────────────── */
+.glass{position:relative;background:var(--surface);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border-radius:var(--r16);border:1px solid var(--border);transition:border-color .25s,transform .25s,box-shadow .25s;overflow:hidden}
+.glass::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.glass:hover{border-color:var(--border-hov);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.glass-glow::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ca),var(--cb),transparent);opacity:0;transition:opacity .3s;pointer-events:none;z-index:1}
 .glass-glow:hover::after{opacity:1}
 
-/* ── SUMMARY CARDS ─────────────────────────────────── */
-.summary-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-bottom:24px;
-}
-@media(max-width:1000px){.summary-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.summary-grid{grid-template-columns:1fr}}
+/* ── SUMMARY CARDS ────────────────────────── */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:22px}
+@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:680px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.kpi-grid{grid-template-columns:1fr}}
+.kc{padding:20px 20px 18px;animation:cin .5s cubic-bezier(.4,0,.2,1) both}
+.kc:nth-child(1){animation-delay:.04s}.kc:nth-child(2){animation-delay:.08s}.kc:nth-child(3){animation-delay:.12s}.kc:nth-child(4){animation-delay:.16s}.kc:nth-child(5){animation-delay:.2s}
+@keyframes cin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.kc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
+.kc-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.kc-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase}
+.badge-g{background:rgba(0,200,150,.1);color:var(--green)}.badge-b{background:rgba(78,168,222,.1);color:var(--blue)}.badge-r{background:rgba(255,77,109,.1);color:var(--red)}.badge-d{background:rgba(255,183,3,.1);color:var(--gold)}.badge-v{background:rgba(157,78,221,.1);color:var(--violet)}
+.kc-lbl{font-size:10.5px;font-weight:600;letter-spacing:.65px;text-transform:uppercase;color:var(--text-3);margin-bottom:7px}
+.kc-val{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:4px}
+.kc-unit{font-size:11.5px;color:var(--text-3);margin-bottom:10px}
+.kc-note{font-size:11px;color:var(--text-3);padding-top:10px;border-top:1px solid var(--border)}
+.vg{background:linear-gradient(135deg,#00E5C8,#06D6A0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vb{background:linear-gradient(135deg,#4EA8DE,#7C6EFA);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vr{background:linear-gradient(135deg,#FF4D6D,#F72585);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vd{background:linear-gradient(135deg,#FFB703,#FB8500);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vv{background:linear-gradient(135deg,#9D4EDD,#7C6EFA);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
-.s-card{
-  padding:22px 22px 20px;
-  animation:card-in .5s cubic-bezier(.4,0,.2,1) both;
-}
-.s-card:nth-child(1){animation-delay:.05s}
-.s-card:nth-child(2){animation-delay:.1s}
-.s-card:nth-child(3){animation-delay:.15s}
-.s-card:nth-child(4){animation-delay:.2s}
-@keyframes card-in{
-  from{opacity:0;transform:translateY(16px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-.s-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:16px}
-.s-card-icon{
-  width:38px;height:38px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.s-card-badge{
-  font-size:10px;font-weight:700;
-  padding:3px 8px;border-radius:20px;
-  letter-spacing:.3px;text-transform:uppercase;
-}
-.badge-green{background:rgba(0,200,150,.12);color:var(--green)}
-.badge-blue {background:rgba(78,168,222,.12);color:var(--blue)}
-.badge-red  {background:rgba(255,77,109,.12);color:var(--red)}
-.badge-gold {background:rgba(255,183,3,.12);color:var(--gold)}
-
-.s-card-label{
-  font-size:11px;font-weight:600;
-  letter-spacing:.6px;text-transform:uppercase;
-  color:var(--text-3);margin-bottom:8px;
-}
-.s-card-value{
-  font-size:30px;font-weight:800;
-  letter-spacing:-1px;line-height:1;
-  margin-bottom:5px;
-}
-.val-green{background:linear-gradient(135deg,#00E5C8,#06D6A0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.val-blue {background:linear-gradient(135deg,#4EA8DE,#7C6EFA);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.val-red  {background:linear-gradient(135deg,#FF4D6D,#F72585);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.val-gold {background:linear-gradient(135deg,#FFB703,#FB8500);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-
-.s-card-unit{font-size:12px;color:var(--text-3);font-weight:500;margin-bottom:12px}
-.s-card-note{
-  font-size:11px;color:var(--text-3);
-  padding-top:12px;
-  border-top:1px solid var(--border);
-}
-
-/* ── OVERVIEW CHART ROW ─────────────────────────────── */
-.chart-row{
-  display:grid;
-  grid-template-columns:340px 1fr;
-  gap:16px;
-  margin-bottom:24px;
-}
+/* ── CHART ROW ────────────────────────────── */
+.chart-row{display:grid;grid-template-columns:320px 1fr;gap:16px;margin-bottom:22px}
 @media(max-width:900px){.chart-row{grid-template-columns:1fr}}
+.cc{padding:20px;position:relative;z-index:1}
+.cc-head{display:flex;align-items:center;gap:8px;margin-bottom:18px}
+.cc-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--ca),var(--cb));box-shadow:0 0 7px rgba(0,229,200,.5)}
+.cc-title{font-size:13px;font-weight:700;color:var(--text)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.li{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--text-2)}
+.ls{width:12px;height:4px;border-radius:2px;flex-shrink:0}
+#donut-wrap{position:relative;width:190px;height:190px;margin:0 auto}
+.dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.dc-val{font-size:26px;font-weight:800;letter-spacing:-1px;line-height:1}
+.dc-lbl{font-size:10px;color:var(--text-3);margin-top:3px}
 
-.chart-card{padding:22px}
-.chart-head{
-  display:flex;align-items:center;gap:8px;
-  margin-bottom:20px;
-}
-.chart-head-title{
-  font-size:13px;font-weight:700;color:var(--text);
-}
-.chart-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:linear-gradient(135deg,var(--prism-a),var(--prism-b));
-  box-shadow:0 0 8px rgba(0,229,200,.5);
-}
-
-/* Legend */
-.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.legend-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--text-2)}
-.legend-swatch{width:12px;height:4px;border-radius:2px;flex-shrink:0}
-
-/* ── DONUT ──────────────────────────────────────────── */
-#donut-wrap{position:relative;width:200px;height:200px;margin:0 auto}
-#donut-wrap svg{display:block}
-.donut-center{
-  position:absolute;inset:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  pointer-events:none;
-}
-.donut-pct{font-size:28px;font-weight:800;letter-spacing:-1px;line-height:1}
-.donut-lbl{font-size:10px;color:var(--text-3);margin-top:3px;font-weight:500}
-
-/* ── BAR CHART SVG ──────────────────────────────────── */
-#top-bar-chart{width:100%;display:block}
-
-/* ── TOOLBAR ────────────────────────────────────────── */
-.toolbar{
-  display:flex;gap:12px;flex-wrap:wrap;
-  align-items:center;margin-bottom:18px;
-}
-.search-wrap{flex:1;min-width:220px;position:relative}
-.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.4}
-.search-input{
-  width:100%;
-  padding:10px 14px 10px 40px;
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
-  border-radius:10px;
-  color:var(--text);
-  font-size:13px;
-  font-family:var(--font);
-  outline:none;
-  transition:border-color .2s,background .2s,box-shadow .2s;
-}
-.search-input::placeholder{color:var(--text-3)}
-.search-input:focus{
-  border-color:rgba(0,229,200,.4);
-  background:rgba(0,229,200,.04);
-  box-shadow:0 0 0 3px rgba(0,229,200,.08);
-}
-
-/* Chips */
+/* ── TOOLBAR ──────────────────────────────── */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.sw{flex:1;min-width:210px;position:relative}
+.si{position:absolute;left:13px;top:50%;transform:translateY(-50%);pointer-events:none;opacity:.35}
+.sinp{width:100%;padding:9px 13px 9px 38px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:var(--text);font-size:13px;font-family:var(--font);outline:none;transition:border-color .2s,background .2s,box-shadow .2s}
+.sinp::placeholder{color:var(--text-3)}
+.sinp:focus{border-color:rgba(0,229,200,.38);background:rgba(0,229,200,.035);box-shadow:0 0 0 3px rgba(0,229,200,.07)}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{
-  padding:6px 14px;
-  border-radius:20px;
-  font-size:11.5px;font-weight:600;
-  color:var(--text-3);
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
-  cursor:pointer;
-  font-family:var(--font);
-  white-space:nowrap;
-  transition:all .2s;
-}
+.chip{padding:6px 13px;border-radius:20px;font-size:11.5px;font-weight:600;color:var(--text-3);background:rgba(255,255,255,.04);border:1px solid var(--border);cursor:pointer;font-family:var(--font);white-space:nowrap;transition:all .18s}
 .chip:hover{border-color:var(--border-hov);color:var(--text-2)}
-.chip.on{
-  background:linear-gradient(135deg,rgba(0,229,200,.12),rgba(124,110,250,.12));
-  border-color:rgba(0,229,200,.35);
-  color:var(--prism-a);
-  box-shadow:0 0 14px rgba(0,229,200,.08);
-}
+.chip.on{background:linear-gradient(135deg,rgba(0,229,200,.11),rgba(124,110,250,.11));border-color:rgba(0,229,200,.32);color:var(--ca);box-shadow:0 0 12px rgba(0,229,200,.07)}
 
-/* ── TABLE ──────────────────────────────────────────── */
-.tbl-wrap{
-  background:rgba(255,255,255,.025);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border:1px solid var(--border);
-  border-radius:var(--r16);
-  overflow:hidden;
-}
+/* ── TABLE ────────────────────────────────── */
+.twrap{background:rgba(255,255,255,.025);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:var(--r16);overflow:hidden}
 table{width:100%;border-collapse:collapse}
 thead tr{background:rgba(255,255,255,.025)}
-th{
-  padding:11px 16px;
-  font-size:10.5px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.7px;
-  color:var(--text-3);
-  border-bottom:1px solid var(--border);
-  white-space:nowrap;
-  text-align:left;
-}
+th{padding:11px 15px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text-3);border-bottom:1px solid var(--border);text-align:left;white-space:nowrap;user-select:none}
 th.r{text-align:right}
-td{
-  padding:13px 16px;
-  font-size:13px;
-  border-bottom:1px solid rgba(255,255,255,.04);
-  vertical-align:middle;
-  transition:background .15s;
-}
+th.sortable{cursor:pointer;transition:color .18s}
+th.sortable:hover{color:var(--text-2)}
+th.sort-on{color:var(--ca)}
+.sort-arrow{display:inline-block;margin-left:5px;opacity:.6;transition:transform .18s}
+td{padding:12px 15px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;transition:background .12s}
 td.r{text-align:right}
 tbody tr:last-child td{border-bottom:none}
-tbody tr{transition:background .15s}
-tbody tr:hover td{background:rgba(255,255,255,.03)}
+tbody tr:hover td{background:rgba(255,255,255,.028)}
+.mn{font-weight:600;color:var(--text);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.ms{font-size:11px;color:var(--text-3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px}
+.sbadge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700;white-space:nowrap;border:1px solid transparent}
+.sw2{display:flex;align-items:center;gap:7px;min-width:100px}
+.strack{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.07)}
+.sfill{height:4px;border-radius:2px}
+.spct{font-size:10.5px;color:var(--text-3);width:36px;text-align:right;flex-shrink:0}
+.av{font-size:13px;font-weight:700;color:var(--ca);white-space:nowrap}
+.au{font-size:10px;font-weight:400;color:var(--text-3);margin-left:2px}
+.bdet{padding:5px 11px;border:1px solid rgba(255,255,255,.1);border-radius:6px;background:transparent;color:var(--text-2);font-size:11px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .18s;white-space:nowrap}
+.bdet:hover{border-color:rgba(0,229,200,.38);color:var(--ca);background:rgba(0,229,200,.055)}
+.tfoot{padding:10px 15px;font-size:11.5px;color:var(--text-3);background:rgba(255,255,255,.018);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.no-res{text-align:center;padding:44px 16px;color:var(--text-3);font-size:13px}
+.no-res svg{display:block;margin:0 auto 12px;opacity:.28}
 
-.min-name{font-weight:600;color:var(--text);font-size:13px}
-.min-sub{font-size:11px;color:var(--text-3);margin-top:2px}
+/* sector colours */
+.s-edu{background:rgba(78,168,222,.1);color:#4EA8DE;border-color:rgba(78,168,222,.18)}
+.s-hlt{background:rgba(255,77,109,.1);color:#FF4D6D;border-color:rgba(255,77,109,.18)}
+.s-def{background:rgba(6,214,160,.1);color:#06D6A0;border-color:rgba(6,214,160,.18)}
+.s-tra{background:rgba(255,183,3,.1);color:#FFB703;border-color:rgba(255,183,3,.18)}
+.s-agr{background:rgba(0,200,150,.1);color:#00C896;border-color:rgba(0,200,150,.18)}
+.s-eny{background:rgba(251,133,0,.1);color:#FB8500;border-color:rgba(251,133,0,.18)}
+.s-soc{background:rgba(157,78,221,.1);color:#9D4EDD;border-color:rgba(157,78,221,.18)}
+.s-adm{background:rgba(124,110,250,.1);color:#7C6EFA;border-color:rgba(124,110,250,.18)}
+.s-ict{background:rgba(0,229,200,.1);color:#00E5C8;border-color:rgba(0,229,200,.18)}
+.s-loc{background:rgba(247,37,133,.1);color:#F72585;border-color:rgba(247,37,133,.18)}
+.s-ind{background:rgba(157,78,221,.08);color:#B48AE8;border-color:rgba(157,78,221,.14)}
+.s-dbt{background:rgba(255,77,109,.08);color:#FF6B6B;border-color:rgba(255,77,109,.14)}
+.s-env{background:rgba(6,214,160,.08);color:#5ED8B0;border-color:rgba(6,214,160,.14)}
 
-/* Sector badge */
-.sbadge{
-  display:inline-block;
-  padding:3px 10px;
-  border-radius:20px;
-  font-size:10.5px;font-weight:700;
-  white-space:nowrap;
-  border:1px solid transparent;
-}
+/* ── REVENUE TAB ──────────────────────────── */
+.rev-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+@media(max-width:820px){.rev-cols{grid-template-columns:1fr}}
+.ri{padding:17px 18px;border-radius:var(--r12);background:rgba(255,255,255,.03);border:1px solid var(--border);transition:border-color .2s,background .2s;animation:cin .4s ease both}
+.ri:hover{background:rgba(255,255,255,.05);border-color:var(--border-hov)}
+.ri-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:9px}
+.ri-cat{font-size:13px;font-weight:700;color:var(--text)}
+.ri-vw{text-align:right;flex-shrink:0}
+.ri-val{font-size:15px;font-weight:800;white-space:nowrap}
+.ri-sub{font-size:10px;color:var(--text-3)}
+.ri-track{width:100%;height:6px;border-radius:3px;background:rgba(255,255,255,.06);margin-bottom:8px;overflow:hidden}
+.ri-fill{height:6px;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.ri-desc{font-size:11.5px;color:var(--text-3);line-height:1.55}
+.sect-head{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text-3);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sect-head::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* Share bar */
-.share-wrap{display:flex;align-items:center;gap:8px;min-width:110px}
-.share-track{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.07)}
-.share-fill{height:4px;border-radius:2px;transition:width .6s cubic-bezier(.4,0,.2,1)}
-.share-pct{font-size:11px;color:var(--text-3);width:38px;text-align:right;flex-shrink:0}
+/* ── POLICY TAB ───────────────────────────── */
+.pol-section{margin-bottom:26px}
+.pol-hdr{padding:16px 20px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-bottom:none;border-radius:var(--r16) var(--r16) 0 0;position:relative;overflow:hidden}
+.pol-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ca),var(--cb),var(--cc),transparent)}
+.pol-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.pol-ov{font-size:12px;color:var(--text-3);line-height:1.5}
+.pol-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border:1px solid var(--border);border-top:none;border-radius:0 0 var(--r16) var(--r16);overflow:hidden}
+.pc{padding:17px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.02);display:flex;flex-direction:column;gap:9px;transition:background .18s}
+.pc:hover{background:rgba(255,255,255,.04)}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.pc-target{font-size:12.5px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
+.tin-pill{display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:20px;font-size:10px;font-weight:700;flex-shrink:0;white-space:nowrap}
+.t-req{background:rgba(255,77,109,.1);color:var(--red);border:1px solid rgba(255,77,109,.2)}
+.t-exe{background:rgba(0,200,150,.1);color:var(--green);border:1px solid rgba(0,200,150,.2)}
+.pc-guide{font-size:11.5px;color:var(--text-3);line-height:1.55}
 
-.alloc-val{
-  font-size:13px;font-weight:700;
-  color:var(--prism-a);white-space:nowrap;
-}
-.alloc-unit{font-size:10px;font-weight:400;color:var(--text-3);margin-left:2px}
+/* ── TIN WIZARD ───────────────────────────── */
+.wizard-wrap{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r16);overflow:hidden;margin-bottom:28px}
+.wiz-hdr{padding:20px 24px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.wiz-hdr::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,200,.06),rgba(124,110,250,.06));pointer-events:none}
+.wiz-hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ca),var(--cb),var(--cc),transparent)}
+.wiz-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:5px;position:relative;z-index:1}
+.wiz-sub{font-size:12.5px;color:var(--text-2);position:relative;z-index:1;line-height:1.5}
+.wiz-body{padding:24px}
+.wiz-q{margin-bottom:20px}
+.wiz-q-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.wiz-q-num{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--ca),var(--cb));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#07091A;flex-shrink:0}
+.wiz-opts{display:flex;flex-direction:column;gap:8px}
+.wiz-opt{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-radius:10px;border:1px solid var(--border);background:rgba(255,255,255,.02);cursor:pointer;transition:all .2s;user-select:none}
+.wiz-opt:hover{border-color:var(--border-hov);background:rgba(255,255,255,.04)}
+.wiz-opt.sel{border-color:rgba(0,229,200,.4);background:rgba(0,229,200,.06);box-shadow:0 0 16px rgba(0,229,200,.07)}
+.wiz-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.wiz-opt.sel .wiz-radio{border-color:var(--ca);background:var(--ca)}
+.wiz-radio-dot{width:7px;height:7px;border-radius:50%;background:#07091A;opacity:0;transition:opacity .18s}
+.wiz-opt.sel .wiz-radio-dot{opacity:1}
+.wiz-opt-text{font-size:13px;color:var(--text-2);line-height:1.45;flex:1;transition:color .18s}
+.wiz-opt.sel .wiz-opt-text{color:var(--text)}
+.wiz-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.wbtn-check{padding:10px 22px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--ca),var(--cb));color:#07091A;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);transition:opacity .2s,transform .2s;display:flex;align-items:center;gap:7px}
+.wbtn-check:hover:not(:disabled){opacity:.88;transform:translateY(-1px)}
+.wbtn-check:disabled{opacity:.35;cursor:not-allowed}
+.wbtn-reset{padding:10px 18px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text-3);font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font);transition:all .2s}
+.wbtn-reset:hover{border-color:var(--border-hov);color:var(--text-2)}
+/* Result boxes */
+.wiz-result{display:none;margin-top:22px;border-radius:var(--r12);overflow:hidden;animation:cin .3s ease}
+.wiz-result.show{display:block}
+.wr-exempt{background:#052016;border:1.5px solid #166534}
+.wr-req{background:#1A0208;border:1.5px solid #7f1d1d}
+.wr-inner{padding:18px 20px}
+.wr-title-bar{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.wr-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wr-exempt .wr-icon{background:rgba(22,101,52,.35)}
+.wr-req .wr-icon{background:rgba(127,29,29,.35)}
+.wr-title{font-size:14px;font-weight:800}
+.wr-exempt .wr-title{color:#4ade80}
+.wr-req .wr-title{color:#f87171}
+.wr-body{font-size:13px;line-height:1.65;margin-bottom:12px}
+.wr-exempt .wr-body{color:#86efac}
+.wr-req .wr-body{color:#fca5a5}
+.wr-cta{font-size:11.5px;font-weight:600;padding:9px 14px;border-radius:8px;display:flex;align-items:flex-start;gap:8px}
+.wr-exempt .wr-cta{background:rgba(22,101,52,.25);color:#4ade80;border:1px solid rgba(22,101,52,.45)}
+.wr-req .wr-cta{background:rgba(127,29,29,.25);color:#f87171;border:1px solid rgba(127,29,29,.45)}
 
-/* Details button */
-.btn-detail{
-  padding:5px 12px;
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:6px;
-  background:transparent;
-  color:var(--text-2);
-  font-size:11px;font-weight:600;
-  cursor:pointer;
-  font-family:var(--font);
-  transition:all .18s;
-  white-space:nowrap;
-}
-.btn-detail:hover{
-  border-color:rgba(0,229,200,.4);
-  color:var(--prism-a);
-  background:rgba(0,229,200,.06);
-}
+/* ── MODAL ────────────────────────────────── */
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:900;align-items:center;justify-content:center;padding:20px}
+.mbg.open{display:flex}
+.modal{background:rgba(13,16,34,.93);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border:1px solid rgba(255,255,255,.1);border-radius:var(--r24);max-width:520px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.04);animation:min .22s cubic-bezier(.34,1.56,.64,1)}
+@keyframes min{from{opacity:0;transform:scale(.94) translateY(12px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.m-top{padding:20px 22px 17px;position:relative;border-bottom:1px solid var(--border)}
+.m-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ca),var(--cb),var(--cc),var(--cd))}
+.m-title{font-size:15px;font-weight:800;color:var(--text);margin-bottom:4px;padding-right:32px}
+.m-sec{font-size:12px;color:var(--text-3)}
+.mx{position:absolute;top:15px;right:15px;width:27px;height:27px;border-radius:7px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text-2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s,color .18s}
+.mx:hover{background:rgba(255,77,109,.15);color:var(--red);border-color:rgba(255,77,109,.3)}
+.m-body{padding:20px 22px}
+.m-stats{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:16px}
+.ms2{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:var(--r12);padding:13px 15px}
+.msl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);margin-bottom:5px}
+.msv{font-size:20px;font-weight:800;letter-spacing:-.4px}
+.msu{font-size:11px;color:var(--text-3);margin-top:2px}
+.mdl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3);margin-bottom:7px}
+.mdd{font-size:13px;color:var(--text-2);line-height:1.65}
 
-/* Footer row */
-.tbl-foot{
-  padding:10px 16px;
-  font-size:11.5px;color:var(--text-3);
-  background:rgba(255,255,255,.02);
-  border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
+/* ── FOOTER ───────────────────────────────── */
+.site-footer{position:relative;z-index:10;margin-top:48px;border-top:1px solid var(--border)}
+.foot-disclaimer{max-width:1340px;margin:0 auto;padding:28px 28px 0}
+.disc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+@media(max-width:860px){.disc-grid{grid-template-columns:1fr}}
+.disc-card{padding:18px 20px;border-radius:var(--r12);background:rgba(255,255,255,.025);border:1px solid var(--border)}
+.disc-card-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.disc-card-body{font-size:12px;color:var(--text-3);line-height:1.65}
+.disc-card-body a{color:var(--ca);text-decoration:none}
+.disc-card-body a:hover{text-decoration:underline}
+.disc-passion .disc-card-title{color:var(--ca)}
+.disc-ai .disc-card-title{color:var(--gold)}
+.disc-verify .disc-card-title{color:var(--red)}
+.foot-bar{max-width:1340px;margin:0 auto;padding:14px 28px;font-size:11.5px;color:var(--text-3);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.foot-bar a{color:var(--ca);text-decoration:none}
+.foot-bar a:hover{text-decoration:underline}
+.foot-sep{opacity:.3;margin:0 6px}
 
-/* No results */
-.no-res{
-  text-align:center;padding:48px 16px;
-  color:var(--text-3);font-size:13px;
-}
-.no-res svg{display:block;margin:0 auto 12px;opacity:.3}
-
-/* ── REVENUE ─────────────────────────────────────────── */
-.rev-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:840px){.rev-grid{grid-template-columns:1fr}}
-
-.rev-item{
-  padding:18px 20px;
-  border-radius:var(--r12);
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  transition:border-color .2s,background .2s;
-  animation:card-in .4s ease both;
-}
-.rev-item:hover{background:rgba(255,255,255,.05);border-color:var(--border-hov)}
-
-.rev-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
-.rev-cat{font-size:13px;font-weight:700;color:var(--text)}
-.rev-val-wrap{text-align:right;flex-shrink:0}
-.rev-val{font-size:16px;font-weight:800;white-space:nowrap}
-.rev-sub{font-size:10px;color:var(--text-3)}
-.rev-bar-track{width:100%;height:6px;border-radius:3px;background:rgba(255,255,255,.06);margin-bottom:8px;overflow:hidden}
-.rev-bar-fill{height:6px;border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1)}
-.rev-desc{font-size:11.5px;color:var(--text-3);line-height:1.55}
-
-/* ── POLICY ──────────────────────────────────────────── */
-.pol-section{margin-bottom:28px;animation:card-in .4s ease both}
-.pol-header{
-  padding:18px 22px;
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--border);
-  border-bottom:none;
-  border-radius:var(--r16) var(--r16) 0 0;
-  position:relative;overflow:hidden;
-}
-.pol-header::after{
-  content:'';
-  position:absolute;bottom:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--prism-a),var(--prism-b),var(--prism-c),transparent);
-}
-.pol-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
-.pol-overview{font-size:12px;color:var(--text-3);line-height:1.5}
-
-.pol-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
-  border:1px solid var(--border);
-  border-top:none;
-  border-radius:0 0 var(--r16) var(--r16);
-  overflow:hidden;
-}
-.pol-card{
-  padding:18px 20px;
-  border-right:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  background:rgba(255,255,255,.02);
-  display:flex;flex-direction:column;gap:10px;
-  transition:background .18s;
-}
-.pol-card:hover{background:rgba(255,255,255,.04)}
-.pol-card:last-child{border-right:none}
-
-.pol-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.pol-target{font-size:13px;font-weight:700;color:var(--text);flex:1;line-height:1.4}
-
-.tin-pill{
-  display:flex;align-items:center;gap:5px;
-  padding:4px 10px;border-radius:20px;
-  font-size:10.5px;font-weight:700;
-  flex-shrink:0;white-space:nowrap;
-}
-.tin-req{background:rgba(255,77,109,.12);color:var(--red);border:1px solid rgba(255,77,109,.2)}
-.tin-exe{background:rgba(0,200,150,.12);color:var(--green);border:1px solid rgba(0,200,150,.2)}
-.pol-guide{font-size:12px;color:var(--text-3);line-height:1.55}
-
-/* ── MODAL ───────────────────────────────────────────── */
-.modal-bg{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,.65);
-  backdrop-filter:blur(8px);
-  -webkit-backdrop-filter:blur(8px);
-  z-index:900;
-  align-items:center;justify-content:center;
-  padding:20px;
-}
-.modal-bg.open{display:flex}
-.modal{
-  background:rgba(14,17,36,.92);
-  backdrop-filter:blur(30px);
-  -webkit-backdrop-filter:blur(30px);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--r24);
-  max-width:520px;width:100%;
-  overflow:hidden;
-  box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);
-  animation:modal-in .22s cubic-bezier(.34,1.56,.64,1);
-}
-@keyframes modal-in{
-  from{opacity:0;transform:scale(.94) translateY(12px)}
-  to{opacity:1;transform:scale(1) translateY(0)}
-}
-.modal-top{
-  padding:22px 22px 18px;
-  position:relative;
-  border-bottom:1px solid var(--border);
-}
-/* Prismatic top glow on modal */
-.modal-top::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--prism-a),var(--prism-b),var(--prism-c),var(--prism-d));
-}
-.modal-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:4px;padding-right:32px}
-.modal-sec{font-size:12px;color:var(--text-3)}
-.modal-x{
-  position:absolute;top:16px;right:16px;
-  width:28px;height:28px;border-radius:8px;
-  background:rgba(255,255,255,.06);border:1px solid var(--border);
-  color:var(--text-2);cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:background .18s,color .18s;
-}
-.modal-x:hover{background:rgba(255,77,109,.15);color:var(--red);border-color:rgba(255,77,109,.3)}
-
-.modal-body{padding:22px}
-.modal-stats{
-  display:grid;grid-template-columns:1fr 1fr;gap:12px;
-  margin-bottom:18px;
-}
-.modal-stat{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--border);
-  border-radius:var(--r12);
-  padding:14px 16px;
-}
-.mstat-lbl{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text-3);margin-bottom:6px}
-.mstat-val{font-size:22px;font-weight:800;letter-spacing:-.5px}
-.mstat-unit{font-size:11px;color:var(--text-3);margin-top:2px}
-.modal-desc-lbl{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--text-3);margin-bottom:8px}
-.modal-desc{font-size:13px;color:var(--text-2);line-height:1.65}
-
-/* ── FOOT ─────────────────────────────────────────── */
-.site-foot{
-  position:relative;z-index:10;
-  border-top:1px solid var(--border);
-  text-align:center;
-  padding:14px 24px;
-  font-size:11.5px;color:var(--text-3);
-}
-.site-foot a{color:var(--prism-a);text-decoration:none}
-.site-foot a:hover{text-decoration:underline}
-
-/* ── LOADING ─────────────────────────────────────────── */
-#loading{
-  position:fixed;inset:0;
-  background:var(--bg);
-  z-index:9999;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;
-}
-.spin-ring{
-  width:48px;height:48px;
-  border-radius:50%;
-  border:3px solid rgba(255,255,255,.07);
-  border-top-color:var(--prism-a);
-  animation:spin .9s linear infinite;
-}
+/* ── LOADING ──────────────────────────────── */
+#loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:opacity .4s}
+.load-ring{position:relative;width:80px;height:80px}
+.load-spin{position:absolute;inset:0;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.load-text{font-size:13px;color:var(--text-3);letter-spacing:.3px}
+.load-flag{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.load-txt{font-size:13px;color:var(--text-3)}
 
-/* ── SECTION DIVIDER ─────────────────────────────────── */
-.section-title{
-  font-size:11px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.8px;
-  color:var(--text-3);
-  margin-bottom:14px;
-  display:flex;align-items:center;gap:10px;
-}
-.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* ── SECTOR BADGE COLOURS ──────────────────────────── */
-.s-edu{background:rgba(78,168,222,.1);color:#4EA8DE;border-color:rgba(78,168,222,.2)}
-.s-health{background:rgba(255,77,109,.1);color:#FF4D6D;border-color:rgba(255,77,109,.2)}
-.s-def{background:rgba(6,214,160,.1);color:#06D6A0;border-color:rgba(6,214,160,.2)}
-.s-trans{background:rgba(255,183,3,.1);color:#FFB703;border-color:rgba(255,183,3,.2)}
-.s-agri{background:rgba(0,200,150,.1);color:#00C896;border-color:rgba(0,200,150,.2)}
-.s-energy{background:rgba(251,133,0,.1);color:#FB8500;border-color:rgba(251,133,0,.2)}
-.s-social{background:rgba(157,78,221,.1);color:#9D4EDD;border-color:rgba(157,78,221,.2)}
-.s-admin{background:rgba(124,110,250,.1);color:#7C6EFA;border-color:rgba(124,110,250,.2)}
-.s-ict{background:rgba(0,229,200,.1);color:#00E5C8;border-color:rgba(0,229,200,.2)}
-.s-local{background:rgba(247,37,133,.1);color:#F72585;border-color:rgba(247,37,133,.2)}
-.s-ind{background:rgba(157,78,221,.1);color:#9D4EDD;border-color:rgba(157,78,221,.15)}
-.s-debt{background:rgba(255,77,109,.08);color:#FF6B6B;border-color:rgba(255,77,109,.15)}
-.s-env{background:rgba(6,214,160,.08);color:#06D6A0;border-color:rgba(6,214,160,.15)}
-
-/* ── UTIL ──────────────────────────────────────────── */
+/* ── UTIL ─────────────────────────────────── */
 @media(max-width:640px){
-  .header-inner{height:auto;padding:12px 16px;flex-wrap:wrap}
-  .wrap{padding:16px 14px 40px}
-  .tab-btn{padding:12px 14px;font-size:12px}
-  .s-card-value{font-size:24px}
-  .modal-stats{grid-template-columns:1fr}
+  .hdr-inner{height:auto;padding:12px 16px;flex-wrap:wrap}
+  .wrap{padding:16px 14px 0}
+  .tbtn{padding:12px 13px;font-size:12px}
+  .kc-val{font-size:22px}
+  .m-stats{grid-template-columns:1fr}
+  .disc-card-title{font-size:10px}
 }
 </style>
 </head>
 <body>
-<div class="noise"></div>
+<div class="noise" aria-hidden="true"></div>
 
 <!-- LOADING -->
-<div id="loading">
-  <div style="position:relative;width:80px;height:80px">
-    <!-- Outer prism ring -->
-    <svg width="80" height="80" viewBox="0 0 80 80" style="position:absolute;inset:0;animation:spin 2s linear infinite">
-      <defs>
-        <linearGradient id="ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00E5C8"/>
-          <stop offset="50%" stop-color="#7C6EFA"/>
-          <stop offset="100%" stop-color="#F72585"/>
-        </linearGradient>
-      </defs>
-      <circle cx="40" cy="40" r="34" fill="none" stroke="url(#ring-grad)" stroke-width="3"
-        stroke-dasharray="120 94" stroke-linecap="round"/>
+<div id="loading" role="status" aria-label="Loading dashboard">
+  <div class="load-ring">
+    <svg class="load-spin" width="80" height="80" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+      <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00E5C8"/><stop offset="50%" stop-color="#7C6EFA"/><stop offset="100%" stop-color="#F72585"/></linearGradient></defs>
+      <circle cx="40" cy="40" r="34" fill="none" stroke="url(#rg)" stroke-width="3" stroke-dasharray="120 94" stroke-linecap="round"/>
     </svg>
-    <!-- Bangladesh flag centered -->
-    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-      <svg width="32" height="32" viewBox="0 0 32 32">
-        <rect width="32" height="32" rx="16" fill="#006A4E"/>
-        <circle cx="14" cy="16" r="8" fill="#F42A41"/>
-      </svg>
+    <div class="load-flag" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" rx="16" fill="#006A4E"/><circle cx="14" cy="16" r="8" fill="#F42A41"/></svg>
     </div>
   </div>
-  <p class="load-text" id="load-lbl">Loading dashboard…</p>
+  <p class="load-txt" id="load-lbl">Loading dashboard…</p>
 </div>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="header-inner">
+<header class="hdr" role="banner">
+  <div class="hdr-inner">
     <div class="brand">
-      <div class="brand-flag">
-        <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
-          <rect width="34" height="34" fill="#006A4E"/>
-          <circle cx="15" cy="17" r="9" fill="#F42A41"/>
+      <div class="flag" aria-hidden="true">
+        <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bangladesh flag">
+          <rect width="34" height="34" fill="#006A4E"/><circle cx="15" cy="17" r="9" fill="#F42A41"/>
         </svg>
       </div>
       <div>
-        <div class="brand-title" id="h-title">Interactive Bangladesh Budget Dashboard</div>
+        <div class="brand-title" id="h-title">Bangladesh Budget Analytics Platform</div>
         <div class="brand-sub" id="h-sub">National Budget 2026-2027 — Ministry of Finance</div>
       </div>
     </div>
-    <div class="header-right">
-      <button class="ctrl-btn" id="btn-usd" onclick="toggleCurrency()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M9 9h4.5a1.5 1.5 0 010 3H10a1.5 1.5 0 000 3H15"/></svg>
+    <div class="hdr-right">
+      <button class="cbtn" id="btn-usd" onclick="toggleCurrency()" aria-pressed="false">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M9 9h4.5a1.5 1.5 0 010 3H10a1.5 1.5 0 000 3H15"/></svg>
         <span id="lbl-usd">Show in USD</span>
       </button>
-      <button class="ctrl-btn" id="btn-lang" onclick="toggleLang()">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 5h7M5 2v3M9 5c-1 3-3 6-6 8M6 13s1 1 3 2M16 5l-4 14M14 10h7"/></svg>
+      <button class="cbtn" id="btn-lang" onclick="toggleLang()" aria-label="Toggle language">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 5h7M5 2v3M9 5c-1 3-3 6-6 8M6 13s1 1 3 2M16 5l-4 14M14 10h7"/></svg>
         <span id="lbl-lang">বাংলা</span>
       </button>
     </div>
@@ -728,87 +361,70 @@ tbody tr:hover td{background:rgba(255,255,255,.03)}
 </header>
 
 <!-- TABS -->
-<nav class="tabs-bar">
-  <div class="tabs-inner">
-    <button class="tab-btn active" id="tbtn-overview" onclick="setTab('overview')">
-      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-      <span id="tl-overview">Overview</span>
-    </button>
-    <button class="tab-btn" id="tbtn-allocations" onclick="setTab('allocations')">
-      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r=".5" fill="currentColor"/><circle cx="3.5" cy="12" r=".5" fill="currentColor"/><circle cx="3.5" cy="18" r=".5" fill="currentColor"/></svg>
-      <span id="tl-alloc">Allocations</span>
-    </button>
-    <button class="tab-btn" id="tbtn-revenue" onclick="setTab('revenue')">
-      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-      <span id="tl-rev">Revenue</span>
-    </button>
-    <button class="tab-btn" id="tbtn-policy" onclick="setTab('policy')">
-      <svg class="tab-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      <span id="tl-pol">Policy Rules</span>
-    </button>
+<nav class="tabs" role="navigation" aria-label="Dashboard sections">
+  <div class="tabs-in">
+    <button class="tbtn on" id="tbtn-overview"    onclick="setTab('overview')"   ><svg class="ti" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span id="tl-ov">Overview</span></button>
+    <button class="tbtn" id="tbtn-allocations" onclick="setTab('allocations')"><svg class="ti" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3.5" cy="6" r=".5" fill="currentColor"/><circle cx="3.5" cy="12" r=".5" fill="currentColor"/><circle cx="3.5" cy="18" r=".5" fill="currentColor"/></svg><span id="tl-al">Allocations</span></button>
+    <button class="tbtn" id="tbtn-revenue"     onclick="setTab('revenue')"    ><svg class="ti" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg><span id="tl-rv">Revenue</span></button>
+    <button class="tbtn" id="tbtn-policy"      onclick="setTab('policy')"     ><svg class="ti" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span id="tl-pl">Policy &amp; TIN Wizard</span></button>
   </div>
 </nav>
 
 <!-- MAIN -->
-<main class="wrap">
+<main class="wrap" role="main">
 
   <!-- OVERVIEW -->
-  <section class="panel active" id="panel-overview">
-    <div class="summary-grid" id="summary-grid"></div>
+  <section class="panel on" id="panel-overview" aria-label="Budget overview">
+    <div class="kpi-grid" id="kpi-grid"></div>
     <div class="chart-row">
-      <!-- Donut -->
-      <div class="glass glass-glow chart-card">
-        <div class="chart-head">
-          <div class="chart-dot"></div>
-          <div class="chart-head-title" id="ch-donut-title">Budget Breakdown</div>
-        </div>
+      <div class="glass glass-glow cc">
+        <div class="cc-head"><div class="cc-dot"></div><span class="cc-title" id="ch-donut-ttl">Budget Breakdown</span></div>
         <div id="donut-wrap">
-          <svg id="donut-svg" viewBox="0 0 200 200" width="200" height="200"></svg>
-          <div class="donut-center">
-            <div class="donut-pct val-green" id="donut-pct">—</div>
-            <div class="donut-lbl" id="donut-lbl">Revenue</div>
-          </div>
+          <svg id="donut-svg" viewBox="0 0 190 190" width="190" height="190" aria-hidden="true"></svg>
+          <div class="dc"><div class="dc-val vg" id="dc-val">—</div><div class="dc-lbl" id="dc-lbl">Revenue</div></div>
         </div>
-        <div class="legend" id="donut-legend"></div>
+        <div class="legend" id="donut-leg"></div>
       </div>
-      <!-- Top bar chart -->
-      <div class="glass glass-glow chart-card">
-        <div class="chart-head">
-          <div class="chart-dot" style="background:linear-gradient(135deg,var(--prism-d),var(--prism-c))"></div>
-          <div class="chart-head-title" id="ch-bar-title">Top 10 Ministry Allocations</div>
-        </div>
-        <svg id="top-bar" viewBox="0 0 500 320" style="width:100%;display:block"></svg>
+      <div class="glass glass-glow cc">
+        <div class="cc-head"><div class="cc-dot" style="background:linear-gradient(135deg,var(--cd),var(--cc))"></div><span class="cc-title" id="ch-bar-ttl">Top 10 Ministry Allocations</span></div>
+        <svg id="top-bar" viewBox="0 0 520 320" style="width:100%;display:block" aria-label="Top 10 ministry allocations bar chart"></svg>
       </div>
     </div>
   </section>
 
   <!-- ALLOCATIONS -->
-  <section class="panel" id="panel-allocations">
+  <section class="panel" id="panel-allocations" aria-label="Ministry allocations">
     <div class="toolbar">
-      <div class="search-wrap">
-        <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input class="search-input" id="asearch" type="text" placeholder="Search ministries or sectors…" oninput="filterAlloc()"/>
+      <div class="sw">
+        <svg class="si" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input class="sinp" id="asearch" type="search" placeholder="Search ministries or sectors…" oninput="filterAlloc()" aria-label="Search allocations"/>
       </div>
-      <div class="chips" id="sector-chips"></div>
+      <div class="chips" id="sec-chips" role="group" aria-label="Filter by sector"></div>
     </div>
-    <div class="tbl-wrap">
+    <div class="twrap" role="region" aria-label="Allocation table">
       <table>
         <thead>
           <tr>
-            <th id="th-min">Ministry / Division</th>
-            <th id="th-sec">Sector</th>
-            <th class="r" id="th-amt">Allocation</th>
-            <th id="th-share">Share %</th>
+            <th class="sortable" id="th-min" onclick="toggleSort('name')" aria-sort="none">
+              <span id="th-min-lbl">Ministry / Division</span>
+              <span class="sort-arrow" id="sa-name" aria-hidden="true">↕</span>
+            </th>
+            <th id="th-sec-lbl">Sector</th>
+            <th class="r sortable" id="th-amt" onclick="toggleSort('amount')" aria-sort="descending">
+              <span id="th-amt-lbl">Allocation</span>
+              <span class="sort-arrow sort-on" id="sa-amount" aria-hidden="true">↓</span>
+            </th>
+            <th id="th-share-lbl">Share %</th>
             <th></th>
           </tr>
         </thead>
         <tbody id="alloc-body"></tbody>
       </table>
-      <div id="no-results" class="no-res" style="display:none">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      <div id="no-results" class="no-res" style="display:none" role="alert">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         <span id="no-res-lbl">No results found.</span>
       </div>
-      <div class="tbl-foot">
+      <div class="tfoot">
         <span id="alloc-info">—</span>
         <span id="alloc-total">—</span>
       </div>
@@ -816,471 +432,541 @@ tbody tr:hover td{background:rgba(255,255,255,.03)}
   </section>
 
   <!-- REVENUE -->
-  <section class="panel" id="panel-revenue">
-    <div class="chart-row" style="margin-bottom:20px">
-      <div class="glass glass-glow chart-card">
-        <div class="chart-head">
-          <div class="chart-dot" style="background:linear-gradient(135deg,var(--prism-b),var(--prism-c))"></div>
-          <div class="chart-head-title" id="ch-rev-title">Revenue Sources</div>
-        </div>
-        <svg id="rev-chart" viewBox="0 0 340 260" style="width:100%;display:block"></svg>
-        <div class="legend" id="rev-legend"></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:12px" id="rev-list"></div>
-    </div>
+  <section class="panel" id="panel-revenue" aria-label="Revenue and deficit financing">
+    <div class="sect-head" id="sh-rev">Revenue Breakdown</div>
+    <div class="rev-cols" id="rev-list"></div>
+    <div class="sect-head" id="sh-def" style="margin-top:8px">Deficit Financing Sources</div>
+    <div class="rev-cols" id="def-list"></div>
   </section>
 
-  <!-- POLICY -->
-  <section class="panel" id="panel-policy">
+  <!-- POLICY + TIN WIZARD -->
+  <section class="panel" id="panel-policy" aria-label="Policy rules and TIN wizard">
+    <!-- WIZARD -->
+    <div class="wizard-wrap" role="form" aria-label="TIN eligibility wizard">
+      <div class="wiz-hdr">
+        <div class="wiz-title" id="wiz-title">TIN Certificate Eligibility Wizard</div>
+        <div class="wiz-sub" id="wiz-sub">Answer two questions to instantly check your TIN obligation under the Finance Act 2026-27.</div>
+      </div>
+      <div class="wiz-body">
+        <!-- Q1 -->
+        <div class="wiz-q">
+          <div class="wiz-q-label"><div class="wiz-q-num">1</div><span id="wiz-q1-lbl">What is your demographic profile?</span></div>
+          <div class="wiz-opts" id="wiz-q1" role="radiogroup">
+            <label class="wiz-opt" id="wq1-a" onclick="pickWiz(1,'a')">
+              <div class="wiz-radio"><div class="wiz-radio-dot"></div></div>
+              <span class="wiz-opt-text" id="wq1-a-txt">Student (Age 18–25, enrolled in a recognised institution)</span>
+            </label>
+            <label class="wiz-opt" id="wq1-b" onclick="pickWiz(1,'b')">
+              <div class="wiz-radio"><div class="wiz-radio-dot"></div></div>
+              <span class="wiz-opt-text" id="wq1-b-txt">General Citizen / Working Professional</span>
+            </label>
+          </div>
+        </div>
+        <!-- Q2 -->
+        <div class="wiz-q">
+          <div class="wiz-q-label"><div class="wiz-q-num" style="background:linear-gradient(135deg,var(--cb),var(--cc))">2</div><span id="wiz-q2-lbl">What type of bank account are you opening or holding?</span></div>
+          <div class="wiz-opts" id="wiz-q2" role="radiogroup">
+            <label class="wiz-opt" id="wq2-a" onclick="pickWiz(2,'a')">
+              <div class="wiz-radio"><div class="wiz-radio-dot"></div></div>
+              <span class="wiz-opt-text" id="wq2-a-txt">Designated Student or No-Frills Low-Income Savings Account</span>
+            </label>
+            <label class="wiz-opt" id="wq2-b" onclick="pickWiz(2,'b')">
+              <div class="wiz-radio"><div class="wiz-radio-dot"></div></div>
+              <span class="wiz-opt-text" id="wq2-b-txt">Standard Commercial Checking, Savings, or Business Account</span>
+            </label>
+          </div>
+        </div>
+        <div class="wiz-actions">
+          <button class="wbtn-check" id="wiz-check-btn" onclick="runWizard()" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span id="wiz-check-lbl">Check My TIN Status</span>
+          </button>
+          <button class="wbtn-reset" onclick="resetWizard()"><span id="wiz-reset-lbl">Start Over</span></button>
+        </div>
+        <!-- Result -->
+        <div class="wiz-result" id="wiz-result" role="alert" aria-live="polite">
+          <div class="wr-inner">
+            <div class="wr-title-bar">
+              <div class="wr-icon" id="wr-icon"></div>
+              <div class="wr-title" id="wr-title"></div>
+            </div>
+            <div class="wr-body" id="wr-body"></div>
+            <div class="wr-cta" id="wr-cta">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span id="wr-cta-txt"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Policy matrix cards -->
     <div id="policy-out"></div>
   </section>
 
 </main>
 
 <!-- FOOTER -->
-<footer class="site-foot">
-  <span id="ft-src">Source: Ministry of Finance, Bangladesh</span>
-  &ensp;·&ensp;
-  <span id="ft-note">All figures in Crore BDT unless stated</span>
-  &ensp;·&ensp;
-  <a href="https://mof.gov.bd" target="_blank" rel="noopener">mof.gov.bd</a>
+<footer class="site-footer" role="contentinfo">
+  <div class="foot-disclaimer">
+    <div class="disc-grid">
+      <div class="disc-card disc-passion">
+        <div class="disc-card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Open-Source Passion Project
+        </div>
+        <div class="disc-card-body" id="ft-passion">This web application is built strictly as a personal, open-source passion project — conceived out of deep interest in financial transparency, data clarity, and public access. It is built as a personal labor of love for open financial access. All source code is freely available and this platform has no commercial affiliation with the Government of Bangladesh.</div>
+      </div>
+      <div class="disc-card disc-ai">
+        <div class="disc-card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          AI Data Processing Notice
+        </div>
+        <div class="disc-card-body" id="ft-ai">Notice: The core structured database behind this interface was parsed and extracted using automated workflows and advanced generative models. AI systems are capable of hallucinating, omitting details, or executing numerical processing errors. Figures shown here are approximations and may differ from official documents.</div>
+      </div>
+      <div class="disc-card disc-verify">
+        <div class="disc-card-title">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Mandatory Verification Notice
+        </div>
+        <div class="disc-card-body" id="ft-verify">Always independently verify any critical tax code, financial parameters, or legislative rules against official Ministry of Finance source documents before executing financial or legal decisions. Official documents are available at <a href="https://mof.gov.bd/pages/budget-mofs" target="_blank" rel="noopener">mof.gov.bd</a> and the <a href="https://nbr.gov.bd" target="_blank" rel="noopener">National Board of Revenue</a>.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bar">
+    <span id="ft-src">Source: Ministry of Finance, Government of Bangladesh</span>
+    <span>
+      <a href="https://mof.gov.bd" target="_blank" rel="noopener">mof.gov.bd</a>
+      <span class="foot-sep">·</span>
+      <a href="https://nbr.gov.bd" target="_blank" rel="noopener">nbr.gov.bd</a>
+      <span class="foot-sep">·</span>
+      <span id="ft-note">All figures in Crore BDT unless stated</span>
+    </span>
+  </div>
 </footer>
 
 <!-- MODAL -->
-<div class="modal-bg" id="modal" onclick="closeModal(event)">
+<div class="mbg" id="modal" onclick="closeMod(event)" role="dialog" aria-modal="true" aria-labelledby="m-title">
   <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-top">
-      <div class="modal-title" id="m-title"></div>
-      <div class="modal-sec"  id="m-sec"></div>
-      <button class="modal-x" onclick="closeModal()">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    <div class="m-top">
+      <div class="m-title" id="m-title"></div>
+      <div class="m-sec"  id="m-sec"></div>
+      <button class="mx" onclick="closeMod()" aria-label="Close modal">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    <div class="modal-body">
-      <div class="modal-stats">
-        <div class="modal-stat">
-          <div class="mstat-lbl" id="m-lbl-amt">Allocation</div>
-          <div class="mstat-val val-green" id="m-amt"></div>
-          <div class="mstat-unit" id="m-unit">Crore BDT</div>
-        </div>
-        <div class="modal-stat">
-          <div class="mstat-lbl" id="m-lbl-share">Budget Share</div>
-          <div class="mstat-val" style="background:linear-gradient(135deg,var(--prism-b),var(--prism-c));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent" id="m-share"></div>
-          <div class="mstat-unit">of total outlay</div>
-        </div>
+    <div class="m-body">
+      <div class="m-stats">
+        <div class="ms2"><div class="msl" id="m-lbl-a">Allocation</div><div class="msv vg" id="m-amt"></div><div class="msu" id="m-unit">Crore BDT</div></div>
+        <div class="ms2"><div class="msl" id="m-lbl-s">Budget Share</div><div class="msv vb" id="m-share"></div><div class="msu">of total outlay</div></div>
       </div>
-      <div class="modal-desc-lbl" id="m-scope-lbl">Scope & Mandate</div>
-      <div class="modal-desc" id="m-desc"></div>
+      <div class="mdl" id="m-scope-lbl">Scope &amp; Mandate</div>
+      <div class="mdd" id="m-desc"></div>
     </div>
   </div>
 </div>
 
 <script>
-/* ═══════════════════════════════════════
-   STATE
-═══════════════════════════════════════ */
-let D=null, lang='en', usd=false, curTab='overview', curSec='all', q='';
+/* ═══════════════════ STATE ═══════════════════ */
+let D=null, lang='en', usd=false, tab='overview', sec='all', q='', sortKey='amount', sortDir='desc';
+const wizSel={1:null,2:null};
 
-/* ═══════════════════════════════════════
-   SECTOR REGISTRY
-═══════════════════════════════════════ */
+/* ═══════════════════ SECTOR REGISTRY ════════ */
 const SEC={
-  "Education":                       {cls:'s-edu', en:"Education",              bn:"শিক্ষা",             col:"#4EA8DE"},
-  "Health":                          {cls:'s-health',en:"Health",               bn:"স্বাস্থ্য",          col:"#FF4D6D"},
-  "Defense and Security":            {cls:'s-def',  en:"Defense & Security",    bn:"প্রতিরক্ষা",         col:"#06D6A0"},
-  "Transport & Infrastructure":      {cls:'s-trans',en:"Transport",             bn:"পরিবহন",             col:"#FFB703"},
-  "Agriculture & Food":              {cls:'s-agri', en:"Agriculture & Food",    bn:"কৃষি ও খাদ্য",       col:"#00C896"},
-  "Energy & Power":                  {cls:'s-energy',en:"Energy & Power",       bn:"জ্বালানি",           col:"#FB8500"},
-  "Social Protection":               {cls:'s-social',en:"Social Protection",    bn:"সামাজিক সুরক্ষা",   col:"#9D4EDD"},
-  "Public Administration":           {cls:'s-admin', en:"Public Admin.",        bn:"সরকারি প্রশাসন",     col:"#7C6EFA"},
-  "ICT & Digital":                   {cls:'s-ict',   en:"ICT & Digital",        bn:"আইসিটি",             col:"#00E5C8"},
-  "Local Government & Rural Dev.":   {cls:'s-local', en:"Local Gov. & Rural",   bn:"স্থানীয় সরকার",     col:"#F72585"},
-  "Industry & Commerce":             {cls:'s-ind',   en:"Industry & Commerce",  bn:"শিল্প ও বাণিজ্য",   col:"#9D4EDD"},
-  "Public Debt Service":             {cls:'s-debt',  en:"Public Debt",          bn:"ঋণ সেবা",            col:"#FF6B6B"},
-  "Environment & Climate":           {cls:'s-env',   en:"Environment",          bn:"পরিবেশ",             col:"#06D6A0"},
+  "Education":                       {cls:'s-edu', en:"Education",           bn:"শিক্ষা",             col:"#4EA8DE"},
+  "Health":                          {cls:'s-hlt', en:"Health",              bn:"স্বাস্থ্য",          col:"#FF4D6D"},
+  "Defense and Security":            {cls:'s-def', en:"Defense & Security",  bn:"প্রতিরক্ষা",         col:"#06D6A0"},
+  "Transport & Infrastructure":      {cls:'s-tra', en:"Transport",           bn:"পরিবহন",             col:"#FFB703"},
+  "Agriculture & Food":              {cls:'s-agr', en:"Agriculture & Food",  bn:"কৃষি ও খাদ্য",       col:"#00C896"},
+  "Energy & Power":                  {cls:'s-eny', en:"Energy & Power",      bn:"জ্বালানি",           col:"#FB8500"},
+  "Social Protection":               {cls:'s-soc', en:"Social Protection",   bn:"সামাজিক সুরক্ষা",   col:"#9D4EDD"},
+  "Public Administration":           {cls:'s-adm', en:"Public Admin.",       bn:"সরকারি প্রশাসন",     col:"#7C6EFA"},
+  "ICT & Digital":                   {cls:'s-ict', en:"ICT & Digital",       bn:"আইসিটি",             col:"#00E5C8"},
+  "Local Government & Rural Dev.":   {cls:'s-loc', en:"Local Gov. & Rural",  bn:"স্থানীয় সরকার",     col:"#F72585"},
+  "Industry & Commerce":             {cls:'s-ind', en:"Industry & Commerce", bn:"শিল্প ও বাণিজ্য",   col:"#B48AE8"},
+  "Public Debt Service":             {cls:'s-dbt', en:"Public Debt",         bn:"ঋণ সেবা",            col:"#FF6B6B"},
+  "Environment & Climate":           {cls:'s-env', en:"Environment",         bn:"পরিবেশ",             col:"#5ED8B0"},
 };
+const REV_COL=['#00E5C8','#7C6EFA','#F72585','#FFB703','#06D6A0','#FB8500'];
 
-const REV_PALETTE=['#00E5C8','#7C6EFA','#F72585','#FFB703','#06D6A0','#FB8500'];
-
-/* ═══════════════════════════════════════
-   BOOT
-═══════════════════════════════════════ */
+/* ═══════════════════ BOOT ════════════════════ */
 fetch('budget_data.json')
   .then(r=>{if(!r.ok)throw 0;return r.json()})
-  .then(d=>{D=d;document.getElementById('loading').style.opacity='0';
-    setTimeout(()=>document.getElementById('loading').style.display='none',400);
-    init();})
-  .catch(()=>document.getElementById('load-lbl').textContent='Failed to load data. Please refresh.');
+  .then(d=>{
+    D=d;
+    const el=document.getElementById('loading');
+    el.style.opacity='0';
+    setTimeout(()=>el.style.display='none',420);
+    init();
+  })
+  .catch(()=>document.getElementById('load-lbl').textContent='Failed to load data. Refresh to retry.');
 
-function init(){applyLabels();renderOverview();renderAlloc();renderRevenue();renderPolicy()}
+function init(){applyLabels();renderOverview();renderAlloc();renderRevenue();renderPolicy();renderWizard()}
 
-/* ═══════════════════════════════════════
-   HELPERS
-═══════════════════════════════════════ */
+/* ═══════════════════ HELPERS ════════════════ */
 const t=o=>o[lang]||o.en;
 
 function fmt(v){
   if(usd){
-    const u=(v*1e7)/D.meta.exchange_rate_usd;
-    if(u>=1e9)return(u/1e9).toFixed(2)+' B';
-    if(u>=1e6)return(u/1e6).toFixed(1)+' M';
-    return Math.round(u).toLocaleString();
+    // USD Billion = crore_bdt / (exchange_rate * 100)
+    const b=v/(D.meta.exchange_rate_usd*100);
+    if(b>=1)   return b.toFixed(2)+' B';
+    if(b>=.001)return (b*1000).toFixed(1)+' M';
+    return (b*1e6).toFixed(0)+' K';
   }
   return Number(v).toLocaleString('en-IN');
 }
 function curr(){return usd?'USD':'Crore BDT'}
 
-/* Animated counter */
 function animCount(el,target,suffix){
-  const str=fmt(target);
-  let start=null,dur=900;
-  const isFloat=typeof target==='number'&&!Number.isInteger(target);
-  function step(ts){
-    if(!start)start=ts;
-    const p=Math.min((ts-start)/dur,1);
-    const ease=1-Math.pow(1-p,3);
-    const cur=target*ease;
-    el.textContent=isFloat?cur.toFixed(1)+(suffix||''):fmt(Math.round(cur))+(suffix||'');
+  let s=null;const dur=950;const isF=!Number.isInteger(target);
+  const step=ts=>{
+    if(!s)s=ts;
+    const p=Math.min((ts-s)/dur,1),e=1-Math.pow(1-p,3),c=target*e;
+    el.textContent=(isF?c.toFixed(1):fmt(Math.round(c)))+(suffix||'');
     if(p<1)requestAnimationFrame(step);
-    else el.textContent=str+(suffix||'');
-  }
+    else el.textContent=fmt(target)+(suffix||'');
+  };
   requestAnimationFrame(step);
 }
 
-/* ═══════════════════════════════════════
-   LABELS
-═══════════════════════════════════════ */
+/* ═══════════════════ LABELS ══════════════════ */
 function applyLabels(){
   const L=D.global_labels;
   document.getElementById('h-title').textContent=t(L.title);
   document.getElementById('h-sub').textContent=t(L.subtitle);
   document.getElementById('lbl-lang').textContent=t(L.toggle_lang);
   document.getElementById('lbl-usd').textContent=usd?t(L.currency_toggle_back):t(L.currency_toggle);
-  document.getElementById('tl-overview').textContent=t(L.tab_overview);
-  document.getElementById('tl-alloc').textContent=t(L.tab_allocations);
-  document.getElementById('tl-rev').textContent=t(L.tab_revenue);
-  document.getElementById('tl-pol').textContent=t(L.tab_policy);
+  document.getElementById('tl-ov').textContent=t(L.tab_overview);
+  document.getElementById('tl-al').textContent=t(L.tab_allocations);
+  document.getElementById('tl-rv').textContent=t(L.tab_revenue);
+  document.getElementById('tl-pl').textContent=t(L.tab_policy);
   document.getElementById('asearch').placeholder=t(L.search_placeholder);
-  document.getElementById('th-min').textContent=t(L.col_ministry);
-  document.getElementById('th-sec').textContent=t(L.col_sector);
-  document.getElementById('th-amt').textContent=t(L.col_allocation);
-  document.getElementById('th-share').textContent=t(L.col_share);
+  document.getElementById('th-min-lbl').textContent=t(L.col_ministry);
+  document.getElementById('th-sec-lbl').textContent=t(L.col_sector);
+  document.getElementById('th-amt-lbl').textContent=t(L.col_allocation);
+  document.getElementById('th-share-lbl').textContent=t(L.col_share);
   document.getElementById('no-res-lbl').textContent=t(L.no_results);
   document.getElementById('ft-src').textContent=t(L.footer_source);
   document.getElementById('ft-note').textContent=t(L.footer_note);
+  document.getElementById('wiz-check-lbl').textContent=t(L.wizard_check);
+  document.getElementById('wiz-reset-lbl').textContent=t(L.wizard_reset);
+  document.getElementById('sh-rev').textContent=lang==='bn'?'রাজস্বের বিভাজন':'Revenue Breakdown';
+  document.getElementById('sh-def').textContent=lang==='bn'?'ঘাটতি অর্থায়নের উৎস':'Deficit Financing Sources';
+  document.getElementById('btn-usd').setAttribute('aria-pressed', usd?'true':'false');
 }
 
-/* ═══════════════════════════════════════
-   OVERVIEW
-═══════════════════════════════════════ */
+/* ═══════════════════ OVERVIEW ════════════════ */
 function renderOverview(){
-  const S=D.summary;
+  const S=D.macro_summary;
   const cards=[
-    {key:'outlay', cls:'val-green',icoCls:'', ico:'#00E5C8', badge:'badge-green',
-     label:S.total_outlay.label, val:S.total_outlay.value_bdt_crore, note:S.total_outlay.note,
-     iconPath:'M12 2a10 10 0 110 20A10 10 0 0112 2zm1 5h-2v6H8l4 4 4-4h-3V7z'},
-    {key:'revenue',cls:'val-blue', ico:'#4EA8DE', badge:'badge-blue',
-     label:S.total_revenue.label, val:S.total_revenue.value_bdt_crore, note:S.total_revenue.note,
-     iconPath:'M12 22V12M12 12L7 17M12 12l5 5M3 7l9-5 9 5'},
-    {key:'deficit',cls:'val-red',  ico:'#FF4D6D', badge:'badge-red',
-     label:S.deficit.label, val:S.deficit.value_bdt_crore, note:S.deficit.note,
-     iconPath:'M12 22V12M12 12L7 7M12 12l5-5M3 17l9 5 9-5'},
-    {key:'gdp',    cls:'val-gold', ico:'#FFB703', badge:'badge-gold',
-     label:S.gdp_ratio.label, val:null, pct:S.gdp_ratio.value_percent, note:S.gdp_ratio.note,
-     iconPath:'M21 21H3M21 3L12 12M3 3l9 9M12 3v9M3 12h9'}
+    {k:'outlay', cls:'vg',ico:'#00E5C8',bc:'badge-g',
+     lbl:S.total_outlay.label,     val:S.total_outlay.value_bdt_crore,  note:S.total_outlay.note,     pct:null,
+     ip:'M12 2a10 10 0 110 20A10 10 0 0112 2zm1 5h-2v6H8l4 4 4-4h-3V7z'},
+    {k:'revenue',cls:'vb',ico:'#4EA8DE',bc:'badge-b',
+     lbl:S.total_revenue.label,    val:S.total_revenue.value_bdt_crore, note:S.total_revenue.note,    pct:null,
+     ip:'M12 22V12M12 12L7 17M12 12l5 5M3 7l9-5 9 5'},
+    {k:'deficit', cls:'vr',ico:'#FF4D6D',bc:'badge-r',
+     lbl:S.deficit.label,          val:S.deficit.value_bdt_crore,       note:S.deficit.note,          pct:null,
+     ip:'M12 22V12M12 12L7 7M12 12l5-5M3 17l9 5 9-5'},
+    {k:'gdp',    cls:'vd',ico:'#FFB703',bc:'badge-d',
+     lbl:S.gdp_growth_target.label,val:null,pct:S.gdp_growth_target.value_percent,note:S.gdp_growth_target.note,
+     ip:'M22 12h-4l-3 9L9 3l-3 9H2'},
+    {k:'infl',   cls:'vv',ico:'#9D4EDD',bc:'badge-v',
+     lbl:S.inflation_ceiling.label,val:null,pct:S.inflation_ceiling.value_percent,note:S.inflation_ceiling.note,
+     ip:'M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3zM13 13l6 6'},
   ];
-  document.getElementById('summary-grid').innerHTML=cards.map(c=>`
-    <div class="glass glass-glow s-card">
-      <div class="s-card-top">
-        <div class="s-card-icon" style="background:${c.ico}18">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="${c.ico}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="${c.iconPath}"/></svg>
+  document.getElementById('kpi-grid').innerHTML=cards.map(c=>`
+    <div class="glass glass-glow kc" role="article">
+      <div class="kc-top">
+        <div class="kc-icon" style="background:${c.ico}18">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="${c.ico}" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="${c.ip}"/></svg>
         </div>
-        <div class="s-card-badge ${c.badge}" id="badge-${c.key}">FY 2026-27</div>
+        <div class="kc-badge ${c.bc}">FY 2026-27</div>
       </div>
-      <div class="s-card-label">${t(c.label)}</div>
-      <div class="s-card-value ${c.cls}" id="sval-${c.key}">${c.pct!=null?c.pct+'%':fmt(c.val)}</div>
-      <div class="s-card-unit">${c.pct!=null?'% of GDP':curr()}</div>
-      <div class="s-card-note">${t(c.note)}</div>
+      <div class="kc-lbl">${t(c.lbl)}</div>
+      <div class="kc-val ${c.cls}" id="kv-${c.k}">${c.pct!=null?c.pct+'%':fmt(c.val)}</div>
+      <div class="kc-unit">${c.pct!=null?'%':curr()}</div>
+      <div class="kc-note">${t(c.note)}</div>
     </div>`).join('');
-  // Animate counters
   cards.forEach(c=>{
-    const el=document.getElementById('sval-'+c.key);
-    if(c.pct!=null) animCount(el,c.pct,'%');
+    const el=document.getElementById('kv-'+c.k);
+    if(c.pct!=null)animCount(el,c.pct,'%');
     else animCount(el,c.val);
   });
-  drawDonut();
-  drawTopBar();
+  drawDonut();drawTopBar();
 }
 
-/* ── DONUT ── */
 function drawDonut(){
-  const S=D.summary;
-  const rev=S.total_revenue.value_bdt_crore;
-  const def=S.deficit.value_bdt_crore;
-  const tot=S.total_outlay.value_bdt_crore;
+  const S=D.macro_summary;
+  const rev=S.total_revenue.value_bdt_crore,def=S.deficit.value_bdt_crore,tot=S.total_outlay.value_bdt_crore;
   const slices=[
-    {v:rev,c1:'#00E5C8',c2:'#06D6A0',id:'dg-rev',lbl:{en:'Revenue',bn:'রাজস্ব'}},
-    {v:def,c1:'#F72585',c2:'#7C6EFA',id:'dg-def',lbl:{en:'Deficit',bn:'ঘাটতি'}}
+    {v:rev,c1:'#00E5C8',c2:'#06D6A0',id:'dg1',l:{en:'Revenue',bn:'রাজস্ব'}},
+    {v:def,c1:'#F72585',c2:'#7C6EFA',id:'dg2',l:{en:'Deficit',bn:'ঘাটতি'}}
   ];
-  const cx=100,cy=100,r=80,t2=24,gap=0.025;
+  const cx=95,cy=95,r=76,tk=22,gap=.024;
   let svg=`<defs>`;
-  slices.forEach(s=>{ svg+=`<linearGradient id="${s.id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${s.c1}"/><stop offset="100%" stop-color="${s.c2}"/></linearGradient>`; });
+  slices.forEach(s=>svg+=`<linearGradient id="${s.id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="${s.c1}"/><stop offset="100%" stop-color="${s.c2}"/></linearGradient>`);
   svg+=`</defs>`;
   let ang=-Math.PI/2;
   slices.forEach(s=>{
     const a=(s.v/tot)*2*Math.PI-gap;
     const x1=cx+r*Math.cos(ang+gap/2),y1=cy+r*Math.sin(ang+gap/2);
     const x2=cx+r*Math.cos(ang+a),y2=cy+r*Math.sin(ang+a);
-    const ir=r-t2;
-    const ix1=cx+ir*Math.cos(ang+a),iy1=cy+ir*Math.sin(ang+a);
+    const ir=r-tk,ix1=cx+ir*Math.cos(ang+a),iy1=cy+ir*Math.sin(ang+a);
     const ix2=cx+ir*Math.cos(ang+gap/2),iy2=cy+ir*Math.sin(ang+gap/2);
     const big=a>Math.PI?1:0;
-    svg+=`<path d="M${x1},${y1} A${r},${r} 0 ${big},1 ${x2},${y2} L${ix1},${iy1} A${ir},${ir} 0 ${big},0 ${ix2},${iy2} Z" fill="url(#${s.id})" opacity=".92"/>`;
+    svg+=`<path d="M${x1},${y1} A${r},${r} 0 ${big},1 ${x2},${y2} L${ix1},${iy1} A${ir},${ir} 0 ${big},0 ${ix2},${iy2} Z" fill="url(#${s.id})" opacity=".9"/>`;
     ang+=a+gap;
   });
   document.getElementById('donut-svg').innerHTML=svg;
   const pct=Math.round(rev/tot*100);
-  const pctEl=document.getElementById('donut-pct');
-  animCount(pctEl,pct,'%');
-  document.getElementById('donut-lbl').textContent=lang==='bn'?'রাজস্ব':'Revenue';
-  document.getElementById('donut-legend').innerHTML=slices.map(s=>
-    `<div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(90deg,${s.c1},${s.c2})"></div>${t(s.lbl)}: <strong style="color:var(--text);margin-left:3px">${fmt(s.v)}</strong></div>`
+  animCount(document.getElementById('dc-val'),pct,'%');
+  document.getElementById('dc-lbl').textContent=lang==='bn'?'রাজস্ব':'Revenue';
+  document.getElementById('donut-leg').innerHTML=slices.map(s=>
+    `<div class="li"><div class="ls" style="background:linear-gradient(90deg,${s.c1},${s.c2})"></div>${t(s.l)}: <strong style="color:var(--text);margin-left:3px">${fmt(s.v)}</strong></div>`
   ).join('');
 }
 
-/* ── TOP BAR ── */
 function drawTopBar(){
-  const allocs=[...D.allocations].sort((a,b)=>b.value_bdt_crore-a.value_bdt_crore).slice(0,10);
+  const allocs=[...D.granular_allocations].sort((a,b)=>b.value_bdt_crore-a.value_bdt_crore).slice(0,10);
   const max=allocs[0].value_bdt_crore;
-  const W=500,H=320,L=190,R=70,TOP=10,BOT=20,BH=20,G=11;
-  const cW=W-L-R,cH=H-TOP-BOT;
+  const W=520,H=320,L=200,R=75,TOP=10,BOT=20,BH=19,G=12,cW=W-L-R;
   let svg=`<defs>`;
-  allocs.forEach((a,i)=>{
-    const m=SEC[a.sector.en]||{col:'#00E5C8'};
-    const c2=`${m.col}55`;
-    svg+=`<linearGradient id="bg${i}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${m.col}"/><stop offset="100%" stop-color="${c2}"/></linearGradient>`;
-  });
+  allocs.forEach((a,i)=>{const col=(SEC[a.sector.en]||{col:'#00E5C8'}).col;svg+=`<linearGradient id="tg${i}" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="${col}"/><stop offset="100%" stop-color="${col}30"/></linearGradient>`;});
   svg+=`</defs>`;
-  // Grid lines
-  for(let g=0;g<=4;g++){
-    const x=L+(cW/4)*g;
-    svg+=`<line x1="${x}" y1="${TOP}" x2="${x}" y2="${H-BOT}" stroke="rgba(255,255,255,.05)" stroke-dasharray="4,4"/>`;
-    svg+=`<text x="${x}" y="${H-BOT+13}" text-anchor="middle" font-size="8.5" fill="rgba(148,160,190,.6)" font-family="var(--font)">${fmt((max/4)*g)}</text>`;
-  }
+  for(let g=0;g<=4;g++){const x=L+(cW/4)*g;svg+=`<line x1="${x}" y1="${TOP}" x2="${x}" y2="${H-BOT}" stroke="rgba(255,255,255,.045)" stroke-dasharray="4,4"/><text x="${x}" y="${H-BOT+13}" text-anchor="middle" font-size="8.5" fill="rgba(148,160,190,.55)" font-family="var(--font)">${fmt((max/4)*g)}</text>`;}
   allocs.forEach((a,i)=>{
-    const y=TOP+i*(BH+G);
-    const bw=(a.value_bdt_crore/max)*cW;
-    const sec=SEC[a.sector.en]||{col:'#00E5C8'};
+    const y=TOP+i*(BH+G),bw=(a.value_bdt_crore/max)*cW,col=(SEC[a.sector.en]||{col:'#00E5C8'}).col;
     const name=t(a.ministry).replace('Ministry of ','').replace('Division','Div.').replace(' & ',' & ');
-    const short=name.length>24?name.slice(0,24)+'…':name;
-    svg+=`<rect x="${L}" y="${y}" width="${bw}" height="${BH}" rx="4" fill="url(#bg${i})"/>`;
-    svg+=`<rect x="${L}" y="${y}" width="3" height="${BH}" rx="2" fill="${sec.col}"/>`;
-    svg+=`<text x="${L-8}" y="${y+BH/2+4}" text-anchor="end" font-size="10" fill="rgba(200,210,240,.8)" font-family="var(--font)">${short}</text>`;
-    svg+=`<text x="${L+bw+7}" y="${y+BH/2+4}" font-size="9.5" fill="${sec.col}" font-weight="700" font-family="var(--font)">${fmt(a.value_bdt_crore)}</text>`;
+    const short=name.length>26?name.slice(0,26)+'…':name;
+    svg+=`<rect x="${L}" y="${y}" width="${bw}" height="${BH}" rx="4" fill="url(#tg${i})"/>`;
+    svg+=`<rect x="${L}" y="${y}" width="3" height="${BH}" rx="2" fill="${col}"/>`;
+    svg+=`<text x="${L-8}" y="${y+BH/2+4}" text-anchor="end" font-size="9.5" fill="rgba(200,210,240,.78)" font-family="var(--font)">${short}</text>`;
+    svg+=`<text x="${L+bw+7}" y="${y+BH/2+4}" font-size="9.5" fill="${col}" font-weight="700" font-family="var(--font)">${fmt(a.value_bdt_crore)}</text>`;
   });
   document.getElementById('top-bar').innerHTML=svg;
 }
 
-/* ═══════════════════════════════════════
-   ALLOCATIONS
-═══════════════════════════════════════ */
+/* ═══════════════════ ALLOCATIONS ════════════ */
 function renderAlloc(){buildChips();filterAlloc()}
 
 function buildChips(){
   const L=D.global_labels;
   const keys=['all',...Object.keys(SEC)];
-  document.getElementById('sector-chips').innerHTML=keys.map(k=>{
+  document.getElementById('sec-chips').innerHTML=keys.map(k=>{
     const lbl=k==='all'?t(L.filter_all):(SEC[k]?t(SEC[k]):k);
-    return `<button class="chip${curSec===k?' on':''}" onclick="setSec('${k}')">${lbl}</button>`;
+    return `<button class="chip${sec===k?' on':''}" onclick="setSec('${k}')" role="radio" aria-checked="${sec===k}">${lbl}</button>`;
   }).join('');
 }
 
-function setSec(s){curSec=s;buildChips();filterAlloc()}
+function setSec(s){sec=s;buildChips();filterAlloc()}
+
+function toggleSort(key){
+  if(sortKey===key){sortDir=sortDir==='asc'?'desc':'asc';}
+  else{sortKey=key;sortDir=key==='amount'?'desc':'asc';}
+  updateSortArrows();
+  filterAlloc();
+}
+
+function updateSortArrows(){
+  ['name','amount'].forEach(k=>{
+    const el=document.getElementById('sa-'+k);
+    const thEl=document.getElementById('th-'+(k==='name'?'min':'amt'));
+    if(el){
+      if(sortKey===k){
+        el.textContent=sortDir==='asc'?'↑':'↓';
+        el.classList.add('sort-on');
+        thEl.setAttribute('aria-sort',sortDir==='asc'?'ascending':'descending');
+      } else {
+        el.textContent='↕';
+        el.classList.remove('sort-on');
+        thEl.setAttribute('aria-sort','none');
+      }
+    }
+  });
+}
 
 function filterAlloc(){
   q=document.getElementById('asearch').value.trim().toLowerCase();
-  const all=D.allocations;
+  const all=D.granular_allocations;
   const tot=all.reduce((s,a)=>s+a.value_bdt_crore,0);
-  const filtered=all.filter(a=>{
-    const sm=curSec==='all'||a.sector.en===curSec;
+  let filtered=all.filter(a=>{
+    const sm=sec==='all'||a.sector.en===sec;
     const qm=!q||t(a.ministry).toLowerCase().includes(q)||a.ministry.en.toLowerCase().includes(q)||a.ministry.bn.includes(q)||a.sector.en.toLowerCase().includes(q)||a.sector.bn.includes(q);
     return sm&&qm;
-  }).sort((a,b)=>b.value_bdt_crore-a.value_bdt_crore);
+  });
+  // Sort
+  filtered.sort((a,b)=>{
+    if(sortKey==='amount')return sortDir==='asc'?a.value_bdt_crore-b.value_bdt_crore:b.value_bdt_crore-a.value_bdt_crore;
+    const na=t(a.ministry).toLowerCase(),nb=t(b.ministry).toLowerCase();
+    return sortDir==='asc'?(na<nb?-1:na>nb?1:0):(na>nb?-1:na<nb?1:0);
+  });
   const tbody=document.getElementById('alloc-body');
-  const noRes=document.getElementById('no-results');
+  const noR=document.getElementById('no-results');
   const L=D.global_labels;
-  if(!filtered.length){tbody.innerHTML='';noRes.style.display='';return}
-  noRes.style.display='none';
+  if(!filtered.length){tbody.innerHTML='';noR.style.display='';return}
+  noR.style.display='none';
   tbody.innerHTML=filtered.map(a=>{
-    const sec=SEC[a.sector.en]||{cls:'s-admin',en:a.sector.en,bn:a.sector.bn};
+    const sm=SEC[a.sector.en]||{cls:'s-adm',en:a.sector.en,bn:a.sector.bn,col:'#7C6EFA'};
     const share=(a.value_bdt_crore/tot*100).toFixed(2);
-    const barW=Math.min(100,(a.value_bdt_crore/tot*100)*7).toFixed(1);
+    const bw=Math.min(100,(a.value_bdt_crore/tot*100)*7).toFixed(1);
     return `<tr>
-      <td>
-        <div class="min-name">${t(a.ministry)}</div>
-        <div class="min-sub">${lang==='en'?a.ministry.bn:a.ministry.en}</div>
-      </td>
-      <td><span class="sbadge ${sec.cls}">${t(sec)}</span></td>
-      <td class="r"><span class="alloc-val">${fmt(a.value_bdt_crore)}</span><span class="alloc-unit">${curr()}</span></td>
-      <td>
-        <div class="share-wrap">
-          <div class="share-track"><div class="share-fill" style="width:${barW}%;background:${(SEC[a.sector.en]||{col:'#00E5C8'}).col}"></div></div>
-          <span class="share-pct">${share}%</span>
-        </div>
-      </td>
-      <td><button class="btn-detail" onclick="openModal('${a.id}')">${t(L.details_btn)}</button></td>
+      <td><div class="mn">${t(a.ministry)}</div><div class="ms">${lang==='en'?a.ministry.bn:a.ministry.en}</div></td>
+      <td><span class="sbadge ${sm.cls}">${t(sm)}</span></td>
+      <td class="r"><span class="av">${fmt(a.value_bdt_crore)}</span><span class="au">${curr()}</span></td>
+      <td><div class="sw2"><div class="strack"><div class="sfill" style="width:${bw}%;background:${sm.col}"></div></div><span class="spct">${share}%</span></div></td>
+      <td><button class="bdet" onclick="openMod('${a.id}')" aria-label="Details for ${t(a.ministry)}">${t(L.details_btn)}</button></td>
     </tr>`;
   }).join('');
   const ftot=filtered.reduce((s,a)=>s+a.value_bdt_crore,0);
   document.getElementById('alloc-info').textContent=`${lang==='bn'?'দেখাচ্ছে':'Showing'} ${filtered.length} ${lang==='bn'?'এর':'of'} ${all.length}`;
-  document.getElementById('alloc-total').textContent=`Total: ${fmt(ftot)} ${curr()}`;
+  document.getElementById('alloc-total').textContent=`${lang==='bn'?'মোট':'Total'}: ${fmt(ftot)} ${curr()}`;
 }
 
-/* ═══════════════════════════════════════
-   REVENUE
-═══════════════════════════════════════ */
-function renderRevenue(){drawRevChart();buildRevList()}
-
-function drawRevChart(){
-  const srcs=D.revenue_sources;
-  const max=Math.max(...srcs.map(s=>s.value_bdt_crore));
-  const W=340,H=260,PL=10,PR=10,TOP=20,BOT=40;
-  const cW=W-PL-PR,cH=H-TOP-BOT;
-  const bw=Math.min(32,(cW/srcs.length)-12);
-  const gap=(cW-bw*srcs.length)/(srcs.length-1);
-  let svg=`<defs>`;
-  srcs.forEach((s,i)=>{
-    const c=REV_PALETTE[i%REV_PALETTE.length];
-    svg+=`<linearGradient id="rg${i}" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="${c}"/><stop offset="100%" stop-color="${c}44"/></linearGradient>`;
-  });
-  svg+=`</defs>`;
-  // Horizontal guides
-  for(let g=1;g<=4;g++){
-    const y=TOP+cH-(cH/4)*g;
-    svg+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="rgba(255,255,255,.05)" stroke-dasharray="4,3"/>`;
-  }
-  srcs.forEach((s,i)=>{
-    const x=PL+i*(bw+gap);
-    const bh=(s.value_bdt_crore/max)*cH;
-    const y=TOP+cH-bh;
-    const c=REV_PALETTE[i%REV_PALETTE.length];
-    svg+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="5" fill="url(#rg${i})"/>`;
-    svg+=`<rect x="${x+bw/2-0.5}" y="${y-4}" width="1" height="4" fill="${c}" opacity=".5"/>`;
-    svg+=`<text x="${x+bw/2}" y="${y-8}" text-anchor="middle" font-size="8.5" fill="${c}" font-weight="700" font-family="var(--font)">${fmt(s.value_bdt_crore)}</text>`;
-    const lab=t(s.category).replace(' Revenue','').replace(' (Net)','');
-    const short=lab.length>11?lab.slice(0,11)+'…':lab;
-    svg+=`<text x="${x+bw/2}" y="${H-BOT+16}" text-anchor="middle" font-size="8" fill="rgba(148,160,190,.7)" font-family="var(--font)">${short}</text>`;
-  });
-  svg+=`<line x1="${PL}" y1="${TOP+cH}" x2="${W-PR}" y2="${TOP+cH}" stroke="rgba(255,255,255,.08)"/>`;
-  document.getElementById('rev-chart').innerHTML=svg;
-  document.getElementById('rev-legend').innerHTML=srcs.map((s,i)=>{
-    const c=REV_PALETTE[i%REV_PALETTE.length];
-    return `<div class="legend-item"><div class="legend-swatch" style="background:${c}"></div>${t(s.category)}</div>`;
-  }).join('');
+/* ═══════════════════ REVENUE ═════════════════ */
+function renderRevenue(){
+  buildRevList('rev-list',D.revenue_breakdown,'category','value_bdt_crore','description');
+  buildRevList('def-list',D.deficit_financing_breakdown,'source','value_bdt_crore','description');
 }
 
-function buildRevList(){
-  const srcs=D.revenue_sources;
-  const tot=srcs.reduce((s,a)=>s+a.value_bdt_crore,0);
-  document.getElementById('rev-list').innerHTML=srcs.map((s,i)=>{
-    const c=REV_PALETTE[i%REV_PALETTE.length];
-    const pct=(s.value_bdt_crore/tot*100).toFixed(1);
-    return `<div class="rev-item glass-glow glass" style="animation-delay:${i*.07}s">
-      <div class="rev-head">
-        <div class="rev-cat">${t(s.category)}</div>
-        <div class="rev-val-wrap">
-          <div class="rev-val" style="color:${c}">${fmt(s.value_bdt_crore)}</div>
-          <div class="rev-sub">${curr()}</div>
-        </div>
+function buildRevList(id,arr,catKey,valKey,descKey){
+  const tot=arr.reduce((s,a)=>s+a[valKey],0);
+  document.getElementById(id).innerHTML=arr.map((s,i)=>{
+    const col=REV_COL[i%REV_COL.length];
+    const pct=(s[valKey]/tot*100).toFixed(1);
+    return `<div class="ri glass-glow glass" style="animation-delay:${i*.07}s">
+      <div class="ri-head">
+        <div class="ri-cat">${t(s[catKey])}</div>
+        <div class="ri-vw"><div class="ri-val" style="color:${col}">${fmt(s[valKey])}</div><div class="ri-sub">${curr()}</div></div>
       </div>
-      <div class="rev-bar-track"><div class="rev-bar-fill" style="width:${pct}%;background:${c}"></div></div>
-      <div class="rev-desc">${pct}% ${lang==='bn'?'মোট রাজস্বের':'of total'} — ${t(s.description)}</div>
+      <div class="ri-track"><div class="ri-fill" style="width:${pct}%;background:${col}"></div></div>
+      <div class="ri-desc">${pct}% — ${t(s[descKey])}</div>
     </div>`;
   }).join('');
 }
 
-/* ═══════════════════════════════════════
-   POLICY
-═══════════════════════════════════════ */
+/* ═══════════════════ WIZARD ══════════════════ */
+function renderWizard(){
+  const L=D.global_labels;
+  document.getElementById('wiz-title').textContent=t(L.wizard_title);
+  document.getElementById('wiz-sub').textContent=t(L.wizard_sub);
+  document.getElementById('wiz-q1-lbl').textContent=t(L.wizard_q1);
+  document.getElementById('wiz-q2-lbl').textContent=t(L.wizard_q2);
+  document.getElementById('wq1-a-txt').textContent=t(L.wizard_q1_opt1);
+  document.getElementById('wq1-b-txt').textContent=t(L.wizard_q1_opt2);
+  document.getElementById('wq2-a-txt').textContent=t(L.wizard_q2_opt1);
+  document.getElementById('wq2-b-txt').textContent=t(L.wizard_q2_opt2);
+  document.getElementById('wiz-check-lbl').textContent=t(L.wizard_check);
+  document.getElementById('wiz-reset-lbl').textContent=t(L.wizard_reset);
+}
+
+function pickWiz(q,opt){
+  wizSel[q]=opt;
+  document.querySelectorAll(`#wiz-q${q} .wiz-opt`).forEach(el=>el.classList.remove('sel'));
+  document.getElementById(`wq${q}-${opt}`).classList.add('sel');
+  document.getElementById('wiz-check-btn').disabled=!(wizSel[1]&&wizSel[2]);
+  // Hide result when re-picking
+  document.getElementById('wiz-result').classList.remove('show');
+}
+
+function runWizard(){
+  const L=D.global_labels;
+  const exempt=wizSel[1]==='a'&&wizSel[2]==='a';
+  const res=document.getElementById('wiz-result');
+  const icon=document.getElementById('wr-icon');
+  res.className='wiz-result show '+(exempt?'wr-exempt':'wr-req');
+  icon.innerHTML=exempt
+    ?`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`
+    :`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+  document.getElementById('wr-title').textContent=t(exempt?L.wizard_result_exempt_title:L.wizard_result_req_title);
+  document.getElementById('wr-body').textContent=t(exempt?L.wizard_result_exempt_body:L.wizard_result_req_body);
+  document.getElementById('wr-cta-txt').textContent=t(L.wizard_verify_cta);
+  res.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function resetWizard(){
+  wizSel[1]=null;wizSel[2]=null;
+  document.querySelectorAll('.wiz-opt').forEach(el=>el.classList.remove('sel'));
+  document.getElementById('wiz-check-btn').disabled=true;
+  document.getElementById('wiz-result').className='wiz-result';
+}
+
+/* ═══════════════════ POLICY ══════════════════ */
 function renderPolicy(){
   const L=D.global_labels;
   const out=document.getElementById('policy-out');
-  out.innerHTML=Object.values(D.policy_rules).map((sec,si)=>`
+  out.innerHTML=Object.values(D.policy_matrix).map((sec,si)=>`
     <div class="pol-section" style="animation-delay:${si*.08}s">
-      <div class="pol-header">
-        <div class="pol-title">${t(sec.title)}</div>
-        <div class="pol-overview">${t(sec.overview)}</div>
-      </div>
+      <div class="pol-hdr"><div class="pol-title">${t(sec.title)}</div><div class="pol-ov">${t(sec.overview)}</div></div>
       <div class="pol-grid">
         ${sec.rules_list.map(r=>{
           const req=r.is_tin_mandatory;
-          const badgeLbl=req?t(L.tin_yes):t(L.tin_no);
-          const badgeIco=req
+          const bi=req
             ?`<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`
             :`<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-          return `<div class="pol-card">
-            <div class="pol-top">
-              <div class="pol-target">${t(r.applicable_target)}</div>
-              <div class="tin-pill ${req?'tin-req':'tin-exe'}">${badgeIco}${badgeLbl}</div>
+          return `<div class="pc">
+            <div class="pc-top">
+              <div class="pc-target">${t(r.applicable_target)}</div>
+              <div class="tin-pill ${req?'t-req':'t-exe'}">${bi}${t(req?L.tin_yes:L.tin_no)}</div>
             </div>
-            <div class="pol-guide">${t(r.guideline)}</div>
+            <div class="pc-guide">${t(r.guideline)}</div>
           </div>`;
         }).join('')}
       </div>
     </div>`).join('');
 }
 
-/* ═══════════════════════════════════════
-   MODAL
-═══════════════════════════════════════ */
-function openModal(id){
-  const a=D.allocations.find(x=>x.id===id);
+/* ═══════════════════ MODAL ═══════════════════ */
+function openMod(id){
+  const a=D.granular_allocations.find(x=>x.id===id);
   if(!a)return;
-  const tot=D.allocations.reduce((s,x)=>s+x.value_bdt_crore,0);
-  const share=(a.value_bdt_crore/tot*100).toFixed(2)+'%';
-  const sec=SEC[a.sector.en]||{en:a.sector.en,bn:a.sector.bn};
+  const tot=D.granular_allocations.reduce((s,x)=>s+x.value_bdt_crore,0);
+  const sm=SEC[a.sector.en]||{en:a.sector.en,bn:a.sector.bn};
   const L=D.global_labels;
   document.getElementById('m-title').textContent=t(a.ministry);
-  document.getElementById('m-sec').textContent=t(sec);
+  document.getElementById('m-sec').textContent=t(sm);
   document.getElementById('m-amt').textContent=fmt(a.value_bdt_crore);
   document.getElementById('m-unit').textContent=curr();
-  document.getElementById('m-share').textContent=share;
+  document.getElementById('m-share').textContent=(a.value_bdt_crore/tot*100).toFixed(2)+'%';
   document.getElementById('m-desc').textContent=t(a.description);
-  document.getElementById('m-lbl-amt').textContent=t(L.col_allocation);
+  document.getElementById('m-lbl-a').textContent=t(L.col_allocation);
   document.getElementById('m-scope-lbl').textContent=t(L.col_description);
   document.getElementById('modal').classList.add('open');
+  document.getElementById('modal').querySelector('.modal').focus?.();
 }
-function closeModal(e){if(!e||e.target.id==='modal')document.getElementById('modal').classList.remove('open')}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function closeMod(e){if(!e||e.target.id==='modal')document.getElementById('modal').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMod()});
 
-/* ═══════════════════════════════════════
-   TABS
-═══════════════════════════════════════ */
+/* ═══════════════════ TABS ════════════════════ */
 function setTab(name){
   ['overview','allocations','revenue','policy'].forEach(n=>{
-    document.getElementById('panel-'+n).classList.toggle('active',n===name);
-    document.getElementById('tbtn-'+n).classList.toggle('active',n===name);
+    document.getElementById('panel-'+n).classList.toggle('on',n===name);
+    document.getElementById('tbtn-'+n).classList.toggle('on',n===name);
   });
-  curTab=name;
+  tab=name;
 }
 
-/* ═══════════════════════════════════════
-   TOGGLES
-═══════════════════════════════════════ */
+/* ═══════════════════ TOGGLES ════════════════ */
 function toggleLang(){
   lang=lang==='en'?'bn':'en';
   document.documentElement.lang=lang;
-  applyLabels();renderOverview();renderAlloc();renderRevenue();renderPolicy();
+  applyLabels();renderOverview();renderAlloc();renderRevenue();renderPolicy();renderWizard();
+  // Refresh open modal
+  if(document.getElementById('modal').classList.contains('open')){
+    const title=document.getElementById('m-title').textContent;
+    const found=D.granular_allocations.find(a=>t(a.ministry)===title||a.ministry.en===title||a.ministry.bn===title);
+    if(found)openMod(found.id);
+  }
 }
+
 function toggleCurrency(){
   usd=!usd;
   document.getElementById('btn-usd').classList.toggle('on',usd);
   applyLabels();renderOverview();filterAlloc();renderRevenue();
-  const modal=document.getElementById('modal');
-  if(modal.classList.contains('open')){
+  if(document.getElementById('modal').classList.contains('open')){
     const title=document.getElementById('m-title').textContent;
-    const found=D.allocations.find(a=>t(a.ministry)===title);
-    if(found)openModal(found.id);
+    const found=D.granular_allocations.find(a=>t(a.ministry)===title||a.ministry.en===title||a.ministry.bn===title);
+    if(found)openMod(found.id);
   }
 }
 </script>
