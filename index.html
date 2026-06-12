@@ -424,6 +424,32 @@ tbody tr:hover td{background:rgba(255,255,255,.028)}
 .disc-ai .disc-card-title{color:var(--gold)}
 .disc-verify .disc-card-title{color:var(--red)}
 
+/* PHOTO STRIP — Overview tab */
+.photo-strip{margin:28px 0 0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.photo-strip::-webkit-scrollbar{display:none}
+.photo-strip-inner{display:flex;gap:16px;width:max-content}
+.photo-card{width:240px;flex-shrink:0;border-radius:var(--r12);overflow:hidden;border:1px solid var(--border);position:relative;cursor:default}
+.photo-card img{width:100%;height:148px;object-fit:cover;display:block;filter:brightness(.85)}
+.photo-card-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;background:linear-gradient(to top,rgba(7,9,26,.92) 0%,rgba(7,9,26,.45) 55%,transparent 100%)}
+.photo-card-tag{font-size:9.5px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;padding:3px 8px;border-radius:20px;width:fit-content;margin-bottom:7px}
+.photo-card-tag-hike{background:rgba(220,38,38,.25);color:#f87171;border:1px solid rgba(220,38,38,.35)}
+.photo-card-tag-relief{background:rgba(22,163,74,.2);color:#4ade80;border:1px solid rgba(22,163,74,.3)}
+.photo-card-title{font-size:13px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:3px}
+.photo-card-sub{font-size:11px;color:rgba(255,255,255,.65);line-height:1.4}
+.photo-strip-section-head{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--text-3);margin:28px 0 14px;padding-left:2px}
+.photo-strip-section-head::after{content:'';flex:1;height:1px;background:var(--border)}
+.photo-strip-section-head-hike{color:#f87171}
+.photo-strip-section-head-relief{color:#4ade80}
+
+/* TAX CARD IMAGES */
+.tc-img-wrap{position:relative;overflow:hidden;height:110px;border-radius:8px;margin-bottom:12px;flex-shrink:0}
+.tc-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.78);transition:transform .4s}
+.tax-card:hover .tc-img-wrap img{transform:scale(1.05)}
+.tc-img-badge{position:absolute;top:8px;right:8px;font-size:9px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;padding:3px 8px;border-radius:20px}
+.tc-img-badge-hike{background:rgba(220,38,38,.3);color:#fca5a5;border:1px solid rgba(220,38,38,.4)}
+.tc-img-badge-relief{background:rgba(22,163,74,.25);color:#86efac;border:1px solid rgba(22,163,74,.35)}
+.tc-img-caption{position:absolute;bottom:0;left:0;right:0;padding:8px 10px;background:linear-gradient(transparent,rgba(7,9,26,.85));font-size:10px;color:rgba(255,255,255,.7);font-style:italic}
+
 /* Copyright bar */
 .foot-bar{max-width:1340px;margin:0 auto;padding:14px 28px;font-size:11.5px;color:var(--text-3);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
 .foot-bar a{color:var(--ca);text-decoration:none}
@@ -526,6 +552,122 @@ tbody tr:hover td{background:rgba(255,255,255,.028)}
   <!-- OVERVIEW -->
   <section class="panel on" id="panel-overview" aria-label="Budget overview">
     <div class="kpi-grid" id="kpi-grid"></div>
+
+    <!-- PHOTO GALLERY — Price Hikes & Tax Relief Visual -->
+    <div class="photo-strip-section-head photo-strip-section-head-hike">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+      Price Hikes — Duties &amp; Taxes Increased
+    </div>
+    <div class="photo-strip">
+      <div class="photo-strip-inner">
+        <div class="photo-card">
+          <img src="images/fish.jpg" alt="Pangasius fish Bangladesh market" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-hike">Import Duty</span>
+            <div class="photo-card-title">Pangasius &amp; Frozen Fish</div>
+            <div class="photo-card-sub">20% supplementary duty added · VAT up to 15%</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/cashew.jpg" alt="Cashew nuts" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-hike">Customs Duty</span>
+            <div class="photo-card-title">Cashew Nuts</div>
+            <div class="photo-card-sub">Duty hiked from 5% to 25%</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/cars.jpg" alt="Cars and vehicles traffic" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-hike">Supplementary Duty</span>
+            <div class="photo-card-title">ICE Vehicles</div>
+            <div class="photo-card-sub">1200–1600cc: duty up from 132% to 156%</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/cigarette.jpg" alt="Cigarettes and tobacco products" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-hike">Supplementary Duty</span>
+            <div class="photo-card-title">Cigarettes &amp; Nicotine</div>
+            <div class="photo-card-sub">Nicotine pouches at 350% supplementary duty</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/steel.jpg" alt="Steel MS rods construction" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-hike">VAT</span>
+            <div class="photo-card-title">MS Rods &amp; Steel</div>
+            <div class="photo-card-sub">Manufacturing VAT raised BDT 150→350/tonne</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/market.jpg" alt="Bangladesh market honey confectionery" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-hike">Import Duty</span>
+            <div class="photo-card-title">Honey, Confectionery, Betel</div>
+            <div class="photo-card-sub">Assessable value floors &amp; duty raised</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-strip-section-head photo-strip-section-head-relief" style="margin-top:24px">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      Tax Relief — Duties &amp; Taxes Reduced or Removed
+    </div>
+    <div class="photo-strip">
+      <div class="photo-strip-inner">
+        <div class="photo-card">
+          <img src="images/laptop.jpg" alt="Laptop computer technology" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-relief">Duty-Free</span>
+            <div class="photo-card-title">Laptops, PCs &amp; Peripherals</div>
+            <div class="photo-card-sub">Customs duty fully withdrawn · SSD tax also removed</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/ev_charger.jpg" alt="Electric vehicle EV charging station" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-relief">Tax Removed</span>
+            <div class="photo-card-title">EV Chargers</div>
+            <div class="photo-card-sub">39.75% combined duty burden withdrawn</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/shopping_basket.jpg" alt="Grocery shopping essential commodities" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-relief">Source Tax Cut</span>
+            <div class="photo-card-title">60 Essential Commodities</div>
+            <div class="photo-card-sub">Source tax slashed from 2% to 0.5%</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/medical.jpg" alt="Hospital medical equipment" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-relief">VAT Exempt</span>
+            <div class="photo-card-title">Medical Supplies</div>
+            <div class="photo-card-sub">Dialysis filters, stents, eye lenses duty-free</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/freelancer.jpg" alt="Freelancer working on laptop" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-relief">Income Tax Free</span>
+            <div class="photo-card-title">Freelancing Income</div>
+            <div class="photo-card-sub">Tax exemption extended through 2026-27</div>
+          </div>
+        </div>
+        <div class="photo-card">
+          <img src="images/inflation.jpg" alt="Inflation economy finance Bangladesh" loading="lazy"/>
+          <div class="photo-card-overlay">
+            <span class="photo-card-tag photo-card-tag-relief">Withholding Tax Cut</span>
+            <div class="photo-card-title">SIM Card Tax Abolished</div>
+            <div class="photo-card-sub">BDT 300 per SIM levy fully removed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="chart-row">
       <div class="glass glass-glow cc">
         <div class="cc-head"><div class="cc-dot"></div><span class="cc-title" id="ch-donut-ttl">Budget Breakdown</span></div>
@@ -1086,13 +1228,42 @@ function filterMatrix() {
     </div>`;
 }
 
+const IMG_MAP = {
+  ta_pangasius_fillets:    'images/fish.jpg',
+  ta_frozen_fish_vat:      'images/fish.jpg',
+  ta_cashew_nuts:          'images/cashew.jpg',
+  ta_cigarettes_nicotine:  'images/cigarette.jpg',
+  ta_ice_vehicles:         'images/cars.jpg',
+  ta_ms_rods_steel:        'images/steel.jpg',
+  ta_imported_honey:       'images/market.jpg',
+  ta_ict_hardware:         'images/laptop.jpg',
+  ta_ssd_drives:           'images/laptop.jpg',
+  ta_sim_tax_mobile:       'images/laptop.jpg',
+  ta_freelancing_tax:      'images/freelancer.jpg',
+  ta_essential_60:         'images/shopping_basket.jpg',
+  ta_medical_supplies:     'images/medical.jpg',
+  ta_ev_chargers:          'images/ev_charger.jpg',
+  ta_betel_nuts:           'images/market.jpg',
+  ta_sugar_confectionery:  'images/market.jpg',
+  ta_pos_machines:         'images/laptop.jpg',
+};
+
 function taxCard(t, type) {
   const isHike = type === 'hike';
   const gl = D.global_labels;
   const shortDesc = L(t.description);
   const truncDesc = shortDesc.length > 160 ? shortDesc.slice(0, 158) + '…' : shortDesc;
   const hasMore = shortDesc.length > 160;
+  const imgSrc = IMG_MAP[t.id] || 'images/market.jpg';
+  const imgBadge = isHike
+    ? (lang==='bn' ? 'মূল্য বৃদ্ধি' : 'Price Hike')
+    : (lang==='bn' ? 'মূল্য স্বস্তি' : 'Tax Relief');
   return `<div class="tax-card tax-card-${type}" id="tc-${t.id}">
+    <div class="tc-img-wrap">
+      <img src="${imgSrc}" alt="${L(t.name)}" loading="lazy"/>
+      <div class="tc-img-badge tc-img-badge-${type}">${imgBadge}</div>
+      <div class="tc-img-caption">${L(t.category)}</div>
+    </div>
     <div class="tc-top">
       <div class="tc-name">${L(t.name)}</div>
       <div class="tc-dir-badge tc-dir-${type}">
