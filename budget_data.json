@@ -19,6 +19,7 @@
     "tab_overview":       { "en": "Overview", "bn": "সারসংক্ষেপ" },
     "tab_allocations":    { "en": "Allocations", "bn": "বরাদ্দ" },
     "tab_revenue":        { "en": "Revenue", "bn": "রাজস্ব" },
+    "tab_tax_matrix":     { "en": "Price Shift Matrix", "bn": "মূল্য পরিবর্তন ম্যাট্রিক্স" },
     "tab_policy":         { "en": "Policy & TIN Wizard", "bn": "নীতি ও TIN উইজার্ড" },
     "filter_all":         { "en": "All Sectors", "bn": "সব খাত" },
     "col_ministry":       { "en": "Ministry / Division", "bn": "মন্ত্রণালয় / বিভাগ" },
@@ -49,15 +50,198 @@
     "wizard_result_exempt_body":  { "en": "Based on your selections, you qualify for an explicit TIN exemption under the Finance Act 2026-27. Verified student bank accounts and designated no-frills low-income savings vehicles are not required to submit a TIN certificate during account opening or validation. However, once annual income exceeds the tax-free threshold of BDT 3,50,000, a TIN must be obtained.", "bn": "আপনার নির্বাচনের ভিত্তিতে, আপনি অর্থ আইন ২০২৬-২৭-এর অধীনে স্পষ্ট টিন অব্যাহতির জন্য যোগ্য। যাচাইকৃত স্টুডেন্ট ব্যাংক অ্যাকাউন্ট এবং মনোনীত নো-ফ্রিলস নিম্ন-আয়ের সঞ্চয়ী হিসাবের জন্য অ্যাকাউন্ট খোলার বা যাচাইকরণের সময় টিন সার্টিফিকেট জমা দেওয়া প্রয়োজন নেই। তবে বার্ষিক আয় ৩,৫০,০০০ টাকার করমুক্ত সীমা অতিক্রম করলে টিন গ্রহণ করতে হবে।" },
     "wizard_result_req_title":    { "en": "TIN Certificate: MANDATORY", "bn": "টিন সার্টিফিকেট: বাধ্যতামূলক" },
     "wizard_result_req_body":     { "en": "Based on your selections, you are required to present a valid TIN certificate. Standard commercial accounts — including checking, savings, and business accounts — mandatorily require TIN submission at the time of account opening or annual KYC validation under the Finance Act 2026-27. Failure to comply may result in account restriction.", "bn": "আপনার নির্বাচনের ভিত্তিতে, আপনাকে একটি বৈধ টিন সার্টিফিকেট উপস্থাপন করতে হবে। সাধারণ বাণিজ্যিক অ্যাকাউন্টগুলি — চলতি, সঞ্চয়ী এবং ব্যবসায়িক অ্যাকাউন্টসহ — অর্থ আইন ২০২৬-২৭-এর অধীনে অ্যাকাউন্ট খোলার বা বার্ষিক কেওয়াইসি যাচাইকরণের সময় বাধ্যতামূলকভাবে টিন জমা দিতে হবে। মেনে না চললে অ্যাকাউন্ট সীমাবদ্ধ হতে পারে।" },
-    "wizard_verify_cta":          { "en": "Always verify with official NBR sources before acting on this result.", "bn": "এই ফলাফলের ভিত্তিতে পদক্ষেপ নেওয়ার আগে সবসময় সরকারি এনবিআর উৎসের সাথে যাচাই করুন।" }
+    "wizard_verify_cta":          { "en": "Always verify with official NBR sources before acting on this result.", "bn": "এই ফলাফলের ভিত্তিতে পদক্ষেপ নেওয়ার আগে সবসময় সরকারি এনবিআর উৎসের সাথে যাচাই করুন।" },
+    "tax_matrix_title":           { "en": "Granular Price Shifting Matrix — FY 2026-27", "bn": "বিস্তারিত মূল্য পরিবর্তন ম্যাট্রিক্স — অর্থবছর ২০২৬-২৭" },
+    "tax_matrix_sub":             { "en": "Every product-specific tax adjustment from the National Budget FY 2026-27. Parsed from official Ministry of Finance source documents.", "bn": "জাতীয় বাজেট অর্থবছর ২০২৬-২৭-এর প্রতিটি পণ্য-নির্দিষ্ট কর সমন্বয়। অর্থ মন্ত্রণালয়ের সরকারি উৎস নথি থেকে সংকলিত।" },
+    "tax_matrix_search":          { "en": "Search products, categories, or duty types…", "bn": "পণ্য, বিভাগ বা শুল্কের ধরন অনুসন্ধান করুন…" },
+    "tax_hikes_label":            { "en": "Cost Escalations — Price Hikes", "bn": "ব্যয় বৃদ্ধি — মূল্য হাইক" },
+    "tax_hikes_sub":              { "en": "Items subject to increased duties, VAT, or supplementary charges under the FY 2026-27 budget.", "bn": "অর্থবছর ২০২৬-২৭ বাজেটে বর্ধিত শুল্ক, ভ্যাট বা সম্পূরক চার্জের আওতাধীন পণ্য।" },
+    "tax_relief_label":           { "en": "Tax Concessions — Price Relief", "bn": "কর রেয়াত — মূল্য স্বস্তি" },
+    "tax_relief_sub":             { "en": "Items where duties, VAT, or taxes have been withdrawn or reduced, delivering direct price relief.", "bn": "যে পণ্যে শুল্ক, ভ্যাট বা কর প্রত্যাহার বা হ্রাস করা হয়েছে, সরাসরি মূল্য স্বস্তি প্রদান করছে।" },
+    "tax_matrix_no_results":      { "en": "No items match your search query.", "bn": "আপনার অনুসন্ধানের সাথে কোনো পণ্য মেলেনি।" },
+    "tax_adjustment_label":       { "en": "Duty / Tax Adjustment", "bn": "শুল্ক / কর সমন্বয়" },
+    "tax_category_label":         { "en": "Category", "bn": "বিভাগ" },
+    "tax_policy_logic":           { "en": "Policy Rationale", "bn": "নীতির যৌক্তিকতা" }
   },
   "macro_summary": {
-    "total_outlay":     { "value_bdt_crore": 938000, "label": { "en": "Total Budget Outlay", "bn": "মোট বাজেট বরাদ্দ" }, "note": { "en": "Largest in Bangladesh's history", "bn": "বাংলাদেশের ইতিহাসে সর্ববৃহৎ" } },
-    "total_revenue":    { "value_bdt_crore": 541000, "label": { "en": "Revenue Target", "bn": "রাজস্ব লক্ষ্যমাত্রা" }, "note": { "en": "57.7% of total outlay", "bn": "মোট বরাদ্দের ৫৭.৭%" } },
-    "deficit":          { "value_bdt_crore": 397000, "label": { "en": "Fiscal Deficit", "bn": "বাজেট ঘাটতি" }, "note": { "en": "42.3% of total outlay", "bn": "মোট বরাদ্দের ৪২.৩%" } },
-    "gdp_growth_target":{ "value_percent": 7.2, "label": { "en": "Target GDP Growth", "bn": "লক্ষ্যমাত্রা জিডিপি প্রবৃদ্ধি" }, "note": { "en": "Projected real GDP growth rate", "bn": "প্রক্ষেপিত প্রকৃত জিডিপি প্রবৃদ্ধির হার" } },
-    "inflation_ceiling":{ "value_percent": 6.5, "label": { "en": "Inflation Ceiling", "bn": "মূল্যস্ফীতি সর্বোচ্চ সীমা" }, "note": { "en": "Target CPI inflation cap for FY 2026-27", "bn": "অর্থবছর ২০২৬-২৭-এর লক্ষ্যমাত্রা সিপিআই মূল্যস্ফীতির সীমা" } }
+    "total_outlay":     { "value_bdt_crore": 814474, "label": { "en": "Total Budget Outlay", "bn": "মোট বাজেট বরাদ্দ" }, "note": { "en": "Largest in Bangladesh's history", "bn": "বাংলাদেশের ইতিহাসে সর্ববৃহৎ" } },
+    "total_revenue":    { "value_bdt_crore": 469755, "label": { "en": "Revenue Target", "bn": "রাজস্ব লক্ষ্যমাত্রা" }, "note": { "en": "57.7% of total outlay", "bn": "মোট বরাদ্দের ৫৭.৭%" } },
+    "deficit":          { "value_bdt_crore": 344719, "label": { "en": "Fiscal Deficit", "bn": "বাজেট ঘাটতি" }, "note": { "en": "42.3% of total outlay", "bn": "মোট বরাদ্দের ৪২.৩%" } },
+    "gdp_growth_target":{ "value_percent": 6.3, "label": { "en": "Target GDP Growth", "bn": "লক্ষ্যমাত্রা জিডিপি প্রবৃদ্ধি" }, "note": { "en": "Projected real GDP growth rate", "bn": "প্রক্ষেপিত প্রকৃত জিডিপি প্রবৃদ্ধির হার" } },
+    "inflation_ceiling":{ "value_percent": 5.6, "label": { "en": "Inflation Ceiling", "bn": "মূল্যস্ফীতি সর্বোচ্চ সীমা" }, "note": { "en": "Target CPI inflation cap for FY 2026-27", "bn": "অর্থবছর ২০২৬-২৭-এর লক্ষ্যমাত্রা সিপিআই মূল্যস্ফীতির সীমা" } }
   },
+  "tax_adjustments": [
+    {
+      "id": "ta_pangasius_fillets",
+      "name": { "en": "Imported Pangasius Fillets", "bn": "আমদানিকৃত পাঙ্গাস ফিলেট" },
+      "category": { "en": "Seafood & Aquaculture", "bn": "সামুদ্রিক খাবার ও জলজ চাষ" },
+      "direction": "increase",
+      "adjustment": { "en": "New 20% Supplementary Duty", "bn": "নতুন ২০% সম্পূরক শুল্ক" },
+      "prior_rate": { "en": "0% supplementary duty", "bn": "০% সম্পূরক শুল্ক" },
+      "new_rate": { "en": "20% supplementary duty", "bn": "২০% সম্পূরক শুল্ক" },
+      "description": { "en": "A new 20% supplementary duty has been imposed on all imported Pangasius (catfish) fillets to directly protect the domestic aquaculture sector. Bangladesh is one of the world's largest Pangasius producers, and cheap imported fillets — primarily from Vietnam — had begun undercutting local fish farmers significantly. This protective levy is designed to restore competitive pricing parity for domestic fish cultivators and sustain rural livelihoods dependent on freshwater fish farming.", "bn": "দেশীয় জলজ চাষ খাতকে সরাসরি সুরক্ষা দিতে সব আমদানিকৃত পাঙ্গাস ফিলেটে নতুন ২০% সম্পূরক শুল্ক আরোপ করা হয়েছে। বাংলাদেশ বিশ্বের অন্যতম বৃহত্তম পাঙ্গাস উৎপাদনকারী, এবং সস্তা আমদানিকৃত ফিলেট — প্রধানত ভিয়েতনাম থেকে — স্থানীয় মৎস্যচাষীদের উল্লেখযোগ্যভাবে ক্ষতিগ্রস্ত করতে শুরু করেছিল। এই সুরক্ষামূলক শুল্ক দেশীয় মৎস্যচাষীদের প্রতিযোগিতামূলক মূল্য সমতা পুনরুদ্ধার করতে এবং মিঠা পানির মৎস্য চাষের উপর নির্ভরশীল গ্রামীণ জীবিকা বজায় রাখতে ডিজাইন করা হয়েছে।" }
+    },
+    {
+      "id": "ta_frozen_fish_vat",
+      "name": { "en": "Premium Imported Frozen Fish", "bn": "প্রিমিয়াম আমদানিকৃত হিমায়িত মাছ" },
+      "category": { "en": "Seafood & Aquaculture", "bn": "সামুদ্রিক খাবার ও জলজ চাষ" },
+      "direction": "increase",
+      "adjustment": { "en": "New 15% VAT Framework Applied", "bn": "নতুন ১৫% ভ্যাট কাঠামো প্রযোজ্য" },
+      "prior_rate": { "en": "VAT-exempt on most frozen fish imports", "bn": "অধিকাংশ হিমায়িত মাছ আমদানিতে ভ্যাট মুক্ত" },
+      "new_rate": { "en": "15% VAT on premium imported frozen fish", "bn": "প্রিমিয়াম আমদানিকৃত হিমায়িত মাছে ১৫% ভ্যাট" },
+      "description": { "en": "A full 15% VAT framework has been applied to premium category imported frozen fish products. This measure targets high-value imported seafood — including frozen salmon, tuna steaks, and premium marine species — consumed predominantly by upper-income households and hospitality industry buyers. The revenue generated from this VAT stream is earmarked to partially fund domestic fisheries extension services and aquaculture disease control programmes operated by the Ministry of Fisheries and Livestock.", "bn": "প্রিমিয়াম শ্রেণির আমদানিকৃত হিমায়িত মাছের পণ্যে পূর্ণ ১৫% ভ্যাট কাঠামো প্রযোজ্য করা হয়েছে। এই পদক্ষেপটি উচ্চ-মূল্যের আমদানিকৃত সামুদ্রিক খাদ্যকে লক্ষ্য করে — হিমায়িত স্যামন, টুনা স্টেক এবং প্রিমিয়াম সামুদ্রিক প্রজাতিসহ — যা মূলত উচ্চ-আয়ের পরিবার এবং আতিথেয়তা শিল্পের ক্রেতারা ব্যবহার করেন।" }
+    },
+    {
+      "id": "ta_cashew_nuts",
+      "name": { "en": "Imported Cashew Nuts", "bn": "আমদানিকৃত কাজুবাদাম" },
+      "category": { "en": "Agriculture & Food Commodities", "bn": "কৃষি ও খাদ্য পণ্য" },
+      "direction": "increase",
+      "adjustment": { "en": "Customs Duty: 5% → 25% (finished); 5% → 15% (raw, for local processors)", "bn": "কাস্টমস শুল্ক: ৫% → ২৫% (প্রস্তুত); ৫% → ১৫% (কাঁচা, স্থানীয় প্রক্রিয়াকারীদের জন্য)" },
+      "prior_rate": { "en": "5% customs duty across all cashew categories", "bn": "সকল কাজুবাদাম বিভাগে ৫% কাস্টমস শুল্ক" },
+      "new_rate": { "en": "25% on finished/processed cashews; 15% on raw nuts for registered local processors", "bn": "প্রস্তুত/প্রক্রিয়াজাত কাজুতে ২৫%; নিবন্ধিত স্থানীয় প্রক্রিয়াকারীদের জন্য কাঁচা বাদামে ১৫%" },
+      "description": { "en": "Customs duty on fully processed and packaged cashew nuts has been sharply raised from 5% to 25%, representing a 400% increase in the effective duty burden. This creates strong import substitution incentives for domestic cashew processing industries. A differential and concessive rate of 15% is maintained for registered local processors importing raw, unprocessed cashew kernels, enabling the domestic value-addition chain to source raw material competitively while finished-goods importers face the full punitive tariff wall.", "bn": "সম্পূর্ণ প্রক্রিয়াজাত ও প্যাকেজড কাজুবাদামে কাস্টমস শুল্ক ৫% থেকে বাড়িয়ে ২৫% করা হয়েছে, যা কার্যকর শুল্ক বোঝায় ৪০০% বৃদ্ধি। এটি দেশীয় কাজু প্রক্রিয়াকরণ শিল্পের জন্য শক্তিশালী আমদানি প্রতিস্থাপন প্রণোদনা তৈরি করে। নিবন্ধিত স্থানীয় প্রক্রিয়াকারীদের জন্য কাঁচা কাজু কার্নেল আমদানিতে ১৫% রেয়াতি হার বজায় রাখা হয়েছে।" }
+    },
+    {
+      "id": "ta_cigarettes_nicotine",
+      "name": { "en": "Cigarettes, Tobacco & Nicotine Pouches / Granules", "bn": "সিগারেট, তামাক ও নিকোটিন পাউচ / গ্র্যানুলস" },
+      "category": { "en": "Tobacco & Nicotine Products", "bn": "তামাক ও নিকোটিন পণ্য" },
+      "direction": "increase",
+      "adjustment": { "en": "Minimum retail price tier hikes; 350% supplementary duty on nicotine pouches/granules", "bn": "ন্যূনতম খুচরা মূল্য স্তর বৃদ্ধি; নিকোটিন পাউচ/গ্র্যানুলসে ৩৫০% সম্পূরক শুল্ক" },
+      "prior_rate": { "en": "Various tiered MRP floors; nicotine pouches largely unregulated", "bn": "বিভিন্ন স্তরের এমআরপি মেঝে; নিকোটিন পাউচ মূলত অনিয়ন্ত্রিত" },
+      "new_rate": { "en": "Revised MRP tier floors across all cigarette grades; 350% supplementary duty on all nicotine pouches and granule products", "bn": "সকল সিগারেট গ্রেডে সংশোধিত এমআরপি স্তরের মেঝে; সকল নিকোটিন পাউচ ও গ্র্যানুল পণ্যে ৩৫০% সম্পূরক শুল্ক" },
+      "description": { "en": "The Finance Act 2026-27 significantly raises the minimum retail price floors across all cigarette brand tiers — low, medium, high, and premium — as part of the government's sustained tobacco harm reduction strategy aligned with WHO FCTC commitments. Most critically, a steep 350% supplementary duty has been newly imposed on all nicotine pouches, granules, and non-combustible tobacco derivative products. This targets the rapidly growing market for smoke-free oral nicotine delivery systems that had previously evaded significant regulatory oversight, deterring youth initiation and protecting public health.", "bn": "অর্থ আইন ২০২৬-২৭ সকল সিগারেট ব্র্যান্ড স্তরে — নিম্ন, মধ্যম, উচ্চ এবং প্রিমিয়াম — ন্যূনতম খুচরা মূল্য মেঝে উল্লেখযোগ্যভাবে বাড়িয়েছে। সবচেয়ে গুরুত্বপূর্ণভাবে, সকল নিকোটিন পাউচ, গ্র্যানুলস এবং অ-দহনযোগ্য তামাক ডেরিভেটিভ পণ্যে নতুনভাবে ৩৫০% সম্পূরক শুল্ক আরোপ করা হয়েছে।" }
+    },
+    {
+      "id": "ta_ice_vehicles",
+      "name": { "en": "Imported Fuel-Powered Vehicles (1,200cc–1,600cc ICE)", "bn": "আমদানিকৃত জ্বালানিচালিত যানবাহন (১,২০০সিসি–১,৬০০সিসি আইসিই)" },
+      "category": { "en": "Vehicles & Automotive", "bn": "যানবাহন ও মোটরগাড়ি" },
+      "direction": "increase",
+      "adjustment": { "en": "Total tax incidence: ~132.36% → ~156% on 1,200cc–1,600cc ICE vehicles", "bn": "মোট কর আরোপণ: ~১৩২.৩৬% → ~১৫৬% ১,২০০সিসি–১,৬০০সিসি আইসিই যানবাহনে" },
+      "prior_rate": { "en": "~132.36% total cumulative tax on 1,200cc–1,600cc engine vehicles", "bn": "১,২০০সিসি–১,৬০০সিসি ইঞ্জিন যানবাহনে ~১৩২.৩৬% মোট ক্রমবর্ধমান কর" },
+      "new_rate": { "en": "~156% total cumulative tax burden on same engine capacity category", "bn": "একই ইঞ্জিন ক্যাপাসিটি বিভাগে ~১৫৬% মোট ক্রমবর্ধমান কর বোঝা" },
+      "description": { "en": "The overall tax incidence on imported internal combustion engine (ICE) passenger vehicles with engine capacities between 1,200cc and 1,600cc has been increased from approximately 132.36% to approximately 156% through a combination of higher supplementary duty slabs and revised regulatory duty rates. This is a deliberate fiscal policy tool to accelerate Bangladesh's automotive transition toward electric vehicles by making fossil-fuel vehicle imports significantly more expensive. The revenue generated also helps offset the tax relief provided on EV charging infrastructure and public EV charging stations introduced simultaneously in this budget.", "bn": "১,২০০সিসি থেকে ১,৬০০সিসি ইঞ্জিন ক্যাপাসিটির আমদানিকৃত আইসিই যাত্রীবাহী যানবাহনে সামগ্রিক কর আরোপণ উচ্চতর সম্পূরক শুল্ক স্তর এবং সংশোধিত নিয়ন্ত্রক শুল্ক হারের মাধ্যমে প্রায় ১৩২.৩৬% থেকে প্রায় ১৫৬% বৃদ্ধি করা হয়েছে।" }
+    },
+    {
+      "id": "ta_ms_rods_steel",
+      "name": { "en": "Mild Steel (MS) Rods & Construction Steel", "bn": "মাইল্ড স্টিল (এমএস) রড ও নির্মাণ স্টিল" },
+      "category": { "en": "Construction & Industrial Materials", "bn": "নির্মাণ ও শিল্প উপকরণ" },
+      "direction": "increase",
+      "adjustment": { "en": "Production-stage VAT: BDT 150 → BDT 350 per metric tonne", "bn": "উৎপাদন পর্যায়ের ভ্যাট: প্রতি মেট্রিক টনে ১৫০ টাকা → ৩৫০ টাকা" },
+      "prior_rate": { "en": "BDT 150 per metric tonne specific VAT at production stage", "bn": "উৎপাদন পর্যায়ে প্রতি মেট্রিক টনে ১৫০ টাকা নির্দিষ্ট ভ্যাট" },
+      "new_rate": { "en": "BDT 350 per metric tonne specific VAT at production stage", "bn": "উৎপাদন পর্যায়ে প্রতি মেট্রিক টনে ৩৫০ টাকা নির্দিষ্ট ভ্যাট" },
+      "description": { "en": "The production-stage specific VAT imposed on Mild Steel rods and construction-grade steel products has been more than doubled — rising from BDT 150 to BDT 350 per metric tonne of steel produced. This change applies at the point of domestic manufacturing rather than at retail. The increase directly affects steel rod prices used in construction projects, affecting builders, contractors, and ultimately the end-cost of residential and commercial real estate. The government justifies this as correcting a long-standing under-taxation of one of Bangladesh's largest manufacturing subsectors, which had benefited from disproportionately low VAT obligations relative to sector turnover.", "bn": "মাইল্ড স্টিল রড এবং নির্মাণ-গ্রেডের স্টিল পণ্যে উৎপাদন পর্যায়ের নির্দিষ্ট ভ্যাট দ্বিগুণেরও বেশি বৃদ্ধি পেয়েছে — প্রতি মেট্রিক টন উৎপাদিত স্টিলে ১৫০ টাকা থেকে ৩৫০ টাকায় উন্নীত হয়েছে।" }
+    },
+    {
+      "id": "ta_imported_honey",
+      "name": { "en": "Imported Honey", "bn": "আমদানিকৃত মধু" },
+      "category": { "en": "Agriculture & Food Commodities", "bn": "কৃষি ও খাদ্য পণ্য" },
+      "direction": "increase",
+      "adjustment": { "en": "Minimum assessable value raised by $2 to $7 per unit", "bn": "ন্যূনতম নির্ধারণযোগ্য মূল্য প্রতি ইউনিটে $২ বাড়িয়ে $৭ করা হয়েছে" },
+      "prior_rate": { "en": "Minimum assessable value at $5 per unit (kg)", "bn": "প্রতি ইউনিট (কেজি) ন্যূনতম নির্ধারণযোগ্য মূল্য $৫" },
+      "new_rate": { "en": "Minimum assessable value raised to $7 per unit (kg)", "bn": "প্রতি ইউনিট (কেজি) ন্যূনতম নির্ধারণযোগ্য মূল্য $৭-এ উন্নীত" },
+      "description": { "en": "The customs minimum assessable value (MAV) for imported honey has been raised by $2 to a new floor of $7 per unit (per kilogram). This measure targets systematic under-invoicing of imported honey — primarily from India and China — where importers had been declaring artificially low customs values to minimize their duty liability. Raising the MAV prevents customs duty base erosion and simultaneously protects the domestic honey production sector, which is a significant cottage and SME industry across rural Bangladesh.", "bn": "আমদানিকৃত মধুর কাস্টমস ন্যূনতম নির্ধারণযোগ্য মূল্য ২ ডলার বাড়িয়ে প্রতি ইউনিটে (প্রতি কিলোগ্রাম) নতুন সর্বনিম্ন $৭-এ উন্নীত করা হয়েছে। এই পদক্ষেপটি আমদানিকৃত মধুর পদ্ধতিগত আন্ডার-ইনভয়েসিং লক্ষ্য করে।" }
+    },
+    {
+      "id": "ta_ict_hardware",
+      "name": { "en": "ICT Hardware — Laptops, Desktops, Printers, Monitors", "bn": "আইসিটি হার্ডওয়্যার — ল্যাপটপ, ডেস্কটপ, প্রিন্টার, মনিটর" },
+      "category": { "en": "ICT & Digital Electronics", "bn": "আইসিটি ও ডিজিটাল ইলেকট্রনিক্স" },
+      "direction": "decrease",
+      "adjustment": { "en": "Full withdrawal of import duty, regulatory duty, supplementary duty, and VAT", "bn": "আমদানি শুল্ক, নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ভ্যাট সম্পূর্ণ প্রত্যাহার" },
+      "prior_rate": { "en": "Multiple duty layers: import duty + regulatory duty + supplementary duty + 15% VAT applicable", "bn": "একাধিক শুল্ক স্তর: আমদানি শুল্ক + নিয়ন্ত্রণমূলক শুল্ক + সম্পূরক শুল্ক + ১৫% ভ্যাট প্রযোজ্য" },
+      "new_rate": { "en": "0% — All import duty, regulatory duty, supplementary duty, and VAT fully withdrawn", "bn": "০% — আমদানি শুল্ক, নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ভ্যাট সম্পূর্ণভাবে প্রত্যাহার" },
+      "description": { "en": "In one of the most significant pro-digital economy moves in the FY 2026-27 budget, the government has completely withdrawn all layers of import duty, regulatory duty, supplementary duty, and VAT from laptops, desktop computers, computer printers, and monitors. This complete tax removal substantially reduces the consumer price of these essential digital productivity tools. The policy is explicitly designed to accelerate digital inclusion across Bangladesh, support the rapidly growing freelancing economy, reduce the cost of remote work infrastructure, and enable students, small businesses, and entrepreneurs to access computing hardware at competitive global prices.", "bn": "অর্থবছর ২০২৬-২৭ বাজেটে সবচেয়ে উল্লেখযোগ্য ডিজিটাল অর্থনীতি-পন্থী পদক্ষেপগুলির মধ্যে একটিতে, সরকার ল্যাপটপ, ডেস্কটপ কম্পিউটার, কম্পিউটার প্রিন্টার এবং মনিটর থেকে আমদানি শুল্ক, নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ভ্যাটের সকল স্তর সম্পূর্ণরূপে প্রত্যাহার করেছে।" }
+    },
+    {
+      "id": "ta_ssd_drives",
+      "name": { "en": "Solid State Drives (SSDs)", "bn": "সলিড স্টেট ড্রাইভ (এসএসডি)" },
+      "category": { "en": "ICT & Digital Electronics", "bn": "আইসিটি ও ডিজিটাল ইলেকট্রনিক্স" },
+      "direction": "decrease",
+      "adjustment": { "en": "Regulatory duty, supplementary duty, and VAT fully withdrawn (5% standard import duty retained)", "bn": "নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ভ্যাট সম্পূর্ণ প্রত্যাহার (৫% মানক আমদানি শুল্ক বজায়)" },
+      "prior_rate": { "en": "5% import duty + regulatory duty + supplementary duty + 15% VAT", "bn": "৫% আমদানি শুল্ক + নিয়ন্ত্রণমূলক শুল্ক + সম্পূরক শুল্ক + ১৫% ভ্যাট" },
+      "new_rate": { "en": "5% standard import duty only — all other charges withdrawn", "bn": "শুধুমাত্র ৫% মানক আমদানি শুল্ক — অন্য সব চার্জ প্রত্যাহার" },
+      "description": { "en": "Solid State Drives — the primary storage hardware for modern computing devices — have received comprehensive tax relief in the FY 2026-27 budget. The government has withdrawn the regulatory duty, supplementary duty, and the full 15% VAT on SSD imports. Only the standard 5% customs import duty is retained. This significantly reduces the landed cost of SSDs in Bangladesh, benefiting PC builders, laptop repair technicians, cloud infrastructure operators, and individual consumers who upgrade their storage hardware. Combined with the full tax removal on computers, this policy suite aims to dramatically lower the total cost of digital infrastructure ownership in Bangladesh.", "bn": "সলিড স্টেট ড্রাইভ — আধুনিক কম্পিউটিং ডিভাইসের প্রাথমিক স্টোরেজ হার্ডওয়্যার — অর্থবছর ২০২৬-২৭ বাজেটে ব্যাপক কর ছাড় পেয়েছে। সরকার এসএসডি আমদানিতে নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং পূর্ণ ১৫% ভ্যাট প্রত্যাহার করেছে।" }
+    },
+    {
+      "id": "ta_sim_tax_mobile",
+      "name": { "en": "Mobile Services & Telecom — SIM Card Tax & Withholding Tax", "bn": "মোবাইল সেবা ও টেলিকম — সিম কার্ড ট্যাক্স ও উৎস কর" },
+      "category": { "en": "Telecommunications & Mobile", "bn": "টেলিযোগাযোগ ও মোবাইল" },
+      "direction": "decrease",
+      "adjustment": { "en": "BDT 300 SIM card tax fully withdrawn; mobile service withholding tax cut from 12% to 10%", "bn": "৩০০ টাকা সিম কার্ড ট্যাক্স সম্পূর্ণ প্রত্যাহার; মোবাইল সেবার উৎস কর ১২% থেকে ১০%-এ হ্রাস" },
+      "prior_rate": { "en": "BDT 300 SIM card issuance tax; 12% withholding tax on mobile network service bills", "bn": "৩০০ টাকা সিম কার্ড ইস্যু ট্যাক্স; মোবাইল নেটওয়ার্ক সেবা বিলে ১২% উৎস কর" },
+      "new_rate": { "en": "BDT 0 SIM card tax (fully withdrawn); 10% withholding tax on mobile network services", "bn": "০ টাকা সিম কার্ড ট্যাক্স (সম্পূর্ণ প্রত্যাহার); মোবাইল নেটওয়ার্ক সেবায় ১০% উৎস কর" },
+      "description": { "en": "The long-criticised BDT 300 SIM card issuance tax has been completely withdrawn, eliminating a barrier to mobile connectivity that disproportionately affected first-time mobile subscribers in rural and low-income segments. Simultaneously, the withholding tax on mobile network service bills — paid by operators on airtime revenue — has been reduced from 12% to 10%. These twin measures are expected to reduce effective mobile service costs for end users, boost mobile penetration in underserved areas, support the government's Digital Bangladesh goals, and improve the financial viability of mobile network operators investing in rural 4G and 5G infrastructure expansion.", "bn": "দীর্ঘদিন সমালোচিত ৩০০ টাকার সিম কার্ড ইস্যু ট্যাক্স সম্পূর্ণরূপে প্রত্যাহার করা হয়েছে, যা গ্রামীণ ও নিম্ন-আয়ের বিভাগে প্রথমবার মোবাইল গ্রাহকদের উপর অসামঞ্জস্যপূর্ণভাবে প্রভাব ফেলেছিল মোবাইল সংযোগের বাধা দূর করেছে।" }
+    },
+    {
+      "id": "ta_freelancing_tax",
+      "name": { "en": "Digital Freelancing & Content Creation Income", "bn": "ডিজিটাল ফ্রিল্যান্সিং ও কন্টেন্ট ক্রিয়েশন আয়" },
+      "category": { "en": "Digital Economy & Income Tax", "bn": "ডিজিটাল অর্থনীতি ও আয়কর" },
+      "direction": "decrease",
+      "adjustment": { "en": "Complete income tax exemption extended across all freelancing categories and digital content streams", "bn": "সকল ফ্রিল্যান্সিং বিভাগ এবং ডিজিটাল কন্টেন্ট স্ট্রিমে সম্পূর্ণ আয়কর অব্যাহতি বর্ধিত" },
+      "prior_rate": { "en": "Income tax applicable on freelancing income above standard exemption threshold (BDT 3,50,000)", "bn": "মানক অব্যাহতি সীমার উপরে ফ্রিল্যান্সিং আয়ে আয়কর প্রযোজ্য (৩,৫০,০০০ টাকা)" },
+      "new_rate": { "en": "Full income tax exemption on all freelancing and digital content creation earnings — no upper income cap", "bn": "সকল ফ্রিল্যান্সিং ও ডিজিটাল কন্টেন্ট ক্রিয়েশন আয়ে সম্পূর্ণ আয়কর অব্যাহতি — কোনো উপরের আয় সীমা নেই" },
+      "description": { "en": "In a landmark policy for Bangladesh's rapidly expanding digital workforce, the Finance Act 2026-27 grants a complete income tax exemption on all income derived from freelancing services and digital content creation. This exemption covers all categories — software development, UI/UX design, copywriting, video production, digital marketing, consulting, data science, and all digital content monetisation platforms. There is no upper income ceiling on this exemption, meaning even high-earning freelancers qualify. The policy explicitly aims to retain digital talent within Bangladesh, reduce capital flight through informal remittance channels, attract offshore digital work contracts, and make Bangladesh the preferred freelancing hub in South Asia.", "bn": "বাংলাদেশের দ্রুত সম্প্রসারিত ডিজিটাল কর্মশক্তির জন্য একটি ঐতিহাসিক নীতিতে, অর্থ আইন ২০২৬-২৭ ফ্রিল্যান্সিং সেবা এবং ডিজিটাল কন্টেন্ট ক্রিয়েশন থেকে প্রাপ্ত সকল আয়ে সম্পূর্ণ আয়কর অব্যাহতি প্রদান করে।" }
+    },
+    {
+      "id": "ta_essential_60",
+      "name": { "en": "60 Essential Commodities — Source Tax (Withholding)", "bn": "৬০টি নিত্যপ্রয়োজনীয় পণ্য — উৎস কর (উইথহোল্ডিং)" },
+      "category": { "en": "Essential Food & Agriculture", "bn": "নিত্যপ্রয়োজনীয় খাদ্য ও কৃষি" },
+      "direction": "decrease",
+      "adjustment": { "en": "Source tax slashed: 2%–5% → uniform 0.5% across all 60 essential commodities", "bn": "উৎস কর হ্রাস: ২%–৫% → ৬০টি নিত্যপ্রয়োজনীয় পণ্যে অভিন্ন ০.৫%" },
+      "prior_rate": { "en": "Variable source tax rates of 2%–5% applied at trade and import stages", "bn": "বাণিজ্য ও আমদানি পর্যায়ে ২%–৫% পরিবর্তনশীল উৎস কর হার প্রযোজ্য" },
+      "new_rate": { "en": "0.5% flat source tax on all 60 essential commodities (including baby food, rice, pulses, wheat, potato, onion, garlic, ginger, edible oil, sugar, salt)", "bn": "৬০টি নিত্যপ্রয়োজনীয় পণ্যে ০.৫% ফ্ল্যাট উৎস কর (শিশু খাদ্য, চাল, ডাল, গম, আলু, পেঁয়াজ, রসুন, আদা, ভোজ্যতেল, চিনি, লবণসহ)" },
+      "description": { "en": "A sweeping reduction in withholding tax (source tax) has been enacted covering 60 designated essential commodities. The previously variable source tax rates of 2% to 5% — applied at the point of import or trade — have been replaced with a uniform flat rate of just 0.5% across all 60 commodities. The affected items include foundational food staples: baby food and infant formula, rice, pulses (lentils, chickpeas), wheat and wheat flour, potatoes, onions, garlic, ginger, edible oils (soybean, palm, mustard), sugar, and salt. This directly reduces supply chain taxation on the most price-sensitive goods in the household consumption basket, with the explicit goal of moderating food price inflation for low and middle-income Bangladeshi families.", "bn": "৬০টি মনোনীত নিত্যপ্রয়োজনীয় পণ্যকে কভার করে উৎস কর (উইথহোল্ডিং ট্যাক্স)-এ ব্যাপক হ্রাস কার্যকর করা হয়েছে। আগের পরিবর্তনশীল উৎস কর হার ২% থেকে ৫% — আমদানি বা বাণিজ্যের বিন্দুতে প্রযোজ্য — সকল ৬০টি পণ্যে মাত্র ০.৫%-এর একটি অভিন্ন ফ্ল্যাট হার দিয়ে প্রতিস্থাপিত হয়েছে।" }
+    },
+    {
+      "id": "ta_medical_supplies",
+      "name": { "en": "Medical Supplies — Dialysis Filters, Heart Stents, Eye Lenses", "bn": "চিকিৎসা সামগ্রী — ডায়ালাইসিস ফিল্টার, হার্ট স্টেন্ট, চোখের লেন্স" },
+      "category": { "en": "Healthcare & Medical Devices", "bn": "স্বাস্থ্যসেবা ও চিকিৎসা সরঞ্জাম" },
+      "direction": "decrease",
+      "adjustment": { "en": "Complete withdrawal of all duties and VAT on kidney dialysis filters, heart stents, and eye lenses", "bn": "কিডনি ডায়ালাইসিস ফিল্টার, হার্ট স্টেন্ট এবং চোখের লেন্সে সকল শুল্ক ও ভ্যাট সম্পূর্ণ প্রত্যাহার" },
+      "prior_rate": { "en": "Customs duty + regulatory duty + supplementary duty + 15% VAT applicable on medical device imports", "bn": "চিকিৎসা সরঞ্জাম আমদানিতে কাস্টমস শুল্ক + নিয়ন্ত্রণমূলক শুল্ক + সম্পূরক শুল্ক + ১৫% ভ্যাট প্রযোজ্য" },
+      "new_rate": { "en": "0% — Full duty and VAT exemption on kidney dialysis filters, cardiac stents, and intraocular lenses", "bn": "০% — কিডনি ডায়ালাইসিস ফিল্টার, কার্ডিয়াক স্টেন্ট এবং ইন্ট্রাওকুলার লেন্সে সম্পূর্ণ শুল্ক ও ভ্যাট অব্যাহতি" },
+      "description": { "en": "In a compassionate and medically critical policy move, the Finance Act 2026-27 has completely withdrawn all import duties, regulatory duties, supplementary duties, and the 15% VAT from three categories of life-critical medical products: kidney dialysis filters (haemodialysis membranes), coronary and peripheral heart stents, and intraocular lenses used in cataract and refractive eye surgery. These products are not manufactured locally in Bangladesh and must be 100% imported. The tax removal directly reduces the treatment cost for patients suffering from chronic kidney disease — one of Bangladesh's fastest-growing non-communicable disease burdens — as well as cardiovascular disease patients and those undergoing ophthalmic procedures.", "bn": "একটি সহানুভূতিশীল এবং চিকিৎসাগতভাবে সমালোচনামূলক নীতি পদক্ষেপে, অর্থ আইন ২০২৬-২৭ তিনটি বিভাগের জীবন-সমালোচক চিকিৎসা পণ্য থেকে সকল আমদানি শুল্ক, নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ১৫% ভ্যাট সম্পূর্ণরূপে প্রত্যাহার করেছে।" }
+    },
+    {
+      "id": "ta_ev_chargers",
+      "name": { "en": "Electric Vehicle (EV) Chargers & Public Charging Stations", "bn": "বৈদ্যুতিক যানবাহন (ইভি) চার্জার ও পাবলিক চার্জিং স্টেশন" },
+      "category": { "en": "Green Energy & Electric Vehicles", "bn": "সবুজ জ্বালানি ও বৈদ্যুতিক যানবাহন" },
+      "direction": "decrease",
+      "adjustment": { "en": "Full withdrawal of existing 39.75% cumulative tax burden on EV chargers and public charging infrastructure", "bn": "ইভি চার্জার ও পাবলিক চার্জিং অবকাঠামোতে বিদ্যমান ৩৯.৭৫% ক্রমবর্ধমান কর বোঝা সম্পূর্ণ প্রত্যাহার" },
+      "prior_rate": { "en": "~39.75% total cumulative tax on EV charging equipment including import duty, regulatory duty, supplementary duty, and VAT", "bn": "ইভি চার্জিং সরঞ্জামে ~৩৯.৭৫% মোট ক্রমবর্ধমান কর, আমদানি শুল্ক, নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ভ্যাটসহ" },
+      "new_rate": { "en": "0% — All taxes fully withdrawn from EV chargers and public EV charging station equipment", "bn": "০% — ইভি চার্জার ও পাবলিক ইভি চার্জিং স্টেশন সরঞ্জাম থেকে সকল কর সম্পূর্ণ প্রত্যাহার" },
+      "description": { "en": "The full 39.75% cumulative tax burden — comprising import duty, regulatory duty, supplementary duty, and VAT — has been completely withdrawn from all electric vehicle charger units and public EV charging station equipment. This creates a tax-free operating environment for the development of Bangladesh's EV charging infrastructure network. The policy directly complements the increased ICE vehicle taxation introduced in the same budget, creating a coherent fiscal push-and-pull strategy to incentivise EV adoption. It signals the government's commitment to a long-term green transport transition and is expected to catalyse private sector investment in EV charging networks across Dhaka, Chittagong, and major urban corridors.", "bn": "বৈদ্যুতিক যানবাহন চার্জার ইউনিট এবং পাবলিক ইভি চার্জিং স্টেশন সরঞ্জাম থেকে পূর্ণ ৩৯.৭৫% ক্রমবর্ধমান কর বোঝা — আমদানি শুল্ক, নিয়ন্ত্রণমূলক শুল্ক, সম্পূরক শুল্ক এবং ভ্যাটসহ — সম্পূর্ণরূপে প্রত্যাহার করা হয়েছে।" }
+    },
+    {
+      "id": "ta_betel_nuts",
+      "name": { "en": "Betel Nuts (Areca Nuts) — Import", "bn": "সুপারি (আরেকা নাট) — আমদানি" },
+      "category": { "en": "Agriculture & Food Commodities", "bn": "কৃষি ও খাদ্য পণ্য" },
+      "direction": "increase",
+      "adjustment": { "en": "Import tariff and supplementary duty increased to protect domestic betel cultivation", "bn": "দেশীয় সুপারি চাষ রক্ষায় আমদানি শুল্ক ও সম্পূরক শুল্ক বৃদ্ধি" },
+      "prior_rate": { "en": "Standard customs duty applicable on imported betel nuts", "bn": "আমদানিকৃত সুপারিতে মানক কাস্টমস শুল্ক প্রযোজ্য" },
+      "new_rate": { "en": "Enhanced customs and supplementary duty framework on imported betel/areca nuts", "bn": "আমদানিকৃত সুপারি/আরেকা নাটে উন্নত কাস্টমস ও সম্পূরক শুল্ক কাঠামো" },
+      "description": { "en": "Import duties and supplementary duties on betel nuts (areca nuts) have been raised to protect domestic betel cultivation, which is a significant livelihood source for smallholder farmers in Barisal, Khulna, and Chittagong divisions. Cheap imported betel nuts — primarily from India and Myanmar — had been undercutting locally grown produce, damaging the income of hundreds of thousands of farming households. The enhanced tariff wall is designed to restore pricing competitiveness for Bangladeshi betel farmers and sustain this traditional agricultural sector.", "bn": "সুপারি (আরেকা নাট)-এর আমদানি শুল্ক ও সম্পূরক শুল্ক বাড়ানো হয়েছে দেশীয় সুপারি চাষ রক্ষায়, যা বরিশাল, খুলনা এবং চট্টগ্রাম বিভাগে ক্ষুদ্র কৃষকদের জন্য একটি উল্লেখযোগ্য জীবিকার উৎস।" }
+    },
+    {
+      "id": "ta_sugar_confectionery",
+      "name": { "en": "Sugar Confectionery & Ready-Made Food Imports", "bn": "চিনি মিষ্টান্ন ও তৈরি খাবার আমদানি" },
+      "category": { "en": "Processed Food & Beverages", "bn": "প্রক্রিয়াজাত খাদ্য ও পানীয়" },
+      "direction": "increase",
+      "adjustment": { "en": "Customs duty and regulatory duty increased on sugar-based confectionery and imported ready-made food products", "bn": "চিনি-ভিত্তিক মিষ্টান্ন ও আমদানিকৃত তৈরি খাবারে কাস্টমস শুল্ক ও নিয়ন্ত্রণমূলক শুল্ক বৃদ্ধি" },
+      "prior_rate": { "en": "Moderate customs duty on confectionery imports", "bn": "মিষ্টান্ন আমদানিতে মাঝারি কাস্টমস শুল্ক" },
+      "new_rate": { "en": "Higher customs and regulatory duty tiers on sugar confectionery and ready-to-eat imported food", "bn": "চিনি মিষ্টান্ন ও রেডি-টু-ইট আমদানিকৃত খাবারে উচ্চ কাস্টমস ও নিয়ন্ত্রণমূলক শুল্ক স্তর" },
+      "description": { "en": "Import tariffs on sugar confectionery products — including imported candies, chocolates, packaged sweets, biscuits, and ready-made food items — have been increased through higher customs duty and regulatory duty tiers. This move serves a dual objective: generating revenue while simultaneously protecting Bangladesh's growing domestic confectionery and food processing manufacturing sector, which has made significant investments in production capacity over recent years. The measure also aligns with nutritional health objectives by disincentivising consumption of imported high-sugar processed foods.", "bn": "চিনি মিষ্টান্ন পণ্যে আমদানি শুল্ক — আমদানিকৃত ক্যান্ডি, চকোলেট, প্যাকেজড মিষ্টি, বিস্কুট এবং তৈরি খাবারসহ — উচ্চ কাস্টমস শুল্ক এবং নিয়ন্ত্রণমূলক শুল্ক স্তরের মাধ্যমে বাড়ানো হয়েছে।" }
+    },
+    {
+      "id": "ta_pos_machines",
+      "name": { "en": "POS Machines & Payment Terminal Devices", "bn": "পিওএস মেশিন ও পেমেন্ট টার্মিনাল ডিভাইস" },
+      "category": { "en": "Financial Technology & Payments", "bn": "আর্থিক প্রযুক্তি ও পেমেন্ট" },
+      "direction": "decrease",
+      "adjustment": { "en": "Import duty and regulatory duty reduced significantly on POS machines and merchant payment terminals", "bn": "পিওএস মেশিন ও মার্চেন্ট পেমেন্ট টার্মিনালে আমদানি শুল্ক ও নিয়ন্ত্রণমূলক শুল্ক উল্লেখযোগ্যভাবে হ্রাস" },
+      "prior_rate": { "en": "Standard import duty + regulatory duty on POS and payment terminal imports", "bn": "পিওএস ও পেমেন্ট টার্মিনাল আমদানিতে মানক আমদানি শুল্ক + নিয়ন্ত্রণমূলক শুল্ক" },
+      "new_rate": { "en": "Reduced import duty and regulatory duty on POS machines to accelerate digital payment adoption", "bn": "ডিজিটাল পেমেন্ট গ্রহণ ত্বরান্বিত করতে পিওএস মেশিনে হ্রাসকৃত আমদানি শুল্ক ও নিয়ন্ত্রণমূলক শুল্ক" },
+      "description": { "en": "Import duty and regulatory duty on Point-of-Sale (POS) machines and merchant payment terminal devices have been meaningfully reduced to incentivise broader adoption of formal digital payment acceptance by small and medium businesses across Bangladesh. The high cost of POS terminal hardware had been one of the primary barriers preventing small retailers, restaurants, and service businesses from accepting card and mobile financial service payments. Lowering the import cost directly reduces the hardware investment threshold for merchants, accelerating the formalisation of retail transactions and expanding the taxable economy.", "bn": "পয়েন্ট-অব-সেল (পিওএস) মেশিন এবং মার্চেন্ট পেমেন্ট টার্মিনাল ডিভাইসে আমদানি শুল্ক ও নিয়ন্ত্রণমূলক শুল্ক বাংলাদেশ জুড়ে ক্ষুদ্র ও মাঝারি ব্যবসায়িক প্রতিষ্ঠান দ্বারা আনুষ্ঠানিক ডিজিটাল পেমেন্ট গ্রহণকে উৎসাহিত করতে উল্লেখযোগ্যভাবে হ্রাস করা হয়েছে।" }
+    }
+  ],
   "revenue_breakdown": [
     {
       "id": "direct_income_tax",
@@ -68,7 +252,7 @@
     {
       "id": "vat_import_duties",
       "category": { "en": "VAT & Import Duties (NBR)", "bn": "ভ্যাট ও আমদানি শুল্ক (এনবিআর)" },
-      "value_bdt_crore": 300000,
+      "value_bdt_crore": 228755,
       "description": { "en": "Value Added Tax on domestic supply chains, supplementary duties on luxury imports, and customs duties at all entry ports.", "bn": "অভ্যন্তরীণ সাপ্লাই চেইনে মূল্য সংযোজন কর, বিলাসবহুল আমদানিতে সম্পূরক শুল্ক এবং সকল প্রবেশ বন্দরে কাস্টমস শুল্ক।" }
     },
     {
@@ -110,7 +294,7 @@
       "ministry": { "en": "Interest Payments on Public Debt", "bn": "সরকারি ঋণের সুদ পরিশোধ" },
       "sector": { "en": "Public Debt Service", "bn": "সরকারি ঋণ সেবা" },
       "value_bdt_crore": 113500,
-      "description": { "en": "Obligatory interest service on all domestic and foreign public debt obligations — savings certificates, treasury bonds, foreign currency loans — constituting the single largest non-discretionary expenditure line in the budget.", "bn": "সঞ্চয়পত্র, ট্রেজারি বন্ড, বৈদেশিক মুদ্রা ঋণসহ সকল অভ্যন্তরীণ ও বৈদেশিক সরকারি ঋণের বাধ্যতামূলক সুদ পরিশোধ — বাজেটে সর্ববৃহৎ বিবেচনামূলক নয় এমন ব্যয় খাত।" }
+      "description": { "en": "Obligatory interest service on all domestic and foreign public debt obligations — savings certificates, treasury bonds, foreign currency loans — constituting the single largest non-discretionary expenditure line in the budget.", "bn": "সঞ্চয়পত্র, ট্রেজারি বন্ড, বৈদেশিক মুদ্রা ঋণসহ সকল অভ্যন্তরীণ ও বৈদেশিক সরকারি ঋণের বাধ্যতামূলক সুদ পরিশোধ।" }
     },
     {
       "id": "min_lgrd",
@@ -124,272 +308,244 @@
       "ministry": { "en": "Ministry of Education (Secondary & Higher)", "bn": "শিক্ষা মন্ত্রণালয় (মাধ্যমিক ও উচ্চশিক্ষা)" },
       "sector": { "en": "Education", "bn": "শিক্ষা" },
       "value_bdt_crore": 44108,
-      "description": { "en": "Secondary school infrastructure expansion including digital lab rollouts, university grants commission disbursements, technical and vocational training institutes, competitive research endowments, and teacher competency development frameworks.", "bn": "ডিজিটাল ল্যাব স্থাপনসহ মাধ্যমিক বিদ্যালয়ের অবকাঠামো সম্প্রসারণ, বিশ্ববিদ্যালয় মঞ্জুরি কমিশনের বিতরণ, কারিগরি ও বৃত্তিমূলক প্রশিক্ষণ প্রতিষ্ঠান, প্রতিযোগিতামূলক গবেষণা তহবিল এবং শিক্ষক সক্ষমতা উন্নয়ন কাঠামো।" }
+      "description": { "en": "Secondary school infrastructure expansion including digital lab rollouts, university grants commission disbursements, technical and vocational training institutes, competitive research endowments, and teacher competency development frameworks.", "bn": "ডিজিটাল ল্যাব স্থাপনসহ মাধ্যমিক বিদ্যালয়ের অবকাঠামো সম্প্রসারণ, বিশ্ববিদ্যালয় মঞ্জুরি কমিশনের বিতরণ এবং শিক্ষক সক্ষমতা উন্নয়ন কাঠামো।" }
     },
     {
       "id": "min_defence",
       "ministry": { "en": "Ministry of Defence", "bn": "প্রতিরক্ষা মন্ত্রণালয়" },
       "sector": { "en": "Defense and Security", "bn": "প্রতিরক্ষা ও নিরাপত্তা" },
       "value_bdt_crore": 42497,
-      "description": { "en": "Core defence infrastructure, barracks modernisation, operational logistics and fuel costs, strategic procurement of hardware and communication systems for the Bangladesh Army, Navy, and Air Force. Covers salary and pension obligations for active and retired personnel.", "bn": "মূল প্রতিরক্ষা অবকাঠামো, ব্যারাক আধুনিকীকরণ, পরিচালন সরবরাহ ও জ্বালানি ব্যয়, বাংলাদেশ সেনা, নৌ ও বিমান বাহিনীর হার্ডওয়্যার ও যোগাযোগ ব্যবস্থার কৌশলগত সংগ্রহ। সক্রিয় ও অবসরপ্রাপ্ত কর্মীদের বেতন ও পেনশন বাধ্যবাধকতা অন্তর্ভুক্ত।" }
+      "description": { "en": "Core defence infrastructure, barracks modernisation, operational logistics and fuel costs, strategic procurement of hardware and communication systems for the Bangladesh Army, Navy, and Air Force.", "bn": "মূল প্রতিরক্ষা অবকাঠামো, ব্যারাক আধুনিকীকরণ, পরিচালন সরবরাহ ও জ্বালানি ব্যয় এবং বাংলাদেশ সেনা, নৌ ও বিমান বাহিনীর হার্ডওয়্যার ও যোগাযোগ ব্যবস্থার কৌশলগত সংগ্রহ।" }
     },
     {
       "id": "min_health",
       "ministry": { "en": "Ministry of Health & Family Welfare", "bn": "স্বাস্থ্য ও পরিবার কল্যাণ মন্ত্রণালয়" },
       "sector": { "en": "Health", "bn": "স্বাস্থ্য" },
       "value_bdt_crore": 41407,
-      "description": { "en": "Public hospital service delivery, community clinic network operations and expansion, expanded programme on immunisation (EPI), essential medicines procurement, family planning services, digital health infrastructure, and medical education capacity upgrades.", "bn": "পাবলিক হাসপাতাল সেবা প্রদান, কমিউনিটি ক্লিনিক নেটওয়ার্ক পরিচালনা ও সম্প্রসারণ, সম্প্রসারিত টিকাদান কর্মসূচি, প্রয়োজনীয় ওষুধ সংগ্রহ, পরিবার পরিকল্পনা সেবা, ডিজিটাল স্বাস্থ্য অবকাঠামো এবং চিকিৎসা শিক্ষার সক্ষমতা উন্নয়ন।" }
+      "description": { "en": "Public hospital service delivery, community clinic network operations and expansion, expanded programme on immunisation (EPI), essential medicines procurement, family planning services, digital health infrastructure, and medical education capacity upgrades.", "bn": "পাবলিক হাসপাতাল সেবা প্রদান, কমিউনিটি ক্লিনিক নেটওয়ার্ক পরিচালনা ও সম্প্রসারণ, সম্প্রসারিত টিকাদান কর্মসূচি এবং ডিজিটাল স্বাস্থ্য অবকাঠামো।" }
     },
     {
       "id": "min_education_primary",
       "ministry": { "en": "Ministry of Primary & Mass Education", "bn": "প্রাথমিক ও গণশিক্ষা মন্ত্রণালয়" },
       "sector": { "en": "Education", "bn": "শিক্ষা" },
       "value_bdt_crore": 38493,
-      "description": { "en": "Primary school construction and renovation, teacher salary disbursements, Primary Education Stipend Programme (PESP), mid-day meal scheme rollout, digital classroom deployment, and literacy drives targeting out-of-school children.", "bn": "প্রাথমিক বিদ্যালয় নির্মাণ ও সংস্কার, শিক্ষকদের বেতন প্রদান, প্রাথমিক শিক্ষা উপবৃত্তি কার্যক্রম, মিড-ডে মিল স্কিম চালু, ডিজিটাল ক্লাসরুম স্থাপন এবং বিদ্যালয়বহির্ভূত শিশুদের লক্ষ্য করে সাক্ষরতা কার্যক্রম।" }
+      "description": { "en": "Primary school construction and renovation, teacher salary disbursements, Primary Education Stipend Programme (PESP), mid-day meal scheme rollout, digital classroom deployment, and literacy drives targeting out-of-school children.", "bn": "প্রাথমিক বিদ্যালয় নির্মাণ ও সংস্কার, শিক্ষকদের বেতন প্রদান এবং ডিজিটাল ক্লাসরুম স্থাপন।" }
     },
     {
       "id": "min_agriculture",
       "ministry": { "en": "Ministry of Agriculture", "bn": "কৃষি মন্ত্রণালয়" },
       "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
       "value_bdt_crore": 35989,
-      "description": { "en": "Agricultural input subsidies (fertiliser, seed, pesticide), Bangladesh Agricultural Research Institute grants, irrigation infrastructure expansion, crop insurance scheme premiums, agricultural extension services, and mechanisation support for smallholder farmers.", "bn": "কৃষি উপকরণ ভর্তুকি (সার, বীজ, কীটনাশক), বাংলাদেশ কৃষি গবেষণা ইনস্টিটিউট মঞ্জুরি, সেচ অবকাঠামো সম্প্রসারণ, ফসল বিমা স্কিমের প্রিমিয়াম, কৃষি সম্প্রসারণ সেবা এবং ক্ষুদ্র কৃষকদের যান্ত্রিকীকরণ সহায়তা।" }
+      "description": { "en": "Agricultural input subsidies (fertiliser, seed, pesticide), Bangladesh Agricultural Research Institute grants, irrigation infrastructure expansion, crop insurance scheme premiums, agricultural extension services, and mechanisation support for smallholder farmers.", "bn": "কৃষি উপকরণ ভর্তুকি, বাংলাদেশ কৃষি গবেষণা ইনস্টিটিউট মঞ্জুরি এবং ক্ষুদ্র কৃষকদের যান্ত্রিকীকরণ সহায়তা।" }
     },
     {
       "id": "min_roads",
       "ministry": { "en": "Road Transport & Highways Division", "bn": "সড়ক পরিবহন ও মহাসড়ক বিভাগ" },
       "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
       "value_bdt_crore": 34618,
-      "description": { "en": "National and regional highway construction and rehabilitation, bridge preventive maintenance, road safety engineering improvements, traffic management systems, and Highway Police operational support.", "bn": "জাতীয় ও আঞ্চলিক মহাসড়ক নির্মাণ ও পুনর্বাসন, সেতুর প্রতিরোধমূলক রক্ষণাবেক্ষণ, সড়ক নিরাপত্তা প্রকৌশল উন্নতি, যানজট ব্যবস্থাপনা পদ্ধতি এবং হাইওয়ে পুলিশ পরিচালন সহায়তা।" }
+      "description": { "en": "National and regional highway construction and rehabilitation, bridge preventive maintenance, road safety engineering improvements, traffic management systems, and Highway Police operational support.", "bn": "জাতীয় ও আঞ্চলিক মহাসড়ক নির্মাণ ও পুনর্বাসন এবং সড়ক নিরাপত্তা প্রকৌশল উন্নতি।" }
     },
     {
       "id": "min_power",
       "ministry": { "en": "Power Division", "bn": "বিদ্যুৎ বিভাগ" },
       "sector": { "en": "Energy & Power", "bn": "জ্বালানি ও বিদ্যুৎ" },
       "value_bdt_crore": 30869,
-      "description": { "en": "Power generation capacity expansion through new plants, national grid modernisation and loss reduction, rural electrification extension, solar home system subsidies, and strategic renewable energy transition capital investments.", "bn": "নতুন প্ল্যান্টের মাধ্যমে বিদ্যুৎ উৎপাদন সক্ষমতা সম্প্রসারণ, জাতীয় গ্রিড আধুনিকীকরণ ও ক্ষতি হ্রাস, পল্লী বিদ্যুতায়ন সম্প্রসারণ, সোলার হোম সিস্টেম ভর্তুকি এবং নবায়নযোগ্য জ্বালানি রূপান্তরে কৌশলগত মূলধন বিনিয়োগ।" }
+      "description": { "en": "Power generation capacity expansion through new plants, national grid modernisation and loss reduction, rural electrification extension, solar home system subsidies, and strategic renewable energy transition capital investments.", "bn": "নতুন প্ল্যান্টের মাধ্যমে বিদ্যুৎ উৎপাদন সক্ষমতা সম্প্রসারণ এবং নবায়নযোগ্য জ্বালানি রূপান্তরে কৌশলগত মূলধন বিনিয়োগ।" }
     },
     {
       "id": "min_home",
       "ministry": { "en": "Ministry of Home Affairs", "bn": "স্বরাষ্ট্র মন্ত্রণালয়" },
       "sector": { "en": "Defense and Security", "bn": "প্রতিরক্ষা ও নিরাপত্তা" },
       "value_bdt_crore": 29114,
-      "description": { "en": "Bangladesh Police and Rapid Action Battalion operational costs, border security forces (BGB) logistics, immigration and passport directorate operations, correctional services and prison administration, and national disaster response pre-positioning.", "bn": "বাংলাদেশ পুলিশ ও র‌্যাপিড অ্যাকশন ব্যাটালিয়নের পরিচালন ব্যয়, সীমান্ত নিরাপত্তা বাহিনী সরবরাহ, অভিবাসন ও পাসপোর্ট অধিদপ্তর পরিচালনা, সংশোধনমূলক সেবা ও কারাগার প্রশাসন এবং জাতীয় দুর্যোগ সাড়াদান পূর্বস্থাপনা।" }
+      "description": { "en": "Bangladesh Police and Rapid Action Battalion operational costs, border security forces (BGB) logistics, immigration and passport directorate operations, correctional services and prison administration.", "bn": "বাংলাদেশ পুলিশ ও র‌্যাপিড অ্যাকশন ব্যাটালিয়নের পরিচালন ব্যয় এবং সীমান্ত নিরাপত্তা বাহিনী সরবরাহ।" }
     },
     {
       "id": "min_finance_div",
       "ministry": { "en": "Finance Division", "bn": "অর্থ বিভাগ" },
       "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
       "value_bdt_crore": 19857,
-      "description": { "en": "Public financial management systems, macroeconomic policy advisory, inter-governmental fiscal transfers, civil service pension administration, treasury operations, and government payroll disbursement infrastructure.", "bn": "সরকারি আর্থিক ব্যবস্থাপনা পদ্ধতি, সামষ্টিক অর্থনৈতিক নীতি উপদেষ্টা, আন্তঃসরকারি আর্থিক স্থানান্তর, বেসামরিক সেবা পেনশন প্রশাসন, কোষাগার পরিচালনা এবং সরকারি বেতন প্রদান অবকাঠামো।" }
+      "description": { "en": "Public financial management systems, macroeconomic policy advisory, inter-governmental fiscal transfers, civil service pension administration, treasury operations, and government payroll disbursement infrastructure.", "bn": "সরকারি আর্থিক ব্যবস্থাপনা পদ্ধতি, সামষ্টিক অর্থনৈতিক নীতি উপদেষ্টা এবং কোষাগার পরিচালনা।" }
     },
     {
       "id": "min_railways",
       "ministry": { "en": "Bangladesh Railway Division", "bn": "বাংলাদেশ রেলওয়ে বিভাগ" },
       "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
       "value_bdt_crore": 18547,
-      "description": { "en": "Railway track gauge conversion and rehabilitation, new locomotive and rolling stock procurement, Dhaka Metropolitan rapid transit connectivity, intercity express route expansion, and signal system modernisation.", "bn": "রেলপথ গেজ রূপান্তর ও পুনর্বাসন, নতুন লোকোমোটিভ ও রোলিং স্টক সংগ্রহ, ঢাকা মহানগর দ্রুত পরিবহন সংযোগ, আন্তঃনগর এক্সপ্রেস রুট সম্প্রসারণ এবং সংকেত পদ্ধতির আধুনিকীকরণ।" }
+      "description": { "en": "Railway track gauge conversion and rehabilitation, new locomotive and rolling stock procurement, Dhaka Metropolitan rapid transit connectivity, intercity express route expansion, and signal system modernisation.", "bn": "রেলপথ গেজ রূপান্তর ও পুনর্বাসন এবং ঢাকা মহানগর দ্রুত পরিবহন সংযোগ।" }
     },
     {
       "id": "min_pmo",
       "ministry": { "en": "Prime Minister's Office", "bn": "প্রধানমন্ত্রীর কার্যালয়" },
       "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
       "value_bdt_crore": 18247,
-      "description": { "en": "Executive office administrative operations, national flagship development projects under direct PMO oversight, inter-ministerial coordination secretariat, special economic zone development, and special investment facilitation programmes.", "bn": "নির্বাহী দফতরের প্রশাসনিক কার্যক্রম, পিএমও-এর সরাসরি তত্ত্বাবধানে জাতীয় ফ্ল্যাগশিপ উন্নয়ন প্রকল্প, আন্তঃমন্ত্রণালয় সমন্বয় সচিবালয়, বিশেষ অর্থনৈতিক অঞ্চল উন্নয়ন এবং বিশেষ বিনিয়োগ সুবিধা কার্যক্রম।" }
-    },
-    {
-      "id": "min_housing",
-      "ministry": { "en": "Ministry of Housing & Public Works", "bn": "গৃহায়ন ও গণপূর্ত মন্ত্রণালয়" },
-      "sector": { "en": "Local Government & Rural Dev.", "bn": "স্থানীয় সরকার ও পল্লী উন্নয়ন" },
-      "value_bdt_crore": 12894,
-      "description": { "en": "Affordable housing scheme construction for low-income families, government office building maintenance and new construction, utility infrastructure procurement, and slum upgrading and urban poverty alleviation initiatives.", "bn": "নিম্ন আয়ের পরিবারের জন্য সাশ্রয়ী মূল্যের আবাসন নির্মাণ, সরকারি অফিস ভবনের রক্ষণাবেক্ষণ ও নতুন নির্মাণ, ইউটিলিটি অবকাঠামো সংগ্রহ এবং বস্তি উন্নয়ন ও নগর দারিদ্র্য বিমোচন উদ্যোগ।" }
-    },
-    {
-      "id": "min_water",
-      "ministry": { "en": "Ministry of Water Resources", "bn": "পানি সম্পদ মন্ত্রণালয়" },
-      "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
-      "value_bdt_crore": 10983,
-      "description": { "en": "Flood control embankment construction and maintenance, tidal river management, coastal polders and saline intrusion prevention, river dredging for navigability, and integrated water resource management policy implementation.", "bn": "বন্যা নিয়ন্ত্রণ বাঁধ নির্মাণ ও রক্ষণাবেক্ষণ, জোয়ার-ভাটা নদী ব্যবস্থাপনা, উপকূলীয় পোল্ডার ও লবণাক্ততা অনুপ্রবেশ প্রতিরোধ, নৌচলাচলযোগ্যতার জন্য নদী খনন এবং সমন্বিত পানি সম্পদ ব্যবস্থাপনা নীতি বাস্তবায়ন।" }
-    },
-    {
-      "id": "min_disaster",
-      "ministry": { "en": "Ministry of Disaster Management & Relief", "bn": "দুর্যোগ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয়" },
-      "sector": { "en": "Social Protection", "bn": "সামাজিক সুরক্ষা" },
-      "value_bdt_crore": 9870,
-      "description": { "en": "Cyclone shelter network construction and maintenance, flood relief and emergency food distribution logistics, drought mitigation programmes, Cyclone Preparedness Programme (CPP) operations, multi-hazard early warning systems, and strategic disaster response stockpiles.", "bn": "ঘূর্ণিঝড় আশ্রয়কেন্দ্র নেটওয়ার্ক নির্মাণ ও রক্ষণাবেক্ষণ, বন্যা ত্রাণ ও জরুরি খাদ্য বিতরণ লজিস্টিক্স, খরা প্রশমন কার্যক্রম, ঘূর্ণিঝড় প্রস্তুতি কার্যক্রম পরিচালনা, বহু-বিপদ প্রাথমিক সতর্কীকরণ পদ্ধতি এবং কৌশলগত দুর্যোগ সাড়াদানের মজুদ।" }
-    },
-    {
-      "id": "min_telecom",
-      "ministry": { "en": "Posts, Telecom & IT Division", "bn": "ডাক, টেলিযোগাযোগ ও তথ্যপ্রযুক্তি বিভাগ" },
-      "sector": { "en": "ICT & Digital", "bn": "আইসিটি ও ডিজিটাল" },
-      "value_bdt_crore": 8912,
-      "description": { "en": "National broadband expansion targeting rural and underserved areas, e-Government service delivery platform upgrades, digital identity infrastructure, cybersecurity operations centre, and information technology park development.", "bn": "গ্রামীণ ও অনুপস্থিত এলাকায় জাতীয় ব্রডব্যান্ড সম্প্রসারণ, ই-গভর্নমেন্ট সেবা প্রদান প্ল্যাটফর্ম আপগ্রেড, ডিজিটাল পরিচয় অবকাঠামো, সাইবার নিরাপত্তা অপারেশন সেন্টার এবং তথ্যপ্রযুক্তি পার্ক উন্নয়ন।" }
-    },
-    {
-      "id": "min_civil_aviation",
-      "ministry": { "en": "Ministry of Civil Aviation & Tourism", "bn": "বেসামরিক বিমান পরিবহন ও পর্যটন মন্ত্রণালয়" },
-      "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
-      "value_bdt_crore": 7845,
-      "description": { "en": "Hazrat Shahjalal and other international airport terminal expansion, Biman Bangladesh Airlines fleet recapitalisation, Cox's Bazar and regional airport upgrades, tourism infrastructure development grants, and Civil Aviation Authority regulatory capacity.", "bn": "হযরত শাহজালাল ও অন্যান্য আন্তর্জাতিক বিমানবন্দরের টার্মিনাল সম্প্রসারণ, বিমান বাংলাদেশ এয়ারলাইনসের ফ্লিট পুনর্মূলধন, কক্সবাজার ও আঞ্চলিক বিমানবন্দরের উন্নয়ন, পর্যটন অবকাঠামো উন্নয়ন মঞ্জুরি এবং বেসামরিক বিমান চলাচল কর্তৃপক্ষের নিয়ন্ত্রক সক্ষমতা।" }
-    },
-    {
-      "id": "min_food",
-      "ministry": { "en": "Ministry of Food", "bn": "খাদ্য মন্ত্রণালয়" },
-      "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
-      "value_bdt_crore": 7124,
-      "description": { "en": "Strategic grain reserve procurement and maintenance, public food silo network operations, Open Market Sales (OMS) subsidy for low-income consumers, food safety regulatory enforcement, and import logistics for emergency commodity buffers.", "bn": "কৌশলগত শস্য মজুদ সংগ্রহ ও রক্ষণাবেক্ষণ, সরকারি খাদ্য সাইলো নেটওয়ার্ক পরিচালনা, নিম্ন আয়ের ভোক্তাদের জন্য ওএমএস ভর্তুকি, খাদ্য নিরাপত্তা নিয়ন্ত্রণ প্রয়োগ এবং জরুরি পণ্যের বাফারের আমদানি লজিস্টিক্স।" }
-    },
-    {
-      "id": "min_bridges",
-      "ministry": { "en": "Bridges Division", "bn": "সেতু বিভাগ" },
-      "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
-      "value_bdt_crore": 6840,
-      "description": { "en": "Large-scale cross-river bridge projects, elevated expressway development, Padma Bridge railway link completion works, and Bangabandhu Sheikh Mujibur Rahman Tunnel operational and administrative expenses.", "bn": "বৃহৎ আকারের আন্তঃনদী সেতু প্রকল্প, উড়াল এক্সপ্রেসওয়ে উন্নয়ন, পদ্মা সেতু রেলওয়ে সংযোগ সম্পন্নকরণ এবং বঙ্গবন্ধু শেখ মুজিবুর রহমান টানেলের পরিচালন ও প্রশাসনিক ব্যয়।" }
-    },
-    {
-      "id": "min_fisheries",
-      "ministry": { "en": "Ministry of Fisheries & Livestock", "bn": "মৎস্য ও প্রাণিসম্পদ মন্ত্রণালয়" },
-      "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
-      "value_bdt_crore": 6312,
-      "description": { "en": "Aquaculture intensification and disease management research, livestock veterinary services network, deep-sea and marine fisheries management, fish processing industry cold-chain infrastructure, and hatchery technology development.", "bn": "জলজ চাষ নিবিড়করণ ও রোগ ব্যবস্থাপনা গবেষণা, প্রাণিসম্পদ পশুচিকিৎসা সেবা নেটওয়ার্ক, গভীর সমুদ্র ও সামুদ্রিক মৎস্য ব্যবস্থাপনা, মৎস্য প্রক্রিয়াকরণ শিল্পের কোল্ড চেইন অবকাঠামো এবং হ্যাচারি প্রযুক্তি উন্নয়ন।" }
-    },
-    {
-      "id": "min_bridges_rnd",
-      "ministry": { "en": "Roads & Highways Department (R&H)", "bn": "সড়ক ও জনপথ অধিদপ্তর" },
-      "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
-      "value_bdt_crore": 6203,
-      "description": { "en": "District and upazila road maintenance, rural connectivity improvement schemes, road pavement rehabilitation, and engineering survey operations for new corridor identification.", "bn": "জেলা ও উপজেলা সড়ক রক্ষণাবেক্ষণ, গ্রামীণ সংযোগ উন্নয়ন স্কিম, সড়ক পেভমেন্ট পুনর্বাসন এবং নতুন করিডোর চিহ্নিতকরণের জন্য প্রকৌশল জরিপ কার্যক্রম।" }
+      "description": { "en": "Executive office administrative operations, national flagship development projects under direct PMO oversight, inter-ministerial coordination secretariat, special economic zone development.", "bn": "নির্বাহী দফতরের প্রশাসনিক কার্যক্রম এবং পিএমও-এর সরাসরি তত্ত্বাবধানে জাতীয় ফ্ল্যাগশিপ উন্নয়ন প্রকল্প।" }
     },
     {
       "id": "min_social_welfare",
       "ministry": { "en": "Ministry of Social Welfare", "bn": "সমাজকল্যাণ মন্ত্রণালয়" },
       "sector": { "en": "Social Protection", "bn": "সামাজিক সুরক্ষা" },
       "value_bdt_crore": 14226,
-      "description": { "en": "Disability allowance and rehabilitation programmes, elderly citizen monthly stipend (old age allowance), destitute women and orphanage support networks, social safety net cash transfer programmes, and institutional capacity of welfare organisations.", "bn": "প্রতিবন্ধী ভাতা ও পুনর্বাসন কার্যক্রম, বয়স্ক নাগরিকদের মাসিক ভাতা, দুস্থ নারী ও এতিমখানা সহায়তা নেটওয়ার্ক, সামাজিক নিরাপত্তা জাল নগদ হস্তান্তর কার্যক্রম এবং কল্যাণ সংস্থার প্রাতিষ্ঠানিক সক্ষমতা।" }
+      "description": { "en": "Disability allowance and rehabilitation programmes, elderly citizen monthly stipend (old age allowance), destitute women and orphanage support networks, and social safety net cash transfer programmes.", "bn": "প্রতিবন্ধী ভাতা ও পুনর্বাসন কার্যক্রম, বয়স্ক নাগরিকদের মাসিক ভাতা এবং সামাজিক নিরাপত্তা জাল নগদ হস্তান্তর কার্যক্রম।" }
     },
     {
-      "id": "min_industry",
-      "ministry": { "en": "Ministry of Industries", "bn": "শিল্প মন্ত্রণালয়" },
-      "sector": { "en": "Industry & Commerce", "bn": "শিল্প ও বাণিজ্য" },
-      "value_bdt_crore": 5238,
-      "description": { "en": "Industrial zone infrastructure development, SME credit guarantee fund, public enterprise modernisation and restructuring, manufacturing sector competitiveness, and BSCIC industrial estate expansion.", "bn": "শিল্প অঞ্চলের অবকাঠামো উন্নয়ন, এসএমই ক্রেডিট গ্যারান্টি ফান্ড, সরকারি উদ্যোগ আধুনিকীকরণ ও পুনর্গঠন, উৎপাদন খাতের প্রতিযোগিতামূলকতা এবং বিএসসিআইসি শিল্প নগরী সম্প্রসারণ।" }
-    },
-    {
-      "id": "min_women",
-      "ministry": { "en": "Ministry of Women & Children Affairs", "bn": "মহিলা ও শিশু বিষয়ক মন্ত্রণালয়" },
-      "sector": { "en": "Social Protection", "bn": "সামাজিক সুরক্ষা" },
-      "value_bdt_crore": 5813,
-      "description": { "en": "Maternal and child nutrition programmes, gender-based violence response services, women's entrepreneurship development loans, day-care facility expansion, child rights protection enforcement, and One-Stop Crisis Centres for domestic abuse survivors.", "bn": "মাতৃ ও শিশু পুষ্টি কার্যক্রম, লিঙ্গ-ভিত্তিক সহিংসতা প্রতিক্রিয়া সেবা, নারী উদ্যোক্তা উন্নয়ন ঋণ, শিশু দিবাযত্ন কেন্দ্র সম্প্রসারণ, শিশু অধিকার সুরক্ষা প্রয়োগ এবং গৃহস্থালি সহিংসতার শিকারদের জন্য ওয়ান-স্টপ ক্রাইসিস সেন্টার।" }
-    },
-    {
-      "id": "min_energy",
-      "ministry": { "en": "Energy & Mineral Resources Division", "bn": "জ্বালানি ও খনিজ সম্পদ বিভাগ" },
-      "sector": { "en": "Energy & Power", "bn": "জ্বালানি ও বিদ্যুৎ" },
-      "value_bdt_crore": 4721,
-      "description": { "en": "Natural gas exploration and production support, Bapex block licensing, oil refinery operations, LNG terminal management, and mineral resource survey and extraction licensing.", "bn": "প্রাকৃতিক গ্যাস অনুসন্ধান ও উৎপাদন সহায়তা, বাপেক্স ব্লক লাইসেন্সিং, তেল শোধনাগার পরিচালনা, এলএনজি টার্মিনাল ব্যবস্থাপনা এবং খনিজ সম্পদ জরিপ ও নিষ্কাশন লাইসেন্সিং।" }
-    },
-    {
-      "id": "min_law",
-      "ministry": { "en": "Ministry of Law, Justice & Parliamentary Affairs", "bn": "আইন, বিচার ও সংসদ বিষয়ক মন্ত্রণালয়" },
-      "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
-      "value_bdt_crore": 4892,
-      "description": { "en": "Supreme Court and subordinate court capacity expansion, Legal Aid Services Trust (BLAST) support, digital court and e-judiciary infrastructure, parliamentary services operational budget, and law reform commission activities.", "bn": "সুপ্রিম কোর্ট ও অধস্তন আদালতের সক্ষমতা সম্প্রসারণ, আইনি সহায়তা সেবা ট্রাস্ট সহায়তা, ডিজিটাল কোর্ট ও ই-বিচার বিভাগ অবকাঠামো, সংসদীয় সেবা পরিচালন বাজেট এবং আইন সংস্কার কমিশনের কার্যক্রম।" }
-    },
-    {
-      "id": "election_commission",
-      "ministry": { "en": "Election Commission Secretariat", "bn": "নির্বাচন কমিশন সচিবালয়" },
-      "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
-      "value_bdt_crore": 2840,
-      "description": { "en": "Electoral roll maintenance, voter ID card system updates, polling station infrastructure, civic voter education programmes, Election Commission staff training, and preparation for by-elections and local government polls.", "bn": "নির্বাচনী তালিকা রক্ষণাবেক্ষণ, ভোটার আইডি কার্ড সিস্টেম আপডেট, ভোটকেন্দ্র অবকাঠামো, নাগরিক ভোটার শিক্ষা কার্যক্রম, নির্বাচন কমিশন কর্মীদের প্রশিক্ষণ এবং উপনির্বাচন ও স্থানীয় সরকার নির্বাচনের প্রস্তুতি।" }
-    },
-    {
-      "id": "afd",
-      "ministry": { "en": "Armed Forces Division", "bn": "সশস্ত্র বাহিনী বিভাগ" },
-      "sector": { "en": "Defense and Security", "bn": "প্রতিরক্ষা ও নিরাপত্তা" },
-      "value_bdt_crore": 44,
-      "description": { "en": "Joint services high-command operational coordination, national defence policy formulation secretariat, UN peacekeeping mission administrative framework management, inter-service communication infrastructure, and strategic planning support.", "bn": "যৌথ বাহিনীর উচ্চ-কমান্ড পরিচালন সমন্বয়, জাতীয় প্রতিরক্ষা নীতি প্রণয়ন সচিবালয়, জাতিসংঘ শান্তি রক্ষা মিশনের প্রশাসনিক ফ্রেমওয়ার্ক ব্যবস্থাপনা, আন্তঃবাহিনী যোগাযোগ অবকাঠামো এবং কৌশলগত পরিকল্পনা সহায়তা।" }
+      "id": "min_housing",
+      "ministry": { "en": "Ministry of Housing & Public Works", "bn": "গৃহায়ন ও গণপূর্ত মন্ত্রণালয়" },
+      "sector": { "en": "Local Government & Rural Dev.", "bn": "স্থানীয় সরকার ও পল্লী উন্নয়ন" },
+      "value_bdt_crore": 12894,
+      "description": { "en": "Affordable housing scheme construction for low-income families, government office building maintenance and new construction, utility infrastructure procurement, and slum upgrading initiatives.", "bn": "নিম্ন আয়ের পরিবারের জন্য সাশ্রয়ী মূল্যের আবাসন নির্মাণ এবং বস্তি উন্নয়ন উদ্যোগ।" }
     },
     {
       "id": "min_rural",
       "ministry": { "en": "Rural Development & Co-operatives Division", "bn": "পল্লী উন্নয়ন ও সমবায় বিভাগ" },
       "sector": { "en": "Local Government & Rural Dev.", "bn": "স্থানীয় সরকার ও পল্লী উন্নয়ন" },
       "value_bdt_crore": 9102,
-      "description": { "en": "Rural road construction under the LGED, rural market infrastructure, cooperative society institutional financing, village-level livelihood enhancement through BRDB, and rural electrification and digital service access expansion.", "bn": "এলজিইডির অধীনে গ্রামীণ সড়ক নির্মাণ, গ্রামীণ বাজার অবকাঠামো, সমবায় সমিতির প্রাতিষ্ঠানিক অর্থায়ন, বিআরডিবির মাধ্যমে গ্রাম পর্যায়ে জীবিকা উন্নয়ন এবং পল্লী বিদ্যুতায়ন ও ডিজিটাল সেবার প্রবেশাধিকার সম্প্রসারণ।" }
+      "description": { "en": "Rural road construction under the LGED, rural market infrastructure, cooperative society institutional financing, village-level livelihood enhancement through BRDB.", "bn": "এলজিইডির অধীনে গ্রামীণ সড়ক নির্মাণ এবং বিআরডিবির মাধ্যমে গ্রাম পর্যায়ে জীবিকা উন্নয়ন।" }
     },
     {
-      "id": "min_environment",
-      "ministry": { "en": "Ministry of Environment, Forest & Climate Change", "bn": "পরিবেশ, বন ও জলবায়ু পরিবর্তন মন্ত্রণালয়" },
-      "sector": { "en": "Environment & Climate", "bn": "পরিবেশ ও জলবায়ু" },
-      "value_bdt_crore": 2341,
-      "description": { "en": "Social forestry and afforestation programmes, climate change trust fund allocations, pollution monitoring and industrial effluent control, Sundarbans mangrove conservation, biodiversity protection reserves, and Paris Agreement NDC compliance infrastructure.", "bn": "সামাজিক বনায়ন ও বনায়ন কার্যক্রম, জলবায়ু পরিবর্তন ট্রাস্ট ফান্ড বরাদ্দ, দূষণ পর্যবেক্ষণ ও শিল্প বর্জ্য নিয়ন্ত্রণ, সুন্দরবন ম্যানগ্রোভ সংরক্ষণ, জীববৈচিত্র্য সুরক্ষা রিজার্ভ এবং প্যারিস চুক্তি এনডিসি সম্মতি অবকাঠামো।" }
+      "id": "min_disaster",
+      "ministry": { "en": "Ministry of Disaster Management & Relief", "bn": "দুর্যোগ ব্যবস্থাপনা ও ত্রাণ মন্ত্রণালয়" },
+      "sector": { "en": "Social Protection", "bn": "সামাজিক সুরক্ষা" },
+      "value_bdt_crore": 9870,
+      "description": { "en": "Cyclone shelter network construction and maintenance, flood relief and emergency food distribution logistics, drought mitigation programmes, and multi-hazard early warning systems.", "bn": "ঘূর্ণিঝড় আশ্রয়কেন্দ্র নেটওয়ার্ক নির্মাণ ও রক্ষণাবেক্ষণ এবং বন্যা ত্রাণ ও জরুরি খাদ্য বিতরণ।" }
+    },
+    {
+      "id": "min_telecom",
+      "ministry": { "en": "Posts, Telecom & IT Division", "bn": "ডাক, টেলিযোগাযোগ ও তথ্যপ্রযুক্তি বিভাগ" },
+      "sector": { "en": "ICT & Digital", "bn": "আইসিটি ও ডিজিটাল" },
+      "value_bdt_crore": 8912,
+      "description": { "en": "National broadband expansion targeting rural and underserved areas, e-Government service delivery platform upgrades, digital identity infrastructure, cybersecurity operations centre, and information technology park development.", "bn": "গ্রামীণ ও অনুপস্থিত এলাকায় জাতীয় ব্রডব্যান্ড সম্প্রসারণ এবং ডিজিটাল পরিচয় অবকাঠামো।" }
+    },
+    {
+      "id": "min_civil_aviation",
+      "ministry": { "en": "Ministry of Civil Aviation & Tourism", "bn": "বেসামরিক বিমান পরিবহন ও পর্যটন মন্ত্রণালয়" },
+      "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
+      "value_bdt_crore": 7845,
+      "description": { "en": "Hazrat Shahjalal and other international airport terminal expansion, Biman Bangladesh Airlines fleet recapitalisation, Cox's Bazar and regional airport upgrades, and tourism infrastructure development.", "bn": "হযরত শাহজালাল ও অন্যান্য আন্তর্জাতিক বিমানবন্দরের টার্মিনাল সম্প্রসারণ এবং বিমান বাংলাদেশ এয়ারলাইনসের ফ্লিট পুনর্মূলধন।" }
+    },
+    {
+      "id": "min_food",
+      "ministry": { "en": "Ministry of Food", "bn": "খাদ্য মন্ত্রণালয়" },
+      "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
+      "value_bdt_crore": 7124,
+      "description": { "en": "Strategic grain reserve procurement and maintenance, public food silo network operations, Open Market Sales (OMS) subsidy for low-income consumers, and food safety regulatory enforcement.", "bn": "কৌশলগত শস্য মজুদ সংগ্রহ ও রক্ষণাবেক্ষণ এবং নিম্ন আয়ের ভোক্তাদের জন্য ওএমএস ভর্তুকি।" }
+    },
+    {
+      "id": "min_bridges",
+      "ministry": { "en": "Bridges Division", "bn": "সেতু বিভাগ" },
+      "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
+      "value_bdt_crore": 6840,
+      "description": { "en": "Large-scale cross-river bridge projects, elevated expressway development, Padma Bridge railway link completion works, and Bangabandhu Sheikh Mujibur Rahman Tunnel operations.", "bn": "বৃহৎ আকারের আন্তঃনদী সেতু প্রকল্প এবং পদ্মা সেতু রেলওয়ে সংযোগ সম্পন্নকরণ।" }
+    },
+    {
+      "id": "min_fisheries",
+      "ministry": { "en": "Ministry of Fisheries & Livestock", "bn": "মৎস্য ও প্রাণিসম্পদ মন্ত্রণালয়" },
+      "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
+      "value_bdt_crore": 6312,
+      "description": { "en": "Aquaculture intensification and disease management research, livestock veterinary services network, deep-sea and marine fisheries management, and fish processing industry cold-chain infrastructure.", "bn": "জলজ চাষ নিবিড়করণ ও রোগ ব্যবস্থাপনা গবেষণা এবং মৎস্য প্রক্রিয়াকরণ শিল্পের কোল্ড চেইন অবকাঠামো।" }
+    },
+    {
+      "id": "min_bridges_rnd",
+      "ministry": { "en": "Roads & Highways Department (R&H)", "bn": "সড়ক ও জনপথ অধিদপ্তর" },
+      "sector": { "en": "Transport & Infrastructure", "bn": "পরিবহন ও অবকাঠামো" },
+      "value_bdt_crore": 6203,
+      "description": { "en": "District and upazila road maintenance, rural connectivity improvement schemes, road pavement rehabilitation, and engineering survey operations for new corridor identification.", "bn": "জেলা ও উপজেলা সড়ক রক্ষণাবেক্ষণ এবং গ্রামীণ সংযোগ উন্নয়ন স্কিম।" }
+    },
+    {
+      "id": "min_women",
+      "ministry": { "en": "Ministry of Women & Children Affairs", "bn": "মহিলা ও শিশু বিষয়ক মন্ত্রণালয়" },
+      "sector": { "en": "Social Protection", "bn": "সামাজিক সুরক্ষা" },
+      "value_bdt_crore": 5813,
+      "description": { "en": "Maternal and child nutrition programmes, gender-based violence response services, women's entrepreneurship development loans, day-care facility expansion, and One-Stop Crisis Centres.", "bn": "মাতৃ ও শিশু পুষ্টি কার্যক্রম এবং নারী উদ্যোক্তা উন্নয়ন ঋণ।" }
+    },
+    {
+      "id": "min_industry",
+      "ministry": { "en": "Ministry of Industries", "bn": "শিল্প মন্ত্রণালয়" },
+      "sector": { "en": "Industry & Commerce", "bn": "শিল্প ও বাণিজ্য" },
+      "value_bdt_crore": 5238,
+      "description": { "en": "Industrial zone infrastructure development, SME credit guarantee fund, public enterprise modernisation and restructuring, manufacturing sector competitiveness, and BSCIC industrial estate expansion.", "bn": "শিল্প অঞ্চলের অবকাঠামো উন্নয়ন, এসএমই ক্রেডিট গ্যারান্টি ফান্ড এবং উৎপাদন খাতের প্রতিযোগিতামূলকতা।" }
+    },
+    {
+      "id": "min_law",
+      "ministry": { "en": "Ministry of Law, Justice & Parliamentary Affairs", "bn": "আইন, বিচার ও সংসদ বিষয়ক মন্ত্রণালয়" },
+      "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
+      "value_bdt_crore": 4892,
+      "description": { "en": "Supreme Court and subordinate court capacity expansion, Legal Aid Services Trust support, digital court and e-judiciary infrastructure, parliamentary services, and law reform commission activities.", "bn": "সুপ্রিম কোর্ট ও অধস্তন আদালতের সক্ষমতা সম্প্রসারণ এবং ডিজিটাল কোর্ট ও ই-বিচার বিভাগ অবকাঠামো।" }
+    },
+    {
+      "id": "min_energy",
+      "ministry": { "en": "Energy & Mineral Resources Division", "bn": "জ্বালানি ও খনিজ সম্পদ বিভাগ" },
+      "sector": { "en": "Energy & Power", "bn": "জ্বালানি ও বিদ্যুৎ" },
+      "value_bdt_crore": 4721,
+      "description": { "en": "Natural gas exploration and production support, Bapex block licensing, oil refinery operations, LNG terminal management, and mineral resource survey and extraction licensing.", "bn": "প্রাকৃতিক গ্যাস অনুসন্ধান ও উৎপাদন সহায়তা এবং এলএনজি টার্মিনাল ব্যবস্থাপনা।" }
     },
     {
       "id": "min_foreign",
       "ministry": { "en": "Ministry of Foreign Affairs", "bn": "পররাষ্ট্র মন্ত্রণালয়" },
       "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
       "value_bdt_crore": 3456,
-      "description": { "en": "Bangladesh diplomatic missions abroad, international treaty negotiation and compliance, passport and visa consular services, multilateral organisation membership contributions, foreign aid coordination, and diaspora engagement programmes.", "bn": "বিদেশে বাংলাদেশের কূটনৈতিক মিশন, আন্তর্জাতিক চুক্তি আলোচনা ও সম্মতি, পাসপোর্ট ও ভিসা কনসুলার সেবা, বহুপাক্ষিক সংস্থার সদস্যপদ অবদান, বৈদেশিক সহায়তা সমন্বয় এবং প্রবাসী সম্পৃক্ততা কার্যক্রম।" }
+      "description": { "en": "Bangladesh diplomatic missions abroad, international treaty negotiation and compliance, passport and visa consular services, multilateral organisation membership contributions, and diaspora engagement programmes.", "bn": "বিদেশে বাংলাদেশের কূটনৈতিক মিশন এবং আন্তর্জাতিক চুক্তি আলোচনা ও সম্মতি।" }
+    },
+    {
+      "id": "min_environment",
+      "ministry": { "en": "Ministry of Environment, Forest & Climate Change", "bn": "পরিবেশ, বন ও জলবায়ু পরিবর্তন মন্ত্রণালয়" },
+      "sector": { "en": "Environment & Climate", "bn": "পরিবেশ ও জলবায়ু" },
+      "value_bdt_crore": 2341,
+      "description": { "en": "Social forestry and afforestation programmes, climate change trust fund allocations, pollution monitoring and industrial effluent control, Sundarbans mangrove conservation, and Paris Agreement NDC compliance.", "bn": "সামাজিক বনায়ন ও বনায়ন কার্যক্রম এবং সুন্দরবন ম্যানগ্রোভ সংরক্ষণ।" }
+    },
+    {
+      "id": "election_commission",
+      "ministry": { "en": "Election Commission Secretariat", "bn": "নির্বাচন কমিশন সচিবালয়" },
+      "sector": { "en": "Public Administration", "bn": "সরকারি প্রশাসন" },
+      "value_bdt_crore": 2840,
+      "description": { "en": "Electoral roll maintenance, voter ID card system updates, polling station infrastructure, civic voter education programmes, and preparation for by-elections and local government polls.", "bn": "নির্বাচনী তালিকা রক্ষণাবেক্ষণ এবং নির্বাচন কমিশন কর্মীদের প্রশিক্ষণ।" }
+    },
+    {
+      "id": "afd",
+      "ministry": { "en": "Armed Forces Division", "bn": "সশস্ত্র বাহিনী বিভাগ" },
+      "sector": { "en": "Defense and Security", "bn": "প্রতিরক্ষা ও নিরাপত্তা" },
+      "value_bdt_crore": 44,
+      "description": { "en": "Joint services high-command operational coordination, national defence policy formulation, UN peacekeeping mission administrative framework management, inter-service communication infrastructure.", "bn": "যৌথ বাহিনীর উচ্চ-কমান্ড পরিচালন সমন্বয় এবং জাতিসংঘ শান্তি রক্ষা মিশনের প্রশাসনিক ফ্রেমওয়ার্ক ব্যবস্থাপনা।" }
+    },
+    {
+      "id": "min_water",
+      "ministry": { "en": "Ministry of Water Resources", "bn": "পানি সম্পদ মন্ত্রণালয়" },
+      "sector": { "en": "Agriculture & Food", "bn": "কৃষি ও খাদ্য" },
+      "value_bdt_crore": 10983,
+      "description": { "en": "Flood control embankment construction and maintenance, tidal river management, coastal polders and saline intrusion prevention, river dredging for navigability, and integrated water resource management.", "bn": "বন্যা নিয়ন্ত্রণ বাঁধ নির্মাণ ও রক্ষণাবেক্ষণ এবং উপকূলীয় পোল্ডার ও লবণাক্ততা অনুপ্রবেশ প্রতিরোধ।" }
     }
   ],
   "policy_matrix": {
     "tin_requirements": {
       "title":    { "en": "TIN Certificate Mandatory Rules & Exemptions — Finance Act 2026-27", "bn": "টিন সার্টিফিকেট বাধ্যতামূলক নিয়ম ও অব্যাহতি — অর্থ আইন ২০২৬-২৭" },
-      "overview": { "en": "The Finance Act 2026-27 significantly restructures TIN obligations across banking, property registration, business licensing, and government procurement to strengthen fiscal compliance and broaden the formal tax base.", "bn": "অর্থ আইন ২০২৬-২৭ ব্যাংকিং, সম্পত্তি নিবন্ধন, ব্যবসায়িক লাইসেন্সিং এবং সরকারি ক্রয়ে রাজস্ব সম্মতি শক্তিশালী করতে এবং আনুষ্ঠানিক কর ভিত্তি বিস্তৃত করতে টিন বাধ্যবাধকতা উল্লেখযোগ্যভাবে পুনর্গঠন করে।" },
+      "overview": { "en": "The Finance Act 2026-27 significantly restructures TIN obligations across banking, property registration, business licensing, and government procurement to strengthen fiscal compliance and broaden the formal tax base.", "bn": "অর্থ আইন ২০২৬-২৭ ব্যাংকিং, সম্পত্তি নিবন্ধন, ব্যবসায়িক লাইসেন্সিং এবং সরকারি ক্রয়ে টিন বাধ্যবাধকতা উল্লেখযোগ্যভাবে পুনর্গঠন করে।" },
       "rules_list": [
         {
           "condition_id": "student_accounts",
           "applicable_target": { "en": "Students (Age 18–25) & No-Frills Savings Accounts", "bn": "শিক্ষার্থী (বয়স ১৮–২৫) এবং নো-ফ্রিলস সঞ্চয়ী হিসাব" },
           "is_tin_mandatory": false,
           "alert_code": "safe",
-          "guideline": { "en": "TIN certificates are explicitly exempted for verified student bank accounts at recognised institutions and basic no-frills low-income savings accounts. Exemption is voided if annual income exceeds BDT 3,50,000.", "bn": "স্বীকৃত প্রতিষ্ঠানে যাচাইকৃত স্টুডেন্ট ব্যাংক অ্যাকাউন্ট এবং সাধারণ নো-ফ্রিলস নিম্ন-আয়ের সঞ্চয়ী হিসাবের জন্য টিন সার্টিফিকেট থেকে স্পষ্ট অব্যাহতি। বার্ষিক আয় ৩,৫০,০০০ টাকা অতিক্রম করলে অব্যাহতি বাতিল।" }
+          "guideline": { "en": "TIN certificates are explicitly exempted for verified student bank accounts at recognised institutions and basic no-frills low-income savings accounts. Exemption is voided if annual income exceeds BDT 3,50,000.", "bn": "স্বীকৃত প্রতিষ্ঠানে যাচাইকৃত স্টুডেন্ট ব্যাংক অ্যাকাউন্ট এবং সাধারণ নো-ফ্রিলস নিম্ন-আয়ের সঞ্চয়ী হিসাবের জন্য টিন সার্টিফিকেট থেকে স্পষ্ট অব্যাহতি।" }
         },
         {
           "condition_id": "standard_commercial",
-          "applicable_target": { "en": "Standard Commercial Checking & Savings Accounts", "bn": "সাধারণ বাণিজ্যিক চলতি ও সঞ্চয়ী হিসাব" },
+          "applicable_target": { "en": "Standard Commercial & Business Bank Accounts", "bn": "সাধারণ বাণিজ্যিক ও ব্যবসায়িক ব্যাংক হিসাব" },
           "is_tin_mandatory": true,
-          "alert_code": "critical",
-          "guideline": { "en": "Mandatory requirement to present a valid TIN certificate during account opening or annual KYC validation. Non-compliance results in account restriction and potential penalties under the Income Tax Ordinance.", "bn": "অ্যাকাউন্ট খোলার সময় বা বার্ষিক কেওয়াইসি যাচাইকরণের সময় বৈধ টিন সার্টিফিকেট উপস্থাপন বাধ্যতামূলক। অ-সম্মতি আয়কর অধ্যাদেশের অধীনে অ্যাকাউন্ট সীমাবদ্ধতা ও সম্ভাব্য জরিমানার ফলাফল।" }
+          "alert_code": "warning",
+          "guideline": { "en": "All standard commercial checking accounts, regular savings accounts, fixed deposits, business current accounts, and any account linked to a trade licence or company registration mandatorily require a valid TIN certificate submission.", "bn": "সকল সাধারণ বাণিজ্যিক চলতি হিসাব, নিয়মিত সঞ্চয়ী হিসাব, স্থায়ী আমানত, ব্যবসায়িক চলতি হিসাব এবং ট্রেড লাইসেন্স বা কোম্পানি নিবন্ধনের সাথে সংযুক্ত যেকোনো হিসাবে বাধ্যতামূলকভাবে একটি বৈধ টিন সার্টিফিকেট জমা দিতে হবে।" }
         },
         {
-          "condition_id": "land_registration",
-          "applicable_target": { "en": "Land & Property Registration (City Corporations & Municipalities)", "bn": "ভূমি ও সম্পত্তি নিবন্ধন (সিটি কর্পোরেশন ও পৌরসভা)" },
+          "condition_id": "property_registration",
+          "applicable_target": { "en": "Property Registration, Transfer & Mortgage Transactions", "bn": "সম্পত্তি নিবন্ধন, হস্তান্তর ও বন্ধকী লেনদেন" },
           "is_tin_mandatory": true,
-          "alert_code": "critical",
-          "guideline": { "en": "All land and property transfers in city corporation and municipal areas require TIN submission by both buyer and seller at the sub-registry office. Rural agricultural land under 10 bigha is exempt.", "bn": "সিটি কর্পোরেশন ও পৌরসভা এলাকায় সকল ভূমি ও সম্পত্তি হস্তান্তরে সাব-রেজিস্ট্রি অফিসে ক্রেতা ও বিক্রেতা উভয়কে টিন জমা দিতে হবে। ১০ বিঘার কম গ্রামীণ কৃষিজমি অব্যাহতিপ্রাপ্ত।" }
+          "alert_code": "warning",
+          "guideline": { "en": "TIN is mandatory for all property purchase, sale, transfer, mortgage, or lease transactions registered under the Registration Act. Both buyer and seller are required to present TIN certificates at the sub-registry office.", "bn": "রেজিস্ট্রেশন আইনের অধীনে নিবন্ধিত সকল সম্পত্তি ক্রয়, বিক্রয়, হস্তান্তর, বন্ধক বা ইজারা লেনদেনের জন্য টিন বাধ্যতামূলক।" }
         },
         {
           "condition_id": "trade_license",
-          "applicable_target": { "en": "Business Trade License (New & Renewal)", "bn": "ব্যবসায়িক ট্রেড লাইসেন্স (নতুন ও নবায়ন)" },
+          "applicable_target": { "en": "Trade Licence Applications & Business Registration", "bn": "ট্রেড লাইসেন্স আবেদন ও ব্যবসা নিবন্ধন" },
           "is_tin_mandatory": true,
-          "alert_code": "critical",
-          "guideline": { "en": "All trade license applications and annual renewals at city corporations, municipalities, and upazila councils must include a valid TIN certificate. Home-based micro-businesses with annual turnover below BDT 50,000 are exempt.", "bn": "সিটি কর্পোরেশন, পৌরসভা ও উপজেলা কাউন্সিলে সকল ট্রেড লাইসেন্স আবেদন ও বার্ষিক নবায়নে বৈধ টিন সার্টিফিকেট অন্তর্ভুক্ত করতে হবে। বার্ষিক টার্নওভার ৫০,০০০ টাকার কম গৃহ-ভিত্তিক ক্ষুদ্র ব্যবসা অব্যাহতিপ্রাপ্ত।" }
-        },
-        {
-          "condition_id": "government_contract",
-          "applicable_target": { "en": "Government Procurement Tenders (Above BDT 5 Lakh)", "bn": "সরকারি ক্রয় টেন্ডার (৫ লক্ষ টাকার বেশি)" },
-          "is_tin_mandatory": true,
-          "alert_code": "critical",
-          "guideline": { "en": "All vendors and suppliers participating in government procurement tenders above BDT 5 lakh must hold a valid TIN certificate and submit it with bid documentation. Failure to submit is grounds for automatic disqualification.", "bn": "৫ লক্ষ টাকার বেশি সরকারি ক্রয় টেন্ডারে অংশগ্রহণকারী সকল বিক্রেতা ও সরবরাহকারীকে বৈধ টিন সার্টিফিকেট রাখতে ও বিড ডকুমেন্টেশনের সাথে জমা দিতে হবে।" }
-        },
-        {
-          "condition_id": "ngo_registration",
-          "applicable_target": { "en": "NGO & Non-Profit Entity Registration / Renewal", "bn": "এনজিও ও অলাভজনক সত্তার নিবন্ধন / নবায়ন" },
-          "is_tin_mandatory": true,
-          "alert_code": "critical",
-          "guideline": { "en": "Registration and annual renewal of NGO entities under the NGO Affairs Bureau require valid TIN submission by all executive board members and the chief executive officer.", "bn": "এনজিও বিষয়ক ব্যুরোর অধীনে এনজিও সত্তার নিবন্ধন ও বার্ষিক নবায়নে সকল নির্বাহী পর্ষদ সদস্য ও প্রধান নির্বাহী কর্মকর্তার বৈধ টিন জমা প্রয়োজন।" }
-        },
-        {
-          "condition_id": "remittance_large",
-          "applicable_target": { "en": "Inward Foreign Remittance (Any Amount via Formal Channels)", "bn": "আনুষ্ঠানিক চ্যানেলের মাধ্যমে ইনওয়ার্ড বৈদেশিক রেমিট্যান্স (যেকোনো পরিমাণ)" },
-          "is_tin_mandatory": false,
-          "alert_code": "safe",
-          "guideline": { "en": "Foreign remittances received via formal banking and MFS channels are fully exempt from TIN requirements as a policy incentive to formalise remittance flows. Recipients also receive a 2.5% government cash incentive regardless of amount.", "bn": "আনুষ্ঠানিক ব্যাংকিং ও এমএফএস চ্যানেলের মাধ্যমে প্রাপ্ত বৈদেশিক রেমিট্যান্স রেমিট্যান্স প্রবাহ আনুষ্ঠানিক করার নীতিগত উৎসাহ হিসেবে টিন বাধ্যবাধকতা থেকে সম্পূর্ণ অব্যাহতিপ্রাপ্ত।" }
-        },
-        {
-          "condition_id": "vehicle_registration",
-          "applicable_target": { "en": "Motor Vehicle Registration (All Private Vehicles)", "bn": "মোটরযান নিবন্ধন (সকল ব্যক্তিগত যানবাহন)" },
-          "is_tin_mandatory": true,
-          "alert_code": "critical",
-          "guideline": { "en": "Registration of all private motor vehicles — cars, motorcycles above 165cc, and light commercial vehicles — at BRTA requires a valid TIN certificate from the registered owner.", "bn": "বিআরটিএতে সকল ব্যক্তিগত মোটরযান — গাড়ি, ১৬৫ সিসির বেশি মোটরসাইকেল এবং হালকা বাণিজ্যিক যানবাহন — নিবন্ধনে নিবন্ধিত মালিকের বৈধ টিন সার্টিফিকেট প্রয়োজন।" }
+          "alert_code": "warning",
+          "guideline": { "en": "Any individual or entity applying for a new trade licence, renewing an existing trade licence, or registering a business entity with the Registrar of Joint Stock Companies (RJSC) must provide a valid TIN certificate.", "bn": "নতুন ট্রেড লাইসেন্সের জন্য আবেদনকারী, বিদ্যমান ট্রেড লাইসেন্স নবায়নকারী বা যৌথ মূলধন কোম্পানি ও ফার্ম পরিদপ্তরে ব্যবসায়িক সত্তা নিবন্ধনকারী যেকোনো ব্যক্তি বা সত্তাকে একটি বৈধ টিন সার্টিফিকেট প্রদান করতে হবে।" }
         }
       ]
     }
